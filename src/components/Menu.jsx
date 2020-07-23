@@ -13,7 +13,6 @@ function Menu() {
     return (
         <Container>
             <Grid >
-                <Button>Mes infos</Button>
                 <Button>Mes aliments</Button>
                 <Button>Mes recettes</Button>
                 <Button>Mes repas</Button>

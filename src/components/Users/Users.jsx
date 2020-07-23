@@ -5,6 +5,7 @@ import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
+import ListItemText from "@material-ui/core/ListItemText";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
@@ -91,6 +92,7 @@ function User() {
 
     const calcLipGlucProt = () => {
         // DEC means Daily Energy Consuption
+        const initDEC = energyConsuption.daily_energy;
         let DEC = energyConsuption.daily_energy;
 
         const proteins = user.weight * 1.8;
@@ -99,11 +101,11 @@ function User() {
         const lipids = user.weight * 1;
         DEC = DEC - lipids * 9;
 
-        const glucids = DEC * 1;
+        const glucids = DEC / 4;
 
         return setPLG({
             proteins: proteins.toFixed(2),
-            lipids: lipids.toFixed(0),
+            lipids: lipids.toFixed(2),
             glucids: glucids.toFixed(2),
         });
     };
@@ -147,9 +149,16 @@ function User() {
                         </strong>
                     </Typography>
                     <Typography display="block">
-                        Vous devez consommer idéalement {PLG.proteins} grammes
-                        de protéines, {PLG.lipids} grammes de lipides et{" "}
-                        {PLG.glucids} par jours.
+                        Vous devez consommer idéalement
+                        <ListItemText href="#simple-list">
+                            - {PLG.proteins} grammes de protéines
+                        </ListItemText>
+                        <ListItemText href="#simple-list">
+                            - {PLG.lipids} grammes de lipides
+                        </ListItemText>
+                        <ListItemText href="#simple-list">
+                            - {PLG.glucids} grammes de glucides
+                        </ListItemText>
                     </Typography>
                     <Divider />
                     <Typography variant="caption" display="block" gutterBottom>
