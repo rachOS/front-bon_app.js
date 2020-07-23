@@ -2,18 +2,17 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 
 // import components
-import Menu from "./Menu";
-import User from "./Users/Users";
+
 // import data
 
 // import style
 
-function Home() {
+function Recipes() {
     return (
         <Container>
-        TEST
+            <h1>Recipes Component</h1>
         </Container>
     );
 }
 
-export default Home;
+export default Recipes;
