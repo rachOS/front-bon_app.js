@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useParams } from "react";
 import Axios from "axios";
 import Container from "@material-ui/core/Container";
 import Divider from "@material-ui/core/Divider";
@@ -27,12 +27,14 @@ const useStyles = makeStyles({
     },
 });
 
-/* Femmes :   \mathrm{MB} = 0,963 * Poid^0,48 * Taille^0,50 * Age^-0,13
-       Hommes :   \mathrm{MB} = 1,083 * Poid^0,48 * Taille^0,50 * Age^-0,13
-       Une fois la formule effectuée, vous la multipliez par 191 et vous obtenez votre métabolisme de base.
-       Sédentaire : MB x 1,4
-       Actif: MB x 1,6
-       Sportif: MB x 1,7*/
+/*
+Femmes :   \mathrm{MB} = 0,963 * Poid^0,48 * Taille^0,50 * Age^-0,13
+Hommes :   \mathrm{MB} = 1,083 * Poid^0,48 * Taille^0,50 * Age^-0,13
+Une fois la formule effectuée, vous la multipliez par 191 et vous obtenez votre
+métabolisme de base.
+Sédentaire : MB x 1,4
+Actif: MB x 1,6
+Sportif: MB x 1,7*/
 
 function User() {
     const classes = useStyles();
@@ -40,6 +42,7 @@ function User() {
     const [allUsers, setAllUsers] = useState([{}]);
     const [user, setUser] = useState([{}]);
     const [energyConsuption, setEnergyConsuption] = useState({});
+    // init Proteins, Lipids, Glucids state
     const [PLG, setPLG] = useState({});
 
     const getAllUsers = () => {
@@ -50,18 +53,19 @@ function User() {
     };
 
     useEffect(() => {
-        getAllUsers();
+        return getAllUsers();
     }, []);
 
-    const getOneUser = (id) => {
-        const url = `http://localhost:5000/api/users/${id}`;
+    console.log("user", allUsers);
+    const getOneUser = (userId) =>  {
+        const url = `http://localhost:5000/api/users/${userId}`;
         Axios.get(url)
-            .then((response) => response.data)
+            .then((response) =>  response.data)
             .then((data) => setUser(data));
     };
 
     useEffect(() => {
-        getOneUser(allUsers[0].id);
+        getOneUser();
     }, [allUsers]);
 
     // caculate colories needed
@@ -90,9 +94,9 @@ function User() {
         calcDailyEnergyConsumption();
     }, [user]);
 
+    // calculate proteins / lipids / glucids ratio
     const calcLipGlucProt = () => {
         // DEC means Daily Energy Consuption
-        const initDEC = energyConsuption.daily_energy;
         let DEC = energyConsuption.daily_energy;
 
         const proteins = user.weight * 1.8;
@@ -116,13 +120,21 @@ function User() {
 
     return (
         <Container>
+        {allUsers.map(userDetail =>
+            <div>
+                <button onClick={() => getOneUser(userDetail.id)}>
+                    {userDetail.id} {userDetail.firstname}
+                </button>
+
+            </div>
+        )}
             <Card className={classes.root}>
                 <CardContent>
                     <Typography
                         variant="h5"
                         component="h2"
                         gutterBottom
-                    >{`Bonjour ${allUsers[0].firstname} ${allUsers[0].lastname}`}</Typography>
+                    >{`Bonjour ${user.firstname} ${user.lastname}`}</Typography>
                     <Divider />
                     <Typography className={classes.pos} color="textSecondary">
                         age :{user.age}
@@ -167,7 +179,7 @@ function User() {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Editer mes infos</Button>
+                    <Button size="small">Mettre à jour mes infos</Button>
                 </CardActions>
             </Card>
         </Container>
