@@ -1,12 +1,16 @@
-import React from 'react';
-import './App.css';
+// import library
+import React from "react";
+// import components
+import Foods from "./components/Foods/Foods";
+
+// import style
 
 function App() {
-  return (
-    <>
-      
-    </>
-  );
+    return (
+        <>
+            <Foods />
+        </>
+    );
 }
 
 export default App;
