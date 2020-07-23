@@ -1,14 +1,14 @@
 // import library
 import React from "react";
 // import components
-import Foods from "./components/Foods/Foods";
+import Home from "./components/Home";
 
 // import style
 
 function App() {
     return (
         <>
-            <Foods />
+            <Home />
         </>
     );
 }
