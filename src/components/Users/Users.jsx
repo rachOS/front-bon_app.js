@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import Container from "@material-ui/core/Container";
+import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -38,6 +39,7 @@ function User() {
     const [allUsers, setAllUsers] = useState([{}]);
     const [user, setUser] = useState([{}]);
     const [energyConsuption, setEnergyConsuption] = useState({});
+    const [PLG, setPLG] = useState({});
 
     const getAllUsers = () => {
         const url = `http://localhost:5000/api/users`;
@@ -66,7 +68,6 @@ function User() {
     const height = user.height;
     const age = user.age;
     const activity = 1.4;
-    console.log(weight);
 
     const calcDailyEnergyConsumption = () => {
         // for a male
@@ -77,7 +78,6 @@ function User() {
             Math.pow(age, -0.13) *
             191;
         const dailyEnergyConsumption = basalMetabolicRate * activity;
-        console.log("LOG", typeof basalMetabolicRate);
 
         return setEnergyConsuption({
             mb_rate: basalMetabolicRate.toFixed(2),
@@ -89,12 +89,28 @@ function User() {
         calcDailyEnergyConsumption();
     }, [user]);
 
-    console.log(energyConsuption);
-
     const calcLipGlucProt = () => {
-        const proteines = 1.6 * weight;
-        const lipids = 1;
+        // DEC means Daily Energy Consuption
+        let DEC = energyConsuption.daily_energy;
+
+        const proteins = user.weight * 1.8;
+        DEC = DEC - proteins * 4;
+
+        const lipids = user.weight * 1;
+        DEC = DEC - lipids * 9;
+
+        const glucids = DEC * 1;
+
+        return setPLG({
+            proteins: proteins.toFixed(2),
+            lipids: lipids.toFixed(0),
+            glucids: glucids.toFixed(2),
+        });
     };
+
+    useEffect(() => {
+        calcLipGlucProt();
+    }, [energyConsuption]);
 
     return (
         <Container>
@@ -105,6 +121,7 @@ function User() {
                         component="h2"
                         gutterBottom
                     >{`Bonjour ${allUsers[0].firstname} ${allUsers[0].lastname}`}</Typography>
+                    <Divider />
                     <Typography className={classes.pos} color="textSecondary">
                         age :{user.age}
                     </Typography>
@@ -120,13 +137,24 @@ function User() {
                     <Typography className={classes.pos} color="textSecondary">
                         objectif : {user.id_goal}(perdre du poid)
                     </Typography>
-                    <Typography paragraph gutterBottom>
+                    <Divider />
+                    <Typography display="block" paragraph gutterBottom>
                         Votre <u>métabolisme basal</u> est de
                         <strong> {energyConsuption.mb_rate} calories</strong> et
                         votre <u>dépense énergétique journalière</u> est de
                         <strong>
                             {energyConsuption.daily_energy} calories
                         </strong>
+                    </Typography>
+                    <Typography display="block">
+                        Vous devez consommer idéalement {PLG.proteins} grammes
+                        de protéines, {PLG.lipids} grammes de lipides et{" "}
+                        {PLG.glucids} par jours.
+                    </Typography>
+                    <Divider />
+                    <Typography variant="caption" display="block" gutterBottom>
+                        Ces information sont à titre informative et ne remplace
+                        en aucun cas l'avis médical d'un expert.
                     </Typography>
                 </CardContent>
                 <CardActions>

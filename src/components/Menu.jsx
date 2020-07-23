@@ -12,7 +12,7 @@ import Button from "@material-ui/core/Button";
 function Menu() {
     return (
         <Container>
-            <Grid sm={2}>
+            <Grid >
                 <Button>Mes infos</Button>
                 <Button>Mes aliments</Button>
                 <Button>Mes recettes</Button>
