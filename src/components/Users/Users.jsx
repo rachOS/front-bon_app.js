@@ -122,9 +122,9 @@ function User() {
         <Container>
         {allUsers.map(userDetail =>
             <div>
-                <button onClick={() => getOneUser(userDetail.id)}>
+                <Button onClick={() => getOneUser(userDetail.id)}>
                     {userDetail.id} {userDetail.firstname}
-                </button>
+                </Button>
 
             </div>
         )}
@@ -137,13 +137,13 @@ function User() {
                     >{`Bonjour ${user.firstname} ${user.lastname}`}</Typography>
                     <Divider />
                     <Typography className={classes.pos} color="textSecondary">
-                        age :{user.age}
+                        age : {user.age} ans
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
-                        taille : {user.height}
+                        taille : {user.height} m
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
-                        poid : {user.weight}
+                        poid : {user.weight} kg
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
                         activité : {user.id_activity} (sédentaire)
