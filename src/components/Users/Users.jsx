@@ -165,7 +165,7 @@ function User() {
                         </strong>
                     </Typography>
                     <Typography display="block">
-                        Vous devez consommer idéalement
+                        Vous devriez consommer idéalement
                         <ListItemText href="#simple-list">
                             - {PLG.proteins} grammes de protéines
                         </ListItemText>
