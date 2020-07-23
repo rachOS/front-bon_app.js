@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useParams } from "react";
 import Axios from "axios";
 import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,6 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
 
 // import components
 
@@ -57,10 +59,10 @@ function User() {
     }, []);
 
     console.log("user", allUsers);
-    const getOneUser = (userId) =>  {
+    const getOneUser = (userId) => {
         const url = `http://localhost:5000/api/users/${userId}`;
         Axios.get(url)
-            .then((response) =>  response.data)
+            .then((response) => response.data)
             .then((data) => setUser(data));
     };
 
@@ -120,14 +122,17 @@ function User() {
 
     return (
         <Container>
-        {allUsers.map(userDetail =>
-            <div>
-                <Button onClick={() => getOneUser(userDetail.id)}>
-                    {userDetail.id} {userDetail.firstname}
-                </Button>
-
-            </div>
-        )}
+            <Grid container spacing={1}>
+                {allUsers.map((userDetail) => (
+                    <Grid item xs={2}>
+                        <Paper>
+                            <Button onClick={() => getOneUser(userDetail.id)}>
+                                {userDetail.id} {userDetail.firstname}
+                            </Button>
+                        </Paper>
+                    </Grid>
+                ))}
+            </Grid>
             <Card className={classes.root}>
                 <CardContent>
                     <Typography
