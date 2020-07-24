@@ -38,6 +38,12 @@ Sédentaire : MB x 1,4
 Actif: MB x 1,6
 Sportif: MB x 1,7*/
 
+// useContext
+
+const Test = React.createContext({
+    calories: 2000,
+});
+
 function User() {
     const classes = useStyles();
 
@@ -120,73 +126,100 @@ function User() {
     }, [energyConsuption]);
 
     return (
-        <Container>
-            <Grid container spacing={1}>
-                {allUsers.map((userDetail) => (
-                    <Grid item xs={2}>
-                        <Paper>
-                            <Button onClick={() => getOneUser(userDetail.id)}>
-                                {userDetail.id} {userDetail.firstname}
-                            </Button>
-                        </Paper>
-                    </Grid>
-                ))}
-            </Grid>
-            <Card className={classes.root}>
-                <CardContent>
-                    <Typography
-                        variant="h5"
-                        component="h2"
-                        gutterBottom
-                    >{`Bonjour ${user.firstname} ${user.lastname}`}</Typography>
-                    <Divider />
-                    <Typography className={classes.pos} color="textSecondary">
-                        age : {user.age} ans
-                    </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                        taille : {user.height} m
-                    </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                        poid : {user.weight} kg
-                    </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                        activité : {user.id_activity} (sédentaire)
-                    </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                        objectif : {user.id_goal}(perdre du poid)
-                    </Typography>
-                    <Divider />
-                    <Typography display="block" paragraph gutterBottom>
-                        Votre <u>métabolisme basal</u> est de
-                        <strong> {energyConsuption.mb_rate} calories</strong> et
-                        votre <u>dépense énergétique journalière</u> est de
-                        <strong>
-                            {energyConsuption.daily_energy} calories
-                        </strong>
-                    </Typography>
-                    <Typography display="block">
-                        Vous devez consommer idéalement
-                        <ListItemText href="#simple-list">
-                            - {PLG.proteins} grammes de protéines
-                        </ListItemText>
-                        <ListItemText href="#simple-list">
-                            - {PLG.lipids} grammes de lipides
-                        </ListItemText>
-                        <ListItemText href="#simple-list">
-                            - {PLG.glucids} grammes de glucides
-                        </ListItemText>
-                    </Typography>
-                    <Divider />
-                    <Typography variant="caption" display="block" gutterBottom>
-                        Ces informations ne remplace
-                        en aucun cas l'avis médical d'un expert.
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button size="small">Mettre à jour mes infos</Button>
-                </CardActions>
-            </Card>
-        </Container>
+        <Test.Provider value={energyConsuption}>
+            <Container>
+                <Grid container spacing={1}>
+                    {allUsers.map((userDetail) => (
+                        <Grid item xs={2}>
+                            <Paper>
+                                <Button
+                                    onClick={() => getOneUser(userDetail.id)}
+                                >
+                                    {userDetail.id} {userDetail.firstname}
+                                </Button>
+                            </Paper>
+                        </Grid>
+                    ))}
+                </Grid>
+                <Card className={classes.root}>
+                    <CardContent>
+                        <Typography
+                            variant="h5"
+                            component="h2"
+                            gutterBottom
+                        >{`Bonjour ${user.firstname} ${user.lastname}`}</Typography>
+                        <Divider />
+                        <Typography
+                            className={classes.pos}
+                            color="textSecondary"
+                        >
+                            age : {user.age} ans
+                        </Typography>
+                        <Typography
+                            className={classes.pos}
+                            color="textSecondary"
+                        >
+                            taille : {user.height} m
+                        </Typography>
+                        <Typography
+                            className={classes.pos}
+                            color="textSecondary"
+                        >
+                            poid : {user.weight} kg
+                        </Typography>
+                        <Typography
+                            className={classes.pos}
+                            color="textSecondary"
+                        >
+                            activité : {user.id_activity} (sédentaire)
+                        </Typography>
+                        <Typography
+                            className={classes.pos}
+                            color="textSecondary"
+                        >
+                            objectif : {user.id_goal}(perdre du poid)
+                        </Typography>
+                        <Divider />
+                        <Typography display="block" paragraph gutterBottom>
+                            Votre <u>métabolisme basal</u> est de
+                            <strong>
+                                {" "}
+                                {energyConsuption.mb_rate} calories
+                            </strong>{" "}
+                            et votre <u>dépense énergétique journalière</u> est
+                            de
+                            <strong>
+                                {energyConsuption.daily_energy} calories
+                            </strong>
+                        </Typography>
+                        <Typography display="block">
+                            Vous devez consommer idéalement
+                            <ListItemText href="#simple-list">
+                                - {PLG.proteins} grammes de protéines
+                            </ListItemText>
+                            <ListItemText href="#simple-list">
+                                - {PLG.lipids} grammes de lipides
+                            </ListItemText>
+                            <ListItemText href="#simple-list">
+                                - {PLG.glucids} grammes de glucides
+                            </ListItemText>
+                        </Typography>
+                        <Divider />
+                        <Typography
+                            variant="caption"
+                            display="block"
+                            gutterBottom
+                        >
+                            Ces informations ne remplace en aucun cas l'avis
+                            médical d'un expert.
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small">Mettre à jour mes infos</Button>
+                    </CardActions>
+                </Card>
+            </Container>
+        </Test.Provider>
     );
 }
 

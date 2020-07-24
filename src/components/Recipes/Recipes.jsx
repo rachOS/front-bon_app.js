@@ -17,10 +17,13 @@ import Paper from "@material-ui/core/Paper";
 // import style
 
 function Recipes() {
+    static contextType = Test;
+
     const [allFoods, setAllFoods] = useState([{}]);
     const [food, setFood] = useState([{}]);
     const [foodQuantity, setFoodQuantity] = useState(0);
     const [calories, setCalories] = useState(2000);
+    console.log("props", props);
 
     const getAllFoods = () => {
         const url = "http://localhost:5000/api/foods";
@@ -88,7 +91,7 @@ function Recipes() {
                     {getFoodName}
                 </Grid>
                 <Typography variant="h2" gutterBottom>
-                    Calculer une recette
+                    Calculer une recette pour {`x`} calories
                 </Typography>
                 <CardContent>
                     <Typography>{food.name}</Typography>
