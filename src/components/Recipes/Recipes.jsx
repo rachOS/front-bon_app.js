@@ -18,8 +18,8 @@ import Paper from "@material-ui/core/Paper";
 // import style
 
 function Recipes() {
-    const value  = useContext(TestContext);
-    console.log("Context", TestContext);
+    const energyConsuption = useContext(TestContext);
+    // console.log("Context", TestContext);
 
     const [allFoods, setAllFoods] = useState([{}]);
     const [food, setFood] = useState([{}]);
@@ -84,7 +84,7 @@ function Recipes() {
      à chaque ajout ou retrait d'aliment , les quantité doivent être affichées
      automatiquement le but étant de choisir que ses aliments et de ne rien avoir à calculer.
     */
-console.log('value',value);
+    // console.log("value", energyConsuption);
 
     return (
         <Container>
@@ -93,7 +93,7 @@ console.log('value',value);
                     {getFoodName}
                 </Grid>
                 <Typography variant="h2" gutterBottom>
-                    Calculer une recette pour {value} calories
+                    Calculer une recette pour {energyConsuption} calories
                 </Typography>
                 <CardContent>
                     <Typography>{food.name}</Typography>

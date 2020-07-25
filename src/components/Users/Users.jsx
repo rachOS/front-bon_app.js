@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import Axios from "axios";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Divider from "@material-ui/core/Divider";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import ListItemText from "@material-ui/core/ListItemText";
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
+import ListItemText from "@material-ui/core/ListItemText";
 import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 // import components
 
@@ -38,7 +38,7 @@ Sédentaire : MB x 1,4
 Actif: MB x 1,6
 Sportif: MB x 1,7*/
 
-export const TestContext = React.createContext(2000);
+export const TestContext = createContext(5000);
 
 function User() {
     const classes = useStyles();
@@ -46,8 +46,11 @@ function User() {
     const [allUsers, setAllUsers] = useState([{}]);
     const [user, setUser] = useState([{}]);
     const [energyConsuption, setEnergyConsuption] = useState({});
+
     // init Proteins, Lipids, Glucids state
     const [PLG, setPLG] = useState({});
+
+    const [value, setValue] = useState(2000);
 
     const getAllUsers = () => {
         const url = `http://localhost:5000/api/users`;
@@ -119,14 +122,15 @@ function User() {
 
     useEffect(() => {
         calcLipGlucProt();
+        setValue(energyConsuption.daily_energy);
     }, [energyConsuption]);
+
+    // console.log("TESTS", energyConsuption);
 
     return (
         <Container>
-            <h1>
-                {energyConsuption.daily_energy}
-            </h1>
-            <TestContext.Provider value="TEST">
+            <h1>{energyConsuption.daily_energy}</h1>
+            <TestContext.Provider value={energyConsuption.daily_energy}>
                 <Grid container spacing={1}>
                     {allUsers.map((userDetail) => (
                         <Grid item xs={2}>

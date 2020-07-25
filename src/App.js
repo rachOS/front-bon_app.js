@@ -4,12 +4,12 @@ import { Switch, Route } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 
 // import components
-import Users from "./components/Users/Users";
-import Menu from "./components/Menu";
 import Foods from "./components/Foods/Foods";
-import Recipes from "./components/Recipes/Recipes";
 import Meals from "./components/Meals/Meals";
+import Menu from "./components/Menu";
 import Planning from "./components/Planning/Planning";
+import Recipes from "./components/Recipes/Recipes";
+import Users from "./components/Users/Users";
 
 // import style
 
