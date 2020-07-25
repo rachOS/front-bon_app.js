@@ -44,8 +44,8 @@ function User() {
     const getAllUsers = () => {
         const url = `http://localhost:5000/api/users`;
         Axios.get(url)
-        .then((response) => response.data)
-        .then((data) => setAllUsers(data));
+            .then((response) => response.data)
+            .then((data) => setAllUsers(data));
     };
 
     useEffect(() => {
@@ -123,7 +123,7 @@ function User() {
     return (
         <Container>
             <h1>{energyConsuption.daily_energy}</h1>
-            <TestContext.Provider value={energyConsuption.daily_energy}>
+            <TestContext.Provider value="2000">
                 <Grid container spacing={1}>
                     {allUsers.map((userDetail) => (
                         <Grid item xs={2}>

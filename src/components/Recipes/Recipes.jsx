@@ -18,7 +18,7 @@ import Paper from "@material-ui/core/Paper";
 // import style
 
 function Recipes() {
-    const energyConsuption = useContext(TestContext);
+    const value = useContext(TestContext);
     // console.log("Context", TestContext);
 
     const [allFoods, setAllFoods] = useState([{}]);
@@ -93,7 +93,7 @@ function Recipes() {
                     {getFoodName}
                 </Grid>
                 <Typography variant="h2" gutterBottom>
-                    Calculer une recette pour {energyConsuption} calories
+                    Calculer une recette pour {value} calories
                 </Typography>
                 <CardContent>
                     <Typography>{food.name}</Typography>
