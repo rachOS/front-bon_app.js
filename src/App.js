@@ -18,14 +18,15 @@ function App() {
     return (
         <Container>
             <TestContext2.Provider value="TEST">
-                <Users />
                 <Menu />
                 <Switch>
-                    <Route exact path="/" />
-                    <Route path="/aliments" component={Foods} />
-                    <Route path="/recettes" component={Recipes} />
-                    <Route path="/repas" component={Meals} />
-                    <Route path="/planning" component={Planning} />
+                    <Route exact path="/">
+                        <Users />
+                        <Route path="/aliments" component={Foods} />
+                        <Route path="/recettes" component={Recipes} />
+                        <Route path="/repas" component={Meals} />
+                        <Route path="/planning" component={Planning} />
+                    </Route>
                 </Switch>
             </TestContext2.Provider>
         </Container>
