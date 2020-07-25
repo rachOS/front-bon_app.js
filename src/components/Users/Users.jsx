@@ -12,10 +12,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
-// import components
-
-// import data
-
 // import style
 const useStyles = makeStyles({
     root: {
