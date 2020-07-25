@@ -43,26 +43,21 @@ export const TestContext = createContext(5000);
 function User() {
     const classes = useStyles();
 
+    /* get all users */
     const [allUsers, setAllUsers] = useState([{}]);
-    const [user, setUser] = useState([{}]);
-    const [energyConsuption, setEnergyConsuption] = useState({});
-
-    // init Proteins, Lipids, Glucids state
-    const [PLG, setPLG] = useState({});
-
-    const [value, setValue] = useState(2000);
-
     const getAllUsers = () => {
         const url = `http://localhost:5000/api/users`;
         Axios.get(url)
-            .then((response) => response.data)
-            .then((data) => setAllUsers(data));
+        .then((response) => response.data)
+        .then((data) => setAllUsers(data));
     };
 
     useEffect(() => {
         return getAllUsers();
     }, []);
 
+    /* get one user */
+    const [user, setUser] = useState([{}]);
     const getOneUser = (userId) => {
         const url = `http://localhost:5000/api/users/${userId}`;
         Axios.get(url)
@@ -74,12 +69,8 @@ function User() {
         getOneUser();
     }, [allUsers]);
 
-    // caculate colories needed
-    const weight = user.weight;
-    const height = user.height;
-    const age = user.age;
-    const activity = 1.4;
-
+    /* init energy */
+    const [energyConsuption, setEnergyConsuption] = useState({});
     const calcDailyEnergyConsumption = () => {
         // for a male
         const basalMetabolicRate =
@@ -100,7 +91,16 @@ function User() {
         calcDailyEnergyConsumption();
     }, [user]);
 
-    // calculate proteins / lipids / glucids ratio
+    /* init Proteins, Lipids, Glucids state */
+    const [PLG, setPLG] = useState({});
+
+    /* init info needed by user */
+    const weight = user.weight;
+    const height = user.height;
+    const age = user.age;
+    const activity = 1.4;
+
+    /* calculate proteins / lipids / glucids ratio */
     const calcLipGlucProt = () => {
         // DEC means Daily Energy Consuption
         let DEC = energyConsuption.daily_energy;
@@ -122,10 +122,7 @@ function User() {
 
     useEffect(() => {
         calcLipGlucProt();
-        setValue(energyConsuption.daily_energy);
     }, [energyConsuption]);
-
-    // console.log("TESTS", energyConsuption);
 
     return (
         <Container>
