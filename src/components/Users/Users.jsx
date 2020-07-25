@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useParams } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -38,11 +38,7 @@ Sédentaire : MB x 1,4
 Actif: MB x 1,6
 Sportif: MB x 1,7*/
 
-// useContext
-
-const Test = React.createContext({
-    calories: 2000,
-});
+export const TestContext = React.createContext(2000);
 
 function User() {
     const classes = useStyles();
@@ -126,8 +122,11 @@ function User() {
     }, [energyConsuption]);
 
     return (
-        <Test.Provider value={energyConsuption}>
-            <Container>
+        <Container>
+            <h1>
+                {energyConsuption.daily_energy}
+            </h1>
+            <TestContext.Provider value="TEST">
                 <Grid container spacing={1}>
                     {allUsers.map((userDetail) => (
                         <Grid item xs={2}>
@@ -218,8 +217,8 @@ function User() {
                         <Button size="small">Mettre à jour mes infos</Button>
                     </CardActions>
                 </Card>
-            </Container>
-        </Test.Provider>
+            </TestContext.Provider>
+        </Container>
     );
 }
 

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { TestContext } from "../Users/Users";
 import Axios from "axios";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -17,13 +18,13 @@ import Paper from "@material-ui/core/Paper";
 // import style
 
 function Recipes() {
-    static contextType = Test;
+    const value  = useContext(TestContext);
+    console.log("Context", TestContext);
 
     const [allFoods, setAllFoods] = useState([{}]);
     const [food, setFood] = useState([{}]);
     const [foodQuantity, setFoodQuantity] = useState(0);
     const [calories, setCalories] = useState(2000);
-    console.log("props", props);
 
     const getAllFoods = () => {
         const url = "http://localhost:5000/api/foods";
@@ -83,6 +84,7 @@ function Recipes() {
      à chaque ajout ou retrait d'aliment , les quantité doivent être affichées
      automatiquement le but étant de choisir que ses aliments et de ne rien avoir à calculer.
     */
+console.log('value',value);
 
     return (
         <Container>
@@ -91,7 +93,7 @@ function Recipes() {
                     {getFoodName}
                 </Grid>
                 <Typography variant="h2" gutterBottom>
-                    Calculer une recette pour {`x`} calories
+                    Calculer une recette pour {value} calories
                 </Typography>
                 <CardContent>
                     <Typography>{food.name}</Typography>
