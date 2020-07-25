@@ -1,6 +1,7 @@
-import React, { useState, useEffect, createContext , useContext} from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
+import { Switch, Route } from "react-router-dom";
+
 import Axios from "axios";
-import {TestContext2} from "../App"
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -12,7 +13,10 @@ import Grid from "@material-ui/core/Grid";
 import ListItemText from "@material-ui/core/ListItemText";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import Recipes from "./Recipes/Recipes"
+
+// import components
+import Recipes from "./Recipes/Recipes";
+import Menu from "./Menu";
 
 // import style
 const useStyles = makeStyles({
@@ -39,7 +43,7 @@ Sportif: MB x 1,7*/
 export const TestContext = createContext(5000);
 
 function User() {
-    const value = useContext(TestContext2);
+    const value = useContext(TestContext);
     const classes = useStyles();
 
     /* get all users */
@@ -125,8 +129,6 @@ function User() {
 
     return (
         <Container>
-            <h1>{energyConsuption.daily_energy}</h1>
-            {value}
             <TestContext.Provider value={energyConsuption.daily_energy}>
                 <Grid container spacing={1}>
                     {allUsers.map((userDetail) => (
@@ -218,7 +220,10 @@ function User() {
                         <Button size="small">Mettre à jour mes infos</Button>
                     </CardActions>
                 </Card>
-                <Recipes/>
+                <Menu />
+                <Switch>
+                    <Route path="/recettes" component={Recipes} />
+                </Switch>
             </TestContext.Provider>
         </Container>
     );
