@@ -9,13 +9,15 @@ import Meals from "./components/Meals/Meals";
 import Menu from "./components/Menu";
 import Planning from "./components/Planning/Planning";
 import Recipes from "./components/Recipes/Recipes";
-import Users from "./components/Users/Users";
+import Users from "./components/Users";
 
 // import style
+export const TestContext2 = React.createContext(5000);
 
 function App() {
     return (
         <Container>
+            <TestContext2.Provider value="TEST">
                 <Users />
                 <Menu />
                 <Switch>
@@ -25,6 +27,7 @@ function App() {
                     <Route path="/repas" component={Meals} />
                     <Route path="/planning" component={Planning} />
                 </Switch>
+            </TestContext2.Provider>
         </Container>
     );
 }
