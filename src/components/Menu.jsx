@@ -14,6 +14,9 @@ function Menu() {
     return (
         <Container>
             <Grid>
+                <Link to="/">
+                    <Button>Mes infos</Button>
+                </Link>
                 <Link to="/aliments">
                     <Button>Mes aliments</Button>
                 </Link>

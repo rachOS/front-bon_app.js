@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import { TestContext } from "../Users/Users";
+import { TestContext } from "../Users";
 import Axios from "axios";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 // import components
 
@@ -18,7 +17,7 @@ import Paper from "@material-ui/core/Paper";
 // import style
 
 function Recipes() {
-    const value  = useContext(TestContext);
+    const value = useContext(TestContext);
     console.log("Context", TestContext);
 
     const [allFoods, setAllFoods] = useState([{}]);
@@ -84,7 +83,7 @@ function Recipes() {
      à chaque ajout ou retrait d'aliment , les quantité doivent être affichées
      automatiquement le but étant de choisir que ses aliments et de ne rien avoir à calculer.
     */
-console.log('value',value);
+    // console.log("value", energyConsuption);
 
     return (
         <Container>

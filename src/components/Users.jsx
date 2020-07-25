@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
+import { Switch, Route } from "react-router-dom";
+
 import Axios from "axios";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Divider from "@material-ui/core/Divider";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import ListItemText from "@material-ui/core/ListItemText";
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
+import ListItemText from "@material-ui/core/ListItemText";
 import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 // import components
-
-// import data
+import Recipes from "./Recipes/Recipes";
+import Menu from "./Menu";
 
 // import style
 const useStyles = makeStyles({
@@ -38,17 +40,14 @@ Sédentaire : MB x 1,4
 Actif: MB x 1,6
 Sportif: MB x 1,7*/
 
-export const TestContext = React.createContext(2000);
+export const TestContext = createContext(5000);
 
 function User() {
+    const value = useContext(TestContext);
     const classes = useStyles();
 
+    /* get all users */
     const [allUsers, setAllUsers] = useState([{}]);
-    const [user, setUser] = useState([{}]);
-    const [energyConsuption, setEnergyConsuption] = useState({});
-    // init Proteins, Lipids, Glucids state
-    const [PLG, setPLG] = useState({});
-
     const getAllUsers = () => {
         const url = `http://localhost:5000/api/users`;
         Axios.get(url)
@@ -60,6 +59,8 @@ function User() {
         return getAllUsers();
     }, []);
 
+    /* get one user */
+    const [user, setUser] = useState([{}]);
     const getOneUser = (userId) => {
         const url = `http://localhost:5000/api/users/${userId}`;
         Axios.get(url)
@@ -71,12 +72,8 @@ function User() {
         getOneUser();
     }, [allUsers]);
 
-    // caculate colories needed
-    const weight = user.weight;
-    const height = user.height;
-    const age = user.age;
-    const activity = 1.4;
-
+    /* init energy */
+    const [energyConsuption, setEnergyConsuption] = useState({});
     const calcDailyEnergyConsumption = () => {
         // for a male
         const basalMetabolicRate =
@@ -97,7 +94,16 @@ function User() {
         calcDailyEnergyConsumption();
     }, [user]);
 
-    // calculate proteins / lipids / glucids ratio
+    /* init Proteins, Lipids, Glucids state */
+    const [PLG, setPLG] = useState({});
+
+    /* init info needed by user */
+    const weight = user.weight;
+    const height = user.height;
+    const age = user.age;
+    const activity = 1.4;
+
+    /* calculate proteins / lipids / glucids ratio */
     const calcLipGlucProt = () => {
         // DEC means Daily Energy Consuption
         let DEC = energyConsuption.daily_energy;
@@ -123,10 +129,7 @@ function User() {
 
     return (
         <Container>
-            <h1>
-                {energyConsuption.daily_energy}
-            </h1>
-            <TestContext.Provider value="TEST">
+            <TestContext.Provider value={energyConsuption.daily_energy}>
                 <Grid container spacing={1}>
                     {allUsers.map((userDetail) => (
                         <Grid item xs={2}>
@@ -217,6 +220,10 @@ function User() {
                         <Button size="small">Mettre à jour mes infos</Button>
                     </CardActions>
                 </Card>
+                <Menu />
+                <Switch>
+                    <Route path="/recettes" component={Recipes} />
+                </Switch>
             </TestContext.Provider>
         </Container>
     );
