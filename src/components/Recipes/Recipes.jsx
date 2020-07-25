@@ -17,13 +17,11 @@ import Typography from "@material-ui/core/Typography";
 // import style
 
 function Recipes() {
-    const value = useContext(TestContext);
-    console.log("Context", TestContext);
+    const calories = useContext(TestContext);
 
     const [allFoods, setAllFoods] = useState([{}]);
     const [food, setFood] = useState([{}]);
     const [foodQuantity, setFoodQuantity] = useState(0);
-    const [calories, setCalories] = useState(2000);
 
     const getAllFoods = () => {
         const url = "http://localhost:5000/api/foods";
@@ -92,7 +90,7 @@ function Recipes() {
                     {getFoodName}
                 </Grid>
                 <Typography variant="h2" gutterBottom>
-                    Calculer une recette pour {value} calories
+                    Calculer une recette pour {calories} calories
                 </Typography>
                 <CardContent>
                     <Typography>{food.name}</Typography>
