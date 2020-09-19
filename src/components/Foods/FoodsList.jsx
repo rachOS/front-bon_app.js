@@ -8,7 +8,7 @@ function FoodsList() {
     const [allFoods, setAllFoods] = useState([{}]);
 
     const getAllFoods = () => {
-        const url = "http://localhost:5000/api/foods";
+        const url = `${process.env.REACT_APP_HOST}/foods`;
         Axios.get(url)
             .then((response) => response.data)
             .then((data) => setAllFoods(data));
@@ -51,7 +51,7 @@ function FoodsList() {
             <table>
                 <thead>
                     <tr>
-                        <td>id</td>
+                        <td>#</td>
                         <td>Nom</td>
                         <td>Glucides</td>
                         <td>Lipides</td>
