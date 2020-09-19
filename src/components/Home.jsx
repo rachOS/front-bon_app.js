@@ -1,5 +1,5 @@
-import React from "react";
-import Container from "@material-ui/core/Container";
+// import core
+import React, { Fragment } from "react";
 
 // import components
 
@@ -8,7 +8,7 @@ import Container from "@material-ui/core/Container";
 // import style
 
 function Home() {
-    return <Container></Container>;
+    return <Fragment></Fragment>;
 }
 
 export default Home;

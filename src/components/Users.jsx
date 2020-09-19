@@ -1,35 +1,19 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
+// import core
+import React, {
+    useState,
+    useEffect,
+    createContext,
+    useContext,
+    Fragment,
+} from "react";
 import { Switch, Route } from "react-router-dom";
-
 import Axios from "axios";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Container from "@material-ui/core/Container";
-import Divider from "@material-ui/core/Divider";
-import Grid from "@material-ui/core/Grid";
-import ListItemText from "@material-ui/core/ListItemText";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
 
 // import components
 import Recipes from "./Recipes/Recipes";
 import Menu from "./Menu";
 
 // import style
-const useStyles = makeStyles({
-    root: {
-        minWidth: 275,
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
 
 /*
 Femmes :   \mathrm{MB} = 0,963 * Poid^0,48 * Taille^0,50 * Age^-0,13
@@ -44,12 +28,11 @@ export const TestContext = createContext(5000);
 
 function User() {
     const value = useContext(TestContext);
-    const classes = useStyles();
 
     /* get all users */
     const [allUsers, setAllUsers] = useState([{}]);
     const getAllUsers = () => {
-        const url = `http://localhost:5000/api/users`;
+        const url = `http://localhost:5050/api/users`;
         Axios.get(url)
             .then((response) => response.data)
             .then((data) => setAllUsers(data));
@@ -62,7 +45,7 @@ function User() {
     /* get one user */
     const [user, setUser] = useState([{}]);
     const getOneUser = (userId) => {
-        const url = `http://localhost:5000/api/users/${userId}`;
+        const url = `http://localhost:5050/api/users/${userId}`;
         Axios.get(url)
             .then((response) => response.data)
             .then((data) => setUser(data));
@@ -128,104 +111,67 @@ function User() {
     }, [energyConsuption]);
 
     return (
-        <Container>
+        <Fragment>
             <TestContext.Provider value={energyConsuption.daily_energy}>
-                <Grid container spacing={1}>
+                <div>
                     {allUsers.map((userDetail) => (
-                        <Grid item xs={2}>
-                            <Paper>
-                                <Button
+                        <div>
+                            <div>
+                                <button
                                     onClick={() => getOneUser(userDetail.id)}
                                 >
                                     {userDetail.id} {userDetail.firstname}
-                                </Button>
-                            </Paper>
-                        </Grid>
+                                </button>
+                            </div>
+                        </div>
                     ))}
-                </Grid>
-                <Card className={classes.root}>
-                    <CardContent>
-                        <Typography
-                            variant="h5"
-                            component="h2"
-                            gutterBottom
-                        >{`Bonjour ${user.firstname} ${user.lastname}`}</Typography>
-                        <Divider />
-                        <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                        >
-                            age : {user.age} ans
-                        </Typography>
-                        <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                        >
-                            taille : {user.height} m
-                        </Typography>
-                        <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                        >
-                            poid : {user.weight} kg
-                        </Typography>
-                        <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                        >
-                            activité : {user.id_activity} (sédentaire)
-                        </Typography>
-                        <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                        >
-                            objectif : {user.id_goal}(perdre du poid)
-                        </Typography>
-                        <Divider />
-                        <Typography display="block" paragraph gutterBottom>
-                            Votre <u>métabolisme basal</u> est de
-                            <strong>
-                                {" "}
-                                {energyConsuption.mb_rate} calories
-                            </strong>{" "}
-                            et votre <u>dépense énergétique journalière</u> est
-                            de
-                            <strong>
-                                {energyConsuption.daily_energy} calories
-                            </strong>
-                        </Typography>
-                        <Typography display="block">
-                            Vous devez consommer idéalement
-                            <ListItemText href="#simple-list">
+                </div>
+                <div>
+                    <p>{`Bonjour ${user.firstname} ${user.lastname}`}</p>
+                    <hr />
+                    <p>age : {user.age} ans</p>
+                    <p>taille : {user.height} m</p>
+                    <p>poid : {user.weight} kg</p>
+                    <p>activité : {user.id_activity} (sédentaire)</p>
+                    <p>objectif : {user.id_goal}(perdre du poid)</p>
+                    <hr />
+                    <p>
+                        Votre <u>métabolisme basal</u> est de
+                        <strong> {energyConsuption.mb_rate} calories</strong> et
+                        votre <u>dépense énergétique journalière</u> est de
+                        <strong>
+                            {energyConsuption.daily_energy} calories
+                        </strong>
+                    </p>
+                    <p>
+                        Vous devez consommer idéalement
+                        <ul>
+                            <li href="#simple-list">
                                 - {PLG.proteins} grammes de protéines
-                            </ListItemText>
-                            <ListItemText href="#simple-list">
+                            </li>
+                            <li href="#simple-list">
                                 - {PLG.lipids} grammes de lipides
-                            </ListItemText>
-                            <ListItemText href="#simple-list">
+                            </li>
+                            <li href="#simple-list">
                                 - {PLG.glucids} grammes de glucides
-                            </ListItemText>
-                        </Typography>
-                        <Divider />
-                        <Typography
-                            variant="caption"
-                            display="block"
-                            gutterBottom
-                        >
-                            Ces informations ne remplace en aucun cas l'avis
-                            médical d'un expert.
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button size="small">Mettre à jour mes infos</Button>
-                    </CardActions>
-                </Card>
+                            </li>
+                        </ul>
+                    </p>
+                    <hr />
+                    <p variant="caption" display="block" gutterBottom>
+                        Ces informations ne remplace en aucun cas l'avis médical
+                        d'un expert.
+                    </p>
+                </div>
+                <div>
+                    <button size="small">Mettre à jour mes infos</button>
+                </div>
                 <Menu />
                 <Switch>
                     <Route path="/recettes" component={Recipes} />
                 </Switch>
             </TestContext.Provider>
-        </Container>
+        </Fragment>
     );
 }
 

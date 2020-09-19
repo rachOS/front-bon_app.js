@@ -1,7 +1,6 @@
-// import library
-import React from "react";
+// import core
+import React, { Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
-import Container from "@material-ui/core/Container";
 
 // import components
 import Foods from "./components/Foods/Foods";
@@ -12,14 +11,14 @@ import Users from "./components/Users";
 
 function App() {
     return (
-        <Container>
+        <Fragment>
             <Users />
             <Switch>
                 <Route path="/aliments" component={Foods} />
                 <Route path="/repas" component={Meals} />
                 <Route path="/planning" component={Planning} />
             </Switch>
-        </Container>
+        </Fragment>
     );
 }
 

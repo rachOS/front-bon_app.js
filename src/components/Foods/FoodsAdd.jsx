@@ -1,49 +1,43 @@
-// import library
-import React, { useState, useEffect } from "react";
-import Axios from "axios";
-import TextField from "@material-ui/core/TextField";
-import Container from "@material-ui/core/Container";
-import { Button } from "@material-ui/core";
-
-// import components
-
-// import data
-
-// import style
+// import core
+import React, { useState, useEffect, Fragment } from "react";
 
 function FoodsAdd() {
     return (
-        <Container>
-            <form  noValidate autoComplete="off">
-                <TextField id="outlined-basic" label="Nom" variant="outlined" />
-                <TextField
-                    id="outlined-basic"
-                    label="Glucides"
-                    variant="outlined"
-                />
-                <TextField
-                    id="outlined-basic"
-                    label="Lipides"
-                    variant="outlined"
-                />
-                <TextField
-                    id="outlined-basic"
-                    label="Proteines"
-                    variant="outlined"
-                />
-                <TextField
-                    id="outlined-basic"
-                    label="Fibres"
-                    variant="outlined"
-                />
-                <TextField
-                    id="outlined-basic"
-                    label="Calories pour 100g"
-                    variant="outlined"
-                />
+        <Fragment>
+            <form noValidate autoComplete="off">
+                <fieldset>
+                    <legend>Aliment</legend>
+                    <input id="food" name="name" type="text" />
+                    <label for="food"></label>
+                </fieldset>
+                <fieldset>
+                    <legend>Glucides</legend>
+                    <input id="glucids" name="name" type="text" />
+                    <label for="glucids"></label>
+                </fieldset>
+                <fieldset>
+                    <legend>Lipides</legend>
+                    <input id="lipids" name="name" type="text" />
+                    <label for="lipids"></label>
+                </fieldset>
+                <fieldset>
+                    <legend>Protéines</legend>
+                    <input id="proteins" name="name" type="text" />
+                    <label for="proteins"></label>
+                </fieldset>
+                <fieldset>
+                    <legend>Fibres</legend>
+                    <input id="fibers" name="name" type="text" />
+                    <label for="fibers"></label>
+                </fieldset>
+                <fieldset>
+                    <legend>Calories pour 100g</legend>
+                    <input id="cals" name="name" type="text" />
+                    <label for="cals"></label>
+                </fieldset>
             </form>
-            <Button>Ajouter</Button>
-        </Container>
+            <button>Ajouter</button>
+        </Fragment>
     );
 }
 

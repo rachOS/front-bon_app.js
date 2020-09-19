@@ -1,17 +1,11 @@
-import React from 'react';
-import Container from '@material-ui/core/Container';
-
-// import components
-
-// import data
-
-// import style
+// import core
+import React, { Fragment } from 'react';
 
 function Planning() {
   return (
-    <Container>
+    <Fragment>
       <h1>Planning Component</h1>
-    </Container>
+    </Fragment>
   );
 }
 

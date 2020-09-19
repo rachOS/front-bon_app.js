@@ -1,10 +1,9 @@
+// import core
 import React from 'react';
-
 
 // import components
 import FoodsList from './FoodsList'
 import FoodsAdd from './FoodsAdd'
-// import data
 
 // import style
 

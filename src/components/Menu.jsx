@@ -1,36 +1,28 @@
-import React from "react";
+// import core
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-
-// import components
-
-// import data
-
-// import style
 
 function Menu() {
     return (
-        <Container>
-            <Grid>
+        <Fragment>
+            <div>
                 <Link to="/">
-                    <Button>Mes infos</Button>
+                    <button>Mes infos</button>
                 </Link>
                 <Link to="/aliments">
-                    <Button>Mes aliments</Button>
+                    <button>Mes aliments</button>
                 </Link>
                 <Link to="/recettes">
-                    <Button>Mes recettes</Button>
+                    <button>Mes recettes</button>
                 </Link>
                 <Link to="/repas">
-                    <Button>Mes repas</Button>
+                    <button>Mes repas</button>
                 </Link>
                 <Link to="/planning">
-                    <Button>Mon planning de la semaine</Button>
+                    <button>Mon planning de la semaine</button>
                 </Link>
-            </Grid>
-        </Container>
+            </div>
+        </Fragment>
     );
 }
 

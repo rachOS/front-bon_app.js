@@ -1,15 +1,6 @@
-import React, { useState, useEffect } from "react";
+// import core
+import React, { useState, useEffect, Fragment } from "react";
 import Axios from "axios";
-import Container from "@material-ui/core/Container";
-import Table from "@material-ui/core/Table";
-import TableHead from "@material-ui/core/TableHead";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-
-// import components
-
-// import data
 
 // import style
 
@@ -38,42 +29,42 @@ function FoodsList() {
     }, []);
 
     const foodsList = allFoods.map((food) => (
-        <TableRow>
-            <TableCell>{food.id}</TableCell>
-            <TableCell>{food.name}</TableCell>
-            <TableCell>{food.glucid}</TableCell>
-            <TableCell>{food.lipid}</TableCell>
-            <TableCell>{food.protein}</TableCell>
-            <TableCell>{food.bran}</TableCell>
-            <TableCell>{food.calories}</TableCell>
-            <TableCell>
+        <tr>
+            <td>{food.id}</td>
+            <td>{food.name}</td>
+            <td>{food.glucid}</td>
+            <td>{food.lipid}</td>
+            <td>{food.protein}</td>
+            <td>{food.bran}</td>
+            <td>{food.calories}</td>
+            <td>
                 <button onClick={() => editFood(food.id)}>O</button>
-            </TableCell>
-            <TableCell>
+            </td>
+            <td>
                 <button onClick={() => deleteFood(food.id)}>X</button>
-            </TableCell>
-        </TableRow>
+            </td>
+        </tr>
     ));
 
     return (
-        <Container>
-            <Table>
-                <TableHead>
+        <Fragment>
+            <table>
+                <thead>
                     <tr>
-                        <TableCell>id</TableCell>
-                        <TableCell>Nom</TableCell>
-                        <TableCell>Glucides</TableCell>
-                        <TableCell>Lipides</TableCell>
-                        <TableCell>Protéines</TableCell>
-                        <TableCell>Fibres</TableCell>
-                        <TableCell>Calories pour 100g</TableCell>
-                        <TableCell>Editer</TableCell>
-                        <TableCell>Effacer</TableCell>
+                        <td>id</td>
+                        <td>Nom</td>
+                        <td>Glucides</td>
+                        <td>Lipides</td>
+                        <td>Protéines</td>
+                        <td>Fibres</td>
+                        <td>Calories pour 100g</td>
+                        <td>Editer</td>
+                        <td>Effacer</td>
                     </tr>
-                </TableHead>
-                <TableBody>{foodsList}</TableBody>
-            </Table>
-        </Container>
+                </thead>
+                <tbody>{foodsList}</tbody>
+            </table>
+        </Fragment>
     );
 }
 
