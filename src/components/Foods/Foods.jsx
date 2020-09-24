@@ -1,15 +1,15 @@
 // import core
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
 // import components
-import FoodsList from './FoodsList'
-import FoodsAdd from './FoodsAdd'
+import FoodsList from "./FoodsList";
+import FoodsAdd from "./FoodsAdd";
 
 // import style
 
 function Foods() {
-  const [allFoods, setAllFoods] = useState([{}]);
+    const [allFoods, setAllFoods] = useState([{}]);
 
     const getAllFoods = () => {
         const url = `${process.env.REACT_APP_HOST}/foods`;
@@ -22,12 +22,12 @@ function Foods() {
         getAllFoods();
     }, []);
 
-  return (
-    <>
-      <FoodsList allFoods={allFoods}/>
-      <FoodsAdd getAllFoods={getAllFoods}/>
-    </>
-  );
+    return (
+        <>
+            <FoodsList allFoods={allFoods} getAllFoods={getAllFoods} />
+            <FoodsAdd getAllFoods={getAllFoods} />
+        </>
+    );
 }
 
 export default Foods;

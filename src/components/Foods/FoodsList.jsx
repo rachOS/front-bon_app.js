@@ -2,31 +2,22 @@
 import React, { useState, useEffect, Fragment } from "react";
 import Axios from "axios";
 
+// import components
+import FoodsDelete from "./FoodsDelete";
+
 // import style
 
-function FoodsList({allFoods}) {
-    // const [allFoods, setAllFoods] = useState([{}]);
-
-    // const getAllFoods = () => {
-    //     const url = `${process.env.REACT_APP_HOST}/foods`;
-    //     Axios.get(url)
-    //         .then((response) => response.data)
-    //         .then((data) => setAllFoods(data));
-    // };
-
-    const editFood = (id) => {
-        /* const url = `http://localhost:5000/api/foods/${id}`;
-        Axios.delete(url, id).then((response) => console.log("test")); */
-        console.log(id);
-    };
-    const deleteFood = (id) => {
-        /* const url = `http://localhost:5000/api/foods/${id}`;
-        Axios.delete(url, id).then((response) => console.log("test")); */
-        console.log(id);
+function FoodsList({ allFoods, getAllFoods }) {
+    // TODO => refactor delete and edit to components <EditFood/> <DeleteFood/>
+    const editFood = (foodID) => {
+        const url = `${process.env.REACT_APP_HOST}/foods/${foodID}`;
+        Axios.put(url, foodID)
+            .then((response) => response.data)
+            .then((data) => console.log("DATA", data));
     };
 
-    const foodsList = allFoods && allFoods.map((food) => (
-        <tr>
+    const foodsList = allFoods.map((food) => (
+        <tr key={food.id}>
             <td>{food.id}</td>
             <td>{food.name}</td>
             <td>{food.glucid}</td>
@@ -38,7 +29,7 @@ function FoodsList({allFoods}) {
                 <button onClick={() => editFood(food.id)}>O</button>
             </td>
             <td>
-                <button onClick={() => deleteFood(food.id)}>X</button>
+                <FoodsDelete getAllFoods={getAllFoods} foodID={food.id}/>
             </td>
         </tr>
     ));

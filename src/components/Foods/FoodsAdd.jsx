@@ -37,7 +37,7 @@ function FoodsAdd({getAllFoods}) {
                         value={inputValue.test}
                         onChange={(event) => handleChange(event)}
                     />
-                    <label for="food name"></label>
+                    <label htmlFor="food name"></label>
                 </fieldset>
                 <fieldset>
                     <legend>Protéines</legend>
@@ -48,7 +48,7 @@ function FoodsAdd({getAllFoods}) {
                         value={inputValue.proteins}
                         onChange={(event) => handleChange(event)}
                     />
-                    <label for="proteins"></label>
+                    <label htmlFor="proteins"></label>
                 </fieldset>
                 <fieldset>
                     <legend>Lipides</legend>
@@ -59,7 +59,7 @@ function FoodsAdd({getAllFoods}) {
                         value={inputValue.lipids}
                         onChange={(event) => handleChange(event)}
                     />
-                    <label for="lipids"></label>
+                    <label htmlFor="lipids"></label>
                 </fieldset>
                 <fieldset>
                     <legend>Glucides</legend>
@@ -70,7 +70,7 @@ function FoodsAdd({getAllFoods}) {
                         value={inputValue.glucids}
                         onChange={(event) => handleChange(event)}
                     />
-                    <label for="glucids"></label>
+                    <label htmlFor="glucids"></label>
                 </fieldset>
                 <fieldset>
                     <legend>Fibres</legend>
@@ -81,12 +81,12 @@ function FoodsAdd({getAllFoods}) {
                         value={inputValue.bran}
                         onChange={(event) => handleChange(event)}
                     />
-                    <label for="brans"></label>
+                    <label htmlFor="brans"></label>
                 </fieldset>
                 <fieldset>
                     <legend>Calories pour 100g</legend>
                     <input id="cals" name="calories" type="number" />
-                    <label for="cals"></label>
+                    <label htmlFor="cals"></label>
                 </fieldset>
                 <fieldset>
                     <legend>Catégory</legend>
@@ -100,7 +100,7 @@ function FoodsAdd({getAllFoods}) {
                         max="5"
                         placeholder="1 à 5"
                     />
-                    <label for="cat"></label>
+                    <label htmlFor="cat"></label>
                 </fieldset>
             </form>
             <button type="submit" onClick={() => addFood()} >Ajouter</button>
