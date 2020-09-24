@@ -1,8 +1,10 @@
 // import core
-import React, { useState, useEffect, Fragment } from "react";
-import Axios from "axios";
+import React, { Fragment } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
 // import components
+import FoodsAdd from "./FoodsAdd";
 import FoodsDelete from "./FoodsDelete";
 import FoodsEdit from "./FoodsEdit";
 
@@ -10,6 +12,18 @@ import FoodsEdit from "./FoodsEdit";
 
 // get props from Foods.jsx
 function FoodsList({ allFoods, getAllFoods }) {
+    const [foodIndex, setFoodIndex] = useState({})
+
+    const showFoodDetails = (index) => {
+        console.log("DETAILS", allFoods[index]);
+        setFoodIndex(index)
+        return allFoods[index]
+    };
+
+    useEffect(()=> {
+        showFoodDetails(foodIndex)
+    },[foodIndex])
+
     const foodsList = allFoods.map((food, index) => (
         <tr key={index}>
             <td>{food.id}</td>
@@ -23,7 +37,7 @@ function FoodsList({ allFoods, getAllFoods }) {
                 <FoodsEdit
                     getAllFoods={getAllFoods}
                     allFoods={allFoods}
-                    foodID={food.id}
+                    showFoodDetails={showFoodDetails}
                     index={index}
                 />
             </td>
@@ -51,6 +65,11 @@ function FoodsList({ allFoods, getAllFoods }) {
                 </thead>
                 <tbody>{foodsList}</tbody>
             </table>
+            <FoodsAdd
+                getAllFoods={getAllFoods}
+                showFoodDetails={showFoodDetails}
+                foodIndex={foodIndex}
+            />
         </Fragment>
     );
 }

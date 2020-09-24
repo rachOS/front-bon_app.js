@@ -4,7 +4,6 @@ import Axios from "axios";
 
 // import components
 import FoodsList from "./FoodsList";
-import FoodsAdd from "./FoodsAdd";
 
 // import style
 
@@ -22,13 +21,7 @@ function Foods() {
         getAllFoods();
     }, []);
 
-    return (
-        <>
-            <FoodsList allFoods={allFoods} getAllFoods={getAllFoods} />
-            {/* TODO , move FoodsAdd in FoodsList */}
-            <FoodsAdd getAllFoods={getAllFoods} />
-        </>
-    );
+    return <FoodsList allFoods={allFoods} getAllFoods={getAllFoods} />;
 }
 
 export default Foods;

@@ -2,7 +2,8 @@
 import React, { useState, useEffect, Fragment } from "react";
 import Axios from "axios";
 
-function FoodsAdd({getAllFoods}) {
+// get props from FoodsList.jsx
+function FoodsAdd({ getAllFoods, showFoodDetails, foodIndex }) {
     const [food, setFood] = useState("");
     const [inputValue, setInputValue] = useState("");
 
@@ -23,10 +24,16 @@ function FoodsAdd({getAllFoods}) {
     useEffect(() => {
         setFood(inputValue);
     }, [inputValue]);
-    console.log(food);
+
+    // Si foodIndex est undefined => setInputValue(newValue) sinon setInputValue(oldValue)
+
+    const handletest = () => {
+        console.log("TEST", `${showFoodDetails(foodIndex).name}, ${foodIndex}`);
+    };
 
     return (
         <Fragment>
+            <button onClick={() => handletest()}> test</button>
             <form noValidate autoComplete="off">
                 <fieldset>
                     <legend>Nom de l' aliment</legend>
@@ -103,7 +110,9 @@ function FoodsAdd({getAllFoods}) {
                     <label htmlFor="cat"></label>
                 </fieldset>
             </form>
-            <button type="submit" onClick={() => addFood()} >Ajouter</button>
+            <button type="submit" onClick={() => addFood()}>
+                Ajouter
+            </button>
         </Fragment>
     );
 }
