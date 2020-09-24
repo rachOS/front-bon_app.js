@@ -17,7 +17,7 @@ function FoodsAdd() {
         const { name, value } = event.target;
         const newValue = { ...inputValue, [name]: value };
         console.log(name, value);
-        setInputValue(newFood);
+        setInputValue(newValue);
     };
 
     useEffect(() => {
