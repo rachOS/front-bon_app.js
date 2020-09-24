@@ -1,20 +1,11 @@
 // import core
 import React, { useState, useEffect, Fragment } from "react";
 import Axios from "axios";
-import Foods from "./Foods";
 
 function FoodsAdd() {
     const [food, setFood] = useState("");
     const [inputValue, setInputValue] = useState("");
 
-    class Food {
-        constructor(foodName, proteins) {
-            this.foodName = foodName;
-            this.proteins = proteins;
-        }
-    }
-
-    // testing to set state with an Object.value
     const addFood = () => {
         const url = "";
         Axios.post(url, food);
@@ -24,9 +15,7 @@ function FoodsAdd() {
     const handleChange = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
-        const newFood = { ...inputValue, [name]: value }; // standard way of proceeding
-        // what i want to do :
-        // const newFood = Object.create(Food, name: {value : { ...inputValue, [name]: value }}) // Or something like that
+        const newValue = { ...inputValue, [name]: value };
         console.log(name, value);
         setInputValue(newFood);
     };
