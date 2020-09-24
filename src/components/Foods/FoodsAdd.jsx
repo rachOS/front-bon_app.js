@@ -34,7 +34,7 @@ function FoodsAdd({getAllFoods}) {
                         id="food name"
                         name="name"
                         type="text"
-                        value={inputValue.test}
+                        value={inputValue.name}
                         onChange={(event) => handleChange(event)}
                     />
                     <label htmlFor="food name"></label>
@@ -94,7 +94,7 @@ function FoodsAdd({getAllFoods}) {
                         id="cat"
                         name="id_group"
                         type="number"
-                        value={inputValue.brand}
+                        value={inputValue.id_group}
                         onChange={(event) => handleChange(event)}
                         min="1"
                         max="5"

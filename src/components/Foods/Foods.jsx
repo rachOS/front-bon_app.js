@@ -25,6 +25,7 @@ function Foods() {
     return (
         <>
             <FoodsList allFoods={allFoods} getAllFoods={getAllFoods} />
+            {/* TODO , move FoodsAdd in FoodsList */}
             <FoodsAdd getAllFoods={getAllFoods} />
         </>
     );

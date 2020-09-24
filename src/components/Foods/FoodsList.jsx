@@ -4,20 +4,14 @@ import Axios from "axios";
 
 // import components
 import FoodsDelete from "./FoodsDelete";
+import FoodsEdit from "./FoodsEdit";
 
 // import style
 
+// get props from Foods.jsx
 function FoodsList({ allFoods, getAllFoods }) {
-    // TODO => refactor delete and edit to components <EditFood/> <DeleteFood/>
-    const editFood = (foodID) => {
-        const url = `${process.env.REACT_APP_HOST}/foods/${foodID}`;
-        Axios.put(url, foodID)
-            .then((response) => response.data)
-            .then((data) => console.log("DATA", data));
-    };
-
-    const foodsList = allFoods.map((food) => (
-        <tr key={food.id}>
+    const foodsList = allFoods.map((food, index) => (
+        <tr key={index}>
             <td>{food.id}</td>
             <td>{food.name}</td>
             <td>{food.glucid}</td>
@@ -26,10 +20,15 @@ function FoodsList({ allFoods, getAllFoods }) {
             <td>{food.bran}</td>
             <td>{food.calories}</td>
             <td>
-                <button onClick={() => editFood(food.id)}>O</button>
+                <FoodsEdit
+                    getAllFoods={getAllFoods}
+                    allFoods={allFoods}
+                    foodID={food.id}
+                    index={index}
+                />
             </td>
             <td>
-                <FoodsDelete getAllFoods={getAllFoods} foodID={food.id}/>
+                <FoodsDelete getAllFoods={getAllFoods} foodID={food.id} />
             </td>
         </tr>
     ));
