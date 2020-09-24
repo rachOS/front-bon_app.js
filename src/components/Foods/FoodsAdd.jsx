@@ -24,7 +24,9 @@ function FoodsAdd() {
     const handleChange = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
-        const newFood = { ...inputValue, [name]: value };
+        const newFood = { ...inputValue, [name]: value }; // standard way of proceeding
+        // what i want to do :
+        // const newFood = Object.create(Food, name: {value : { ...inputValue, [name]: value }}) // Or something like that
         console.log(name, value);
         setInputValue(newFood);
     };
