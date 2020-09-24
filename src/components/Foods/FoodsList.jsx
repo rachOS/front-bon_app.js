@@ -4,15 +4,15 @@ import Axios from "axios";
 
 // import style
 
-function FoodsList() {
-    const [allFoods, setAllFoods] = useState([{}]);
+function FoodsList({allFoods}) {
+    // const [allFoods, setAllFoods] = useState([{}]);
 
-    const getAllFoods = () => {
-        const url = `${process.env.REACT_APP_HOST}/foods`;
-        Axios.get(url)
-            .then((response) => response.data)
-            .then((data) => setAllFoods(data));
-    };
+    // const getAllFoods = () => {
+    //     const url = `${process.env.REACT_APP_HOST}/foods`;
+    //     Axios.get(url)
+    //         .then((response) => response.data)
+    //         .then((data) => setAllFoods(data));
+    // };
 
     const editFood = (id) => {
         /* const url = `http://localhost:5000/api/foods/${id}`;
@@ -24,11 +24,8 @@ function FoodsList() {
         Axios.delete(url, id).then((response) => console.log("test")); */
         console.log(id);
     };
-    useEffect(() => {
-        getAllFoods();
-    }, []);
 
-    const foodsList = allFoods.map((food) => (
+    const foodsList = allFoods && allFoods.map((food) => (
         <tr>
             <td>{food.id}</td>
             <td>{food.name}</td>

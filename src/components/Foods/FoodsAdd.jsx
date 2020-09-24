@@ -2,13 +2,13 @@
 import React, { useState, useEffect, Fragment } from "react";
 import Axios from "axios";
 
-function FoodsAdd() {
+function FoodsAdd({getAllFoods}) {
     const [food, setFood] = useState("");
     const [inputValue, setInputValue] = useState("");
 
     const addFood = () => {
-        const url = "";
-        Axios.post(url, food);
+        const url = `${process.env.REACT_APP_HOST}/foods`;
+        Axios.post(url, food).finally(() => getAllFoods());
     };
 
     // get inputs values
@@ -22,8 +22,8 @@ function FoodsAdd() {
 
     useEffect(() => {
         setFood(inputValue);
-        console.log(food.foodName);
     }, [inputValue]);
+    console.log(food);
 
     return (
         <Fragment>
@@ -32,20 +32,8 @@ function FoodsAdd() {
                     <legend>Nom de l' aliment</legend>
                     <input
                         id="food name"
-                        name="foodName"
+                        name="name"
                         type="text"
-                        value={inputValue.test}
-                        onChange={(event) => handleChange(event)}
-                    />
-                    <label for="food name"></label>
-                </fieldset>
-                <fieldset>
-                    <legend>TEST</legend>
-                    <input
-                        id="test"
-                        name="test"
-                        type="text"
-                        placeholder={food.foodName}
                         value={inputValue.test}
                         onChange={(event) => handleChange(event)}
                     />
@@ -55,7 +43,7 @@ function FoodsAdd() {
                     <legend>Protéines</legend>
                     <input
                         id="proteins"
-                        name="proteins"
+                        name="protein"
                         type="number"
                         value={inputValue.proteins}
                         onChange={(event) => handleChange(event)}
@@ -64,31 +52,58 @@ function FoodsAdd() {
                 </fieldset>
                 <fieldset>
                     <legend>Lipides</legend>
-                    <input id="lipids" name="name" type="number" />
+                    <input
+                        id="lipids"
+                        name="lipid"
+                        type="number"
+                        value={inputValue.lipids}
+                        onChange={(event) => handleChange(event)}
+                    />
                     <label for="lipids"></label>
                 </fieldset>
                 <fieldset>
                     <legend>Glucides</legend>
-                    <input id="glucids" name="name" type="number" />
+                    <input
+                        id="glucids"
+                        name="glucid"
+                        type="number"
+                        value={inputValue.glucids}
+                        onChange={(event) => handleChange(event)}
+                    />
                     <label for="glucids"></label>
                 </fieldset>
                 <fieldset>
                     <legend>Fibres</legend>
-                    <input id="bran" name="name" type="number" />
-                    <label for="bran"></label>
+                    <input
+                        id="brans"
+                        name="bran"
+                        type="number"
+                        value={inputValue.bran}
+                        onChange={(event) => handleChange(event)}
+                    />
+                    <label for="brans"></label>
                 </fieldset>
                 <fieldset>
                     <legend>Calories pour 100g</legend>
-                    <input id="cals" name="name" type="number" />
+                    <input id="cals" name="calories" type="number" />
                     <label for="cals"></label>
                 </fieldset>
                 <fieldset>
-                    <legend>Marque</legend>
-                    <input id="brand" name="name" type="text" />
-                    <label for="brand"></label>
+                    <legend>Catégory</legend>
+                    <input
+                        id="cat"
+                        name="id_group"
+                        type="number"
+                        value={inputValue.brand}
+                        onChange={(event) => handleChange(event)}
+                        min="1"
+                        max="5"
+                        placeholder="1 à 5"
+                    />
+                    <label for="cat"></label>
                 </fieldset>
             </form>
-            <button>Ajouter</button>
+            <button type="submit" onClick={() => addFood()} >Ajouter</button>
         </Fragment>
     );
 }
