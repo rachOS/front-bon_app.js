@@ -1,19 +1,75 @@
 // import core
 import React, { useState, useEffect, Fragment } from "react";
+import Axios from "axios";
+import Foods from "./Foods";
 
 function FoodsAdd() {
+    const [food, setFood] = useState("");
+    const [inputValue, setInputValue] = useState("");
+
+    class Food {
+        constructor(foodName, proteins) {
+            this.foodName = foodName;
+            this.proteins = proteins;
+        }
+    }
+
+    // testing to set state with an Object.value
+    const addFood = () => {
+        const url = "";
+        Axios.post(url, food);
+    };
+
+    // get inputs values
+    const handleChange = (event) => {
+        event.preventDefault();
+        const { name, value } = event.target;
+        const newFood = { ...inputValue, [name]: value };
+        console.log(name, value);
+        setInputValue(newFood);
+    };
+
+    useEffect(() => {
+        setFood(inputValue);
+        console.log(food.foodName);
+    }, [inputValue]);
+
     return (
         <Fragment>
             <form noValidate autoComplete="off">
                 <fieldset>
                     <legend>Nom de l' aliment</legend>
-                    <input id="food" name="name" type="text" />
-                    <label for="food"></label>
+                    <input
+                        id="food name"
+                        name="foodName"
+                        type="text"
+                        value={inputValue.test}
+                        onChange={(event) => handleChange(event)}
+                    />
+                    <label for="food name"></label>
                 </fieldset>
                 <fieldset>
-                    <legend>Glucides</legend>
-                    <input id="glucids" name="name" type="number" />
-                    <label for="glucids"></label>
+                    <legend>TEST</legend>
+                    <input
+                        id="test"
+                        name="test"
+                        type="text"
+                        placeholder={food.foodName}
+                        value={inputValue.test}
+                        onChange={(event) => handleChange(event)}
+                    />
+                    <label for="food name"></label>
+                </fieldset>
+                <fieldset>
+                    <legend>Protéines</legend>
+                    <input
+                        id="proteins"
+                        name="proteins"
+                        type="number"
+                        value={inputValue.proteins}
+                        onChange={(event) => handleChange(event)}
+                    />
+                    <label for="proteins"></label>
                 </fieldset>
                 <fieldset>
                     <legend>Lipides</legend>
@@ -21,9 +77,9 @@ function FoodsAdd() {
                     <label for="lipids"></label>
                 </fieldset>
                 <fieldset>
-                    <legend>Protéines</legend>
-                    <input id="proteins" name="name" type="number" />
-                    <label for="proteins"></label>
+                    <legend>Glucides</legend>
+                    <input id="glucids" name="name" type="number" />
+                    <label for="glucids"></label>
                 </fieldset>
                 <fieldset>
                     <legend>Fibres</legend>
