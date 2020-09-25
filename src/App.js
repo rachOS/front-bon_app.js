@@ -6,15 +6,16 @@ import { Switch, Route } from "react-router-dom";
 import Foods from "./components/Foods/Foods";
 import Meals from "./components/Meals/Meals";
 import Planning from "./components/Planning/Planning";
-import Menu from "./components/Menu";
 import Users from "./components/Users";
+import FoodsUpdate from "./components/Foods/FoodsUpdate";
 
 function App() {
     return (
         <Fragment>
             <Users />
             <Switch>
-                <Route path="/aliments" component={Foods} />
+                <Route exact path="/aliments" component={Foods} />
+                <Route path="/aliments/:foodID" component={FoodsUpdate} />
                 <Route path="/repas" component={Meals} />
                 <Route path="/planning" component={Planning} />
             </Switch>

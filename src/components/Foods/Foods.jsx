@@ -8,20 +8,20 @@ import FoodsList from "./FoodsList";
 // import style
 
 function Foods() {
-    const [allFoods, setAllFoods] = useState([{}]);
+    const [foodsList, setFoodsList] = useState([{}]);
 
-    const getAllFoods = () => {
+    const getFoodsList = () => {
         const url = `${process.env.REACT_APP_HOST}/foods`;
         Axios.get(url)
             .then((response) => response.data)
-            .then((data) => setAllFoods(data));
+            .then((data) => setFoodsList(data));
     };
 
     useEffect(() => {
-        getAllFoods();
+        getFoodsList();
     }, []);
 
-    return <FoodsList allFoods={allFoods} getAllFoods={getAllFoods} />;
+    return <FoodsList foodsList={foodsList} getFoodsList={getFoodsList} />;
 }
 
 export default Foods;

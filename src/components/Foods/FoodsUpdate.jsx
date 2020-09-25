@@ -1,46 +1,50 @@
 // import core
 import React, { useState, useEffect, Fragment } from "react";
 import Axios from "axios";
+import { Link, useParams } from "react-router-dom";
 
-// get props from FoodsList.jsx
-function FoodsAdd({ getFoodsList}) {
+function FoodsUpdate() {
+    const { foodID } = useParams(null);
     const [food, setFood] = useState({});
-    const [inputValue, setInputValue] = useState("");
 
-    const addFood = () => {
-        const url = `${process.env.REACT_APP_HOST}/foods`;
-        Axios.post(url, food).finally(() => getFoodsList());
+    const getFood = (foodID) => {
+        const url = `${process.env.REACT_APP_HOST}/foods/${foodID}`;
+        Axios.get(url)
+            .then((response) => response.data)
+            .then((data) => setFood(data));
     };
 
-    // get inputs values
-    const handleChange = (event) => {
-        event.preventDefault();
-        const { name, value } = event.target;
-        const newValue = { ...inputValue, [name]: value };
-        console.log(name, value);
-        setInputValue(newValue);
+    const updateFood = (foodID) => {
+        const url = `${process.env.REACT_APP_HOST}/foods/${foodID}`;
+        Axios.put(url, food)
+            .then((response) => response.data)
+            .then((data) => data);
+        return alert(`l' aliment "${food.name}" est bien mis à jour`);
     };
 
     useEffect(() => {
-        setFood(inputValue);
-    }, [inputValue]);
+        getFood(foodID);
+    }, [foodID]);
 
-    // Si foodIndex est undefined => setInputValue(newValue) sinon setInputValue(oldValue)
+    const handleChange = (event) => {
+        event.preventDefault();
+        const { name, value } = event.target;
+        const updatedFoodInfos = { ...food, [name]: value };
+        return setFood(updatedFoodInfos);
+    };
 
-    // Todos? faire un composant form et passer les props
     return (
         <Fragment>
-            {/* Todo <Form values={values} legend id name type onChange htmlFor .../> */}
-            <form noValidate autoComplete="off">
+            <form method="PUT" onSubmit={() => updateFood(foodID)}>
                 <fieldset>
-                    <legend>Ajouter un aliment</legend>
+                    <legend>Editer un aliment</legend>
                     <label htmlFor="food name">
                         Name:
                         <input
                             id="food name"
                             name="name"
                             type="text"
-                            value={inputValue.name}
+                            value={food.name}
                             onChange={(event) => handleChange(event)}
                         />
                     </label>
@@ -51,7 +55,7 @@ function FoodsAdd({ getFoodsList}) {
                             id="proteins"
                             name="protein"
                             type="number"
-                            value={inputValue.protein}
+                            value={food.protein}
                             onChange={(event) => handleChange(event)}
                         />
                     </label>
@@ -62,7 +66,7 @@ function FoodsAdd({ getFoodsList}) {
                             id="lipids"
                             name="lipid"
                             type="number"
-                            value={inputValue.lipid}
+                            value={food.lipid}
                             onChange={(event) => handleChange(event)}
                         />
                     </label>
@@ -73,7 +77,7 @@ function FoodsAdd({ getFoodsList}) {
                             id="glucids"
                             name="glucid"
                             type="number"
-                            value={inputValue.glucid}
+                            value={food.glucid}
                             onChange={(event) => handleChange(event)}
                         />
                     </label>
@@ -84,7 +88,7 @@ function FoodsAdd({ getFoodsList}) {
                             id="brans"
                             name="bran"
                             type="number"
-                            value={inputValue.bran}
+                            value={food.bran}
                             onChange={(event) => handleChange(event)}
                         />
                     </label>
@@ -94,9 +98,8 @@ function FoodsAdd({ getFoodsList}) {
                             id="cals"
                             name="calories"
                             type="number"
-                            value={inputValue.calories}
+                            value={food.calories}
                             onChange={(event) => handleChange(event)}
-
                         />
                     </label>
                     <label htmlFor="category">
@@ -104,7 +107,7 @@ function FoodsAdd({ getFoodsList}) {
                         <select
                             id="category"
                             name="id_group"
-                            value={inputValue.id_group}
+                            value={food.id_group}
                             onChange={(event) => handleChange(event)}
                         >
                             <option value="">
@@ -119,11 +122,12 @@ function FoodsAdd({ getFoodsList}) {
                     </label>
                 </fieldset>
             </form>
-            <button type="submit" onClick={() => addFood()}>
-                Ajouter
-            </button>
+            <button onClick={() => updateFood(foodID)}>mettre à jour</button>
+            <Link to="/aliments">
+                <button>retour</button>
+            </Link>
         </Fragment>
     );
 }
 
-export default FoodsAdd;
+export default FoodsUpdate;

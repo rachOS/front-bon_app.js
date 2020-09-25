@@ -2,7 +2,7 @@
 import React from 'react';
 import Axios from "axios";
 
-function FoodsDelete({getAllFoods, foodID}) {
+function FoodsDeleteButton({getAllFoods, foodID}) {
     const deleteFood = (foodID) => {
         const url = `${process.env.REACT_APP_HOST}/foods/${foodID}`;
         Axios.delete(url, foodID).finally(() => getAllFoods());
@@ -12,4 +12,4 @@ function FoodsDelete({getAllFoods, foodID}) {
   );
 }
 
-export default FoodsDelete;
+export default FoodsDeleteButton;
