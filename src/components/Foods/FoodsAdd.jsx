@@ -4,7 +4,7 @@ import Axios from "axios";
 
 // get props from FoodsList.jsx
 function FoodsAdd({ getAllFoods, showFoodDetails, foodIndex }) {
-    const [food, setFood] = useState("");
+    const [food, setFood] = useState({});
     const [inputValue, setInputValue] = useState("");
 
     const addFood = () => {
@@ -27,87 +27,89 @@ function FoodsAdd({ getAllFoods, showFoodDetails, foodIndex }) {
 
     // Si foodIndex est undefined => setInputValue(newValue) sinon setInputValue(oldValue)
 
-    const handletest = () => {
-        console.log("TEST", `${showFoodDetails(foodIndex).name}, ${foodIndex}`);
-    };
-
+    // Todos faire un composant form et passer les props
     return (
         <Fragment>
-            <button onClick={() => handletest()}> test</button>
+            {/* Todo <Form values={values} legend id name type onChange htmlFor .../> */}
             <form noValidate autoComplete="off">
                 <fieldset>
-                    <legend>Nom de l' aliment</legend>
-                    <input
-                        id="food name"
-                        name="name"
-                        type="text"
-                        value={inputValue.name}
-                        onChange={(event) => handleChange(event)}
-                    />
-                    <label htmlFor="food name"></label>
-                </fieldset>
-                <fieldset>
-                    <legend>Protéines</legend>
-                    <input
-                        id="proteins"
-                        name="protein"
-                        type="number"
-                        value={inputValue.proteins}
-                        onChange={(event) => handleChange(event)}
-                    />
-                    <label htmlFor="proteins"></label>
-                </fieldset>
-                <fieldset>
-                    <legend>Lipides</legend>
-                    <input
-                        id="lipids"
-                        name="lipid"
-                        type="number"
-                        value={inputValue.lipids}
-                        onChange={(event) => handleChange(event)}
-                    />
-                    <label htmlFor="lipids"></label>
-                </fieldset>
-                <fieldset>
-                    <legend>Glucides</legend>
-                    <input
-                        id="glucids"
-                        name="glucid"
-                        type="number"
-                        value={inputValue.glucids}
-                        onChange={(event) => handleChange(event)}
-                    />
-                    <label htmlFor="glucids"></label>
-                </fieldset>
-                <fieldset>
-                    <legend>Fibres</legend>
-                    <input
-                        id="brans"
-                        name="bran"
-                        type="number"
-                        value={inputValue.bran}
-                        onChange={(event) => handleChange(event)}
-                    />
-                    <label htmlFor="brans"></label>
-                </fieldset>
-                <fieldset>
-                    <legend>Calories pour 100g</legend>
-                    <input id="cals" name="calories" type="number" />
-                    <label htmlFor="cals"></label>
-                </fieldset>
-                <fieldset>
-                    <legend>Catégory</legend>
-                    <input
-                        id="cat"
-                        name="id_group"
-                        type="number"
-                        value={inputValue.id_group}
-                        onChange={(event) => handleChange(event)}
-                        min="1"
-                        max="5"
-                        placeholder="1 à 5"
-                    />
-                    <label htmlFor="cat"></label>
+                    <legend>Ajouter un aliment</legend>
+                    <label htmlFor="food name">
+                        Name:
+                        <input
+                            id="food name"
+                            name="name"
+                            type="text"
+                            value={inputValue.name}
+                            onChange={(event) => handleChange(event)}
+                        />
+                    </label>
+                    <label htmlFor="proteins">
+                        {" "}
+                        Protéines:
+                        <input
+                            id="proteins"
+                            name="protein"
+                            type="number"
+                            value={inputValue.protein}
+                            onChange={(event) => handleChange(event)}
+                        />
+                    </label>
+                    <label htmlFor="lipids">
+                        {" "}
+                        Lipides:
+                        <input
+                            id="lipids"
+                            name="lipid"
+                            type="number"
+                            value={inputValue.lipid}
+                            onChange={(event) => handleChange(event)}
+                        />
+                    </label>
+                    <label htmlFor="glucids">
+                        {" "}
+                        Glucides:
+                        <input
+                            id="glucids"
+                            name="glucid"
+                            type="number"
+                            value={inputValue.glucid}
+                            onChange={(event) => handleChange(event)}
+                        />
+                    </label>
+                    <label htmlFor="brans">
+                        {" "}
+                        Fibres:
+                        <input
+                            id="brans"
+                            name="bran"
+                            type="number"
+                            value={inputValue.bran}
+                            onChange={(event) => handleChange(event)}
+                        />
+                    </label>
+                    <label htmlFor="cals">
+                        Calories:
+                        <input id="cals" name="calories" type="number" />
+                    </label>
+                    <label htmlFor="category">
+                        Catégorie:
+                        <select
+                            id="category"
+                            name="id_group"
+                            value={inputValue.id_group}
+                            onChange={(event) => handleChange(event)}
+                        >
+                            <option value="">
+                                --Choisissez une catégorie--
+                            </option>
+                            <option value={1}>féculent</option>
+                            <option value={2}>animale</option>
+                            <option value={3}>végétale</option>
+                            <option value={4}>céréales</option>
+                            <option value={5}>légumineuse</option>
+                        </select>
+                    </label>
                 </fieldset>
             </form>
             <button type="submit" onClick={() => addFood()}>
