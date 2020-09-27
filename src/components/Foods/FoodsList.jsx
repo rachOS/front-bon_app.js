@@ -27,7 +27,6 @@ function FoodsList({ foodsList, getFoodsList }) {
                 break;
         }
     }
-    console.log(foodsList);
 
     const foods = foodsList.map((food, index) => (
         <tr key={index}>
