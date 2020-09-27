@@ -1,5 +1,6 @@
 // import core
 import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 
 // import components
 import FoodsAdd from "./FoodsAdd";
@@ -26,6 +27,7 @@ function FoodsList({ foodsList, getFoodsList }) {
                 break;
         }
     }
+    console.log(foodsList);
 
     const foods = foodsList.map((food, index) => (
         <tr key={index}>
@@ -74,4 +76,36 @@ function FoodsList({ foodsList, getFoodsList }) {
     );
 }
 
+FoodsList.propTypes = {
+    foodsList: PropTypes.arrayOf(
+        PropTypes.objectOf(
+            PropTypes.shape({
+                id: PropTypes.number,
+                name: PropTypes.string,
+                protein: PropTypes.number,
+                lipid: PropTypes.number,
+                glucid: PropTypes.number,
+                bran: PropTypes.number,
+                calories: PropTypes.number,
+                id_group: PropTypes.number,
+            })
+        )
+    ),
+    getFoodsList: PropTypes.func.isRequired,
+};
+
+FoodsList.defaultProps = {
+    foodsList: [
+        {
+            id: 1,
+            name: "cammembert",
+            protein: 30,
+            lipid: 50,
+            glucid: 5,
+            bran: 0,
+            calories: 590,
+            id_group: 2,
+        },
+    ],
+};
 export default FoodsList;

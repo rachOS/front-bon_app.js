@@ -1,9 +1,10 @@
 // import core
 import React, { useState, useEffect, Fragment } from "react";
 import Axios from "axios";
+import PropTypes from "prop-types";
 
 // get props from FoodsList.jsx
-function FoodsAdd({ getFoodsList}) {
+function FoodsAdd({ getFoodsList }) {
     const [food, setFood] = useState({});
     const [inputValue, setInputValue] = useState("");
 
@@ -96,7 +97,6 @@ function FoodsAdd({ getFoodsList}) {
                             type="number"
                             value={inputValue.calories}
                             onChange={(event) => handleChange(event)}
-
                         />
                     </label>
                     <label htmlFor="category">
@@ -125,5 +125,12 @@ function FoodsAdd({ getFoodsList}) {
         </Fragment>
     );
 }
+
+FoodsAdd.propTypes = {
+    getFoodsList: PropTypes.func.isRequired,
+};
+FoodsAdd.defaultProps = {
+    getFoodsList: PropTypes.func,
+};
 
 export default FoodsAdd;
