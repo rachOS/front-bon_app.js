@@ -30,10 +30,17 @@ function Input({ id, name, type, value, placeholder, min, max }) {
         />
     );
 }
+function Select({ id, name, value, onChange, children }) {
+    return (
+        <select id={id} name={name} value={value} onChange={onChange}>
+            {children}
+        </select>
+    );
+}
 
 function Button({ onClick, text }) {
     return <button onClick={onClick}>{text}</button>;
 }
 
 // Todo PropTypes
-export { Form, FieldSet, Legend, Label, Input, Button };
+export { Form, FieldSet, Legend, Label, Input, Button, Select };

@@ -4,7 +4,7 @@ import Axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
 // import component
-import { Form, FieldSet, Legend, Label, Input, Button } from "../Form/Form";
+import { Form, FieldSet, Legend, Label, Input, Button, Select } from "../Form/Form";
 
 function FoodsUpdate() {
     const { foodID } = useParams(null);
@@ -90,7 +90,7 @@ function FoodsUpdate() {
                         onChange={(event) => handleChange(event)}
                     />
                     <Label htmlFor="category" text="Catégorie:" />
-                    <select
+                    <Select
                         id="category"
                         name="id_group"
                         value={food.id_group}
@@ -102,7 +102,7 @@ function FoodsUpdate() {
                         <option value={3}>végétale</option>
                         <option value={4}>céréales</option>
                         <option value={5}>légumineuse</option>
-                    </select>
+                    </Select>
                 </FieldSet>
             </Form>
             <Button onClick={() => updateFood(foodID)} text="mettre à jour" />
