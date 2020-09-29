@@ -23,6 +23,8 @@ function FoodsList({ foodsList, getFoodsList }) {
                 return "céréales";
             case 5:
                 return "légumineuse";
+            case 6:
+                return "laitier";
             default:
                 break;
         }
@@ -33,9 +35,9 @@ function FoodsList({ foodsList, getFoodsList }) {
         <tr key={index}>
             <td>{food.id}</td>
             <td>{food.name}</td>
-            <td>{food.glucid}</td>
-            <td>{food.lipid}</td>
             <td>{food.protein}</td>
+            <td>{food.lipid}</td>
+            <td>{food.glucid}</td>
             <td>{food.bran}</td>
             <td>{food.calories}</td>
             <td>{SwitchCategories(food.id_group)}</td>
@@ -58,9 +60,9 @@ function FoodsList({ foodsList, getFoodsList }) {
                     <tr>
                         <td>#</td>
                         <td>Nom</td>
-                        <td>Glucides</td>
-                        <td>Lipides</td>
                         <td>Protéines</td>
+                        <td>Lipides</td>
+                        <td>Glucides</td>
                         <td>Fibres</td>
                         <td>Calories pour 100g</td>
                         <td>Catégorie</td>

@@ -4,7 +4,16 @@ import Axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
 // import component
-import { Form, FieldSet, Legend, Label, Input, Button, Select } from "../Form/Form";
+import {
+    Form,
+    FieldSet,
+    Legend,
+    Label,
+    Input,
+    Button,
+    Select,
+    Options,
+} from "../Form/Form";
 
 function FoodsUpdate() {
     const { foodID } = useParams(null);
@@ -44,8 +53,6 @@ function FoodsUpdate() {
                     <Label htmlFor="food name" text="Name:" />
                     <Input
                         id="food name"
-                        name="name"
-                        type="text"
                         value={food.name}
                         onChange={(event) => handleChange(event)}
                     />
@@ -65,7 +72,7 @@ function FoodsUpdate() {
                         value={food.lipid}
                         onChange={(event) => handleChange(event)}
                     />
-                    <Label htmlFor="glucids" text="Féculents" />
+                    <Label htmlFor="glucids" text="Glucides" />
                     <Input
                         id="glucids"
                         name="glucid"
@@ -91,17 +98,16 @@ function FoodsUpdate() {
                     />
                     <Label htmlFor="category" text="Catégorie:" />
                     <Select
-                        id="category"
-                        name="id_group"
                         value={food.id_group}
                         onChange={(event) => handleChange(event)}
                     >
-                        <option value="">--Choisissez une catégorie--</option>
-                        <option value={1}>féculent</option>
-                        <option value={2}>animale</option>
-                        <option value={3}>végétale</option>
-                        <option value={4}>céréales</option>
-                        <option value={5}>légumineuse</option>
+                        <Options />
+                        <Options value={1} text="féculent" />
+                        <Options value={2} text="animale" />
+                        <Options value={3} text="végétale" />
+                        <Options value={4} text="céréales" />
+                        <Options value={5} text="légumineuse" />
+                        <Options value={6} text="laitier" />
                     </Select>
                 </FieldSet>
             </Form>
