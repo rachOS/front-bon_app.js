@@ -1,5 +1,5 @@
 // import core
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
 // import components
 
@@ -8,7 +8,7 @@ import React, { Fragment } from "react";
 // import style
 
 function Home() {
-    return <Fragment></Fragment>;
+  return <Fragment></Fragment>;
 }
 
 export default Home;
