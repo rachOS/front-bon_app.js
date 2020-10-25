@@ -24,15 +24,13 @@ Sédentaire : MB x 1,4
 Actif: MB x 1,6
 Sportif: MB x 1,7*/
 
-export const TestContext = createContext(5000);
 
 function User() {
-    const value = useContext(TestContext);
 
     /* get all users */
     const [allUsers, setAllUsers] = useState([{}]);
     const getAllUsers = () => {
-        const url = `http://localhost:5050/api/users`;
+        const url = `${process.env.REACT_APP_HOST}/users`;
         Axios.get(url)
             .then((response) => response.data)
             .then((data) => setAllUsers(data));
@@ -45,7 +43,7 @@ function User() {
     /* get one user */
     const [user, setUser] = useState([{}]);
     const getOneUser = (userId) => {
-        const url = `http://localhost:5050/api/users/${userId}`;
+        const url = `${process.env.REACT_APP_HOST}/users/${userId}`;
         Axios.get(url)
             .then((response) => response.data)
             .then((data) => setUser(data));
@@ -112,7 +110,6 @@ function User() {
 
     return (
         <Fragment>
-            <TestContext.Provider value={energyConsuption.daily_energy}>
                 <div>
                     {allUsers.map((userDetail) => (
                         <div>
@@ -170,7 +167,6 @@ function User() {
                 <Switch>
                     <Route path="/recettes" component={Recipes} />
                 </Switch>
-            </TestContext.Provider>
         </Fragment>
     );
 }

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext, Fragment } from "react";
-import { TestContext } from "../Users";
 import Axios from "axios";
 
 function Recipes() {
@@ -10,7 +9,7 @@ function Recipes() {
     const [foodQuantity, setFoodQuantity] = useState(0);
 
     const getAllFoods = () => {
-        const url = "http://localhost:5000/api/foods";
+        const url = `${process.env.REACT_APP_HOST}/foods`;
         Axios.get(url)
             .then((response) => response.data)
             .then((data) => setAllFoods(data));
@@ -20,7 +19,7 @@ function Recipes() {
     }, []);
 
     const getOneFood = (foodId) => {
-        const url = `http://localhost:5000/api/foods/u{foodId}`;
+        const url = `${process.env.REACT_APP_HOST}/foods/{foodId}`;
         Axios.get(url)
             .then((response) => response.data)
             .then((data) => setFood(data));
