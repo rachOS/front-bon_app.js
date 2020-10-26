@@ -22,5 +22,5 @@ function App() {
     </Fragment>
   );
 }
-/* test */
+test */
 export default App;
