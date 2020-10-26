@@ -5,14 +5,14 @@ module.exports = (app) => {
   app.use(
     '/api/**',
     createProxyMiddleware({
-      target: 'http://localhost:8000',
+      target: `${process.env.REACT_APP_TARGET}`,
       changeOrigin: true,
     })
   );
   app.use(
     '/ortherApi',
     createProxyMiddleware({
-      target: 'http://localhost:8000',
+      target: `${process.env.REACT_APP_TARGET}`,
       changeOrigin: true,
     })
   );
