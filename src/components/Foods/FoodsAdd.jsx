@@ -9,6 +9,7 @@ function FoodsAdd({ getFoodsList }) {
   const [inputValue, setInputValue] = useState('');
 
   const addFood = () => {
+    // eslint-disable-next-line no-undef
     const url = `${process.env.REACT_APP_HOST}/foods`;
     Axios.post(url, food).finally(() => getFoodsList());
   };
