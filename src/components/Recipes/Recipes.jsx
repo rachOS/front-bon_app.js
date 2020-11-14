@@ -15,7 +15,8 @@ function Recipes() {
       .then((data) => setAllFoods(data));
   };
   useEffect(() => {
-    return getAllFoods();
+    getOneFood();
+    getAllFoods();
   }, []);
 
   const getOneFood = (foodId) => {
@@ -24,14 +25,11 @@ function Recipes() {
       .then((response) => response.data)
       .then((data) => setFood(data));
   };
-  useEffect(() => {
-    getOneFood();
-  }, [allFoods]);
 
   const getFoodName = allFoods.map((foodDetail, key) => (
-    <button key={key} onClick={() => getOneFood(foodDetail.id)}>
+    <div key={key} onClick={() => getOneFood(foodDetail.id)}>
       {foodDetail.name}
-    </button>
+    </div>
   ));
 
   function calcFoodQuantity() {
