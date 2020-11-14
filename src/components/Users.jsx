@@ -47,10 +47,8 @@ function User() {
 
   useEffect(() => {
     getAllUsers();
-    //getUser(1);
   }, []);
 
-  console.log(user);
   const returnUser = (event) => {
     getUser(event.target.value);
   };
