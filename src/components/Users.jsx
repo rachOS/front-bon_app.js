@@ -56,8 +56,8 @@ function User() {
   return (
     <Fragment>
       <select onChange={(event) => returnUser(event)}>
-        {allUsers.map((user) => (
-          <option key={user.id} value={user.id}>
+        {allUsers.map((user, key) => (
+          <option key={key} value={user.id}>
             {user.firstname}
           </option>
         ))}
@@ -76,7 +76,7 @@ function User() {
         </ul>
       ) : null}
       <hr />
-      <p variant="caption" display="block" gutterBottom>
+      <p>
         Ces informations ne remplacent en aucun cas l&apos avis médical d&apos
         un expert.
       </p>

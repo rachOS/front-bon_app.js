@@ -7,7 +7,7 @@ function Recipes() {
   const [allFoods, setAllFoods] = useState([{}]);
   const [food, setFood] = useState({});
   const [foodQuantity, setFoodQuantity] = useState(0);
-  const [foodList, setFoodList] = useState([{}]);
+  const [foodList, setFoodList] = useState([]);
 
   const getAllFoods = () => {
     const url = `${process.env.REACT_APP_HOST}/foods`;
@@ -21,32 +21,29 @@ function Recipes() {
         )
       );
   };
-
+  // utiliser seulement la liste allfoods
+  // si un element a la clé selected: true alors on le mets dans food list
   const getFood = (foodId) => {
+    const list = [...foodList];
     const url = `${process.env.REACT_APP_HOST}/foods/${foodId}`;
     Axios.get(url)
       .then((response) => response.data)
-      .then((data) => setFood({ ...data, selected: true }));
+      .then((data) => {
+        setFood(data);
+        list.push({ ...data, selected: true }); // si data est déjà dans foodList on ne doit pas l'ajouter <= delete ça et changer la valeur selected : false / true dans allFoods
+        setFoodList(list);
+      });
   };
-  // selectFood et ne pas utiliser le getFood => au click on modifie la clé selected dans l'objet correspondant de allFoods
-  // console.log('value', foodList);
 
   useEffect(() => {
     getAllFoods();
-
-    const calcFoodQuantity = () => {
-      const total = calories / (food.calories / 100);
-      setFoodQuantity(total.toFixed(2));
-    };
     calcFoodQuantity();
-    const createFoodList = (obj) => {
-      let list = [];
-      list.push(obj);
-      console.log(list, foodList);
-      setFoodList(list);
-    };
-    createFoodList(food);
   }, [food]);
+
+  const calcFoodQuantity = () => {
+    const total = calories / (food.calories / 100);
+    setFoodQuantity(total.toFixed(2));
+  };
 
   /* TODO
     ajouter une liste d'ingrédient à la recette
@@ -76,33 +73,43 @@ function Recipes() {
      à chaque ajout ou retrait d'aliment , les quantité doivent être affichées
      automatiquement le but étant de choisir que ses aliments et de ne rien avoir à calculer.
     */
-
+  const deselect = (id) => {
+    const newList = [...foodList];
+    const updatedList = newList.filter((f) => f.id !== id);
+    setFoodList(updatedList);
+  };
+  console.log(foodList);
   return (
     <Fragment>
-      {allFoods.map((foodDetail) => (
-        <ul key={foodDetail.id}>
+      {allFoods.map((food, key) => (
+        <ul key={key}>
           <li>
-            <button onClick={() => getFood(foodDetail.id)}>
-              {' '}
-              {/* au click il faudra modifier allFoods et pas appeler getFood */}
-              {foodDetail.name}
-            </button>
+            <button onClick={() => getFood(food.id)}> {food.name}</button>
           </li>
         </ul>
       ))}
-      <p variant="h2" gutterBottom>
-        Calculer une recette pour {calories} calories
-      </p>
-      <div>
-        <p>{food.name}</p>
-        <p>{food.calories} cals</p>
-      </div>
+      <p>Calculer une recette pour {calories} calories</p>
       <div>
         <p>
           il vous faut {foodQuantity} grammes de {food.name} pour atteindre
           votre dépense énergétique journalière
         </p>
-        <div>{/* <p>{foodList.map((f) => f.name)}</p> */}</div>
+        <div>
+          <h1>Ma liste d aliments pour ma recette</h1>
+          <ul>
+            {foodList.map((f, key) => {
+              if (f.selected) {
+                return (
+                  <li key={key}>
+                    {f.name}
+                    <button onClick={() => deselect(f.id)}>X</button>
+                  </li>
+                );
+              }
+              null;
+            })}
+          </ul>
+        </div>
       </div>
     </Fragment>
   );
