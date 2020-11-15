@@ -30,7 +30,7 @@ function Recipes() {
       .then((data) => {
         setFood(data);
         list.push({ ...data, selected: true });
-        // si data est déjà dans la liste on le push pas
+        // si data est déjà dans la liste on le retire
         foodList.map((f) =>
           f.id === data.id ? [...foodList, list.pop()] : [...foodList]
         );
@@ -41,7 +41,7 @@ function Recipes() {
   useEffect(() => {
     getAllFoods();
     calcFoodQuantity();
-  }, [food, foodList]);
+  }, [food]);
 
   const calcFoodQuantity = () => {
     const total = calories / (food.calories / 100);
