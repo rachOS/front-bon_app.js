@@ -21,8 +21,7 @@ function Recipes() {
         )
       );
   };
-  // utiliser seulement la liste allfoods
-  // si un element a la clé selected: true alors on le mets dans food list
+
   const getFood = (foodId) => {
     const list = [...foodList];
     const url = `${process.env.REACT_APP_HOST}/foods/${foodId}`;
@@ -30,15 +29,19 @@ function Recipes() {
       .then((response) => response.data)
       .then((data) => {
         setFood(data);
-        list.push({ ...data, selected: true }); // si data est déjà dans foodList on ne doit pas l'ajouter <= delete ça et changer la valeur selected : false / true dans allFoods
+        list.push({ ...data, selected: true });
+        // si data est déjà dans la liste on le push pas
+        foodList.map((f) =>
+          f.id === data.id ? [...foodList, list.pop()] : [...foodList]
+        );
         setFoodList(list);
       });
   };
-
+  console.log(foodList);
   useEffect(() => {
     getAllFoods();
     calcFoodQuantity();
-  }, [food]);
+  }, [food, foodList]);
 
   const calcFoodQuantity = () => {
     const total = calories / (food.calories / 100);
@@ -74,11 +77,8 @@ function Recipes() {
      automatiquement le but étant de choisir que ses aliments et de ne rien avoir à calculer.
     */
   const deselect = (id) => {
-    const newList = [...foodList];
-    const updatedList = newList.filter((f) => f.id !== id);
-    setFoodList(updatedList);
+    setFoodList(foodList.filter((f) => f.id !== id));
   };
-  console.log(foodList);
   return (
     <Fragment>
       {allFoods.map((food, key) => (
