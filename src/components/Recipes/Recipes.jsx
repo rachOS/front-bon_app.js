@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect, Fragment } from 'react';
 import Axios from 'axios';
+import { balancedCalories } from './formula';
 
 function Recipes() {
   const calories = 2043.41; // import user's DEJ here !
@@ -34,10 +35,10 @@ function Recipes() {
         foodList.map((f) =>
           f.id === data.id ? [...foodList, list.pop()] : [...foodList]
         );
-        setFoodList(list);
+        const [balancedList] = balancedCalories(list, calories);
+        setFoodList(balancedList);
       });
   };
-  console.log(foodList);
   useEffect(() => {
     getAllFoods();
     calcFoodQuantity();
@@ -101,7 +102,7 @@ function Recipes() {
               if (f.selected) {
                 return (
                   <li key={key}>
-                    {f.name}
+                    {`${f.quantity} grammes de ${f.name}`}
                     <button onClick={() => deselect(f.id)}>X</button>
                   </li>
                 );
