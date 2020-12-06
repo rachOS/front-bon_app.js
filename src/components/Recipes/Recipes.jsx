@@ -1,43 +1,8 @@
 /* eslint-disable no-undef */
-import React, { useState, useEffect, Fragment } from 'react';
-import Axios from 'axios';
-
-function Recipes() {
-  const calories = 2000; // import user's DEJ here !
-  const [allFoods, setAllFoods] = useState([{}]);
-  const [food, setFood] = useState([{}]);
-  const [foodQuantity, setFoodQuantity] = useState(0);
-
-  const getAllFoods = () => {
-    const url = `${process.env.REACT_APP_HOST}/foods`;
-    Axios.get(url)
-      .then((response) => response.data)
-      .then((data) => setAllFoods(data));
-  };
-  useEffect(() => {
-    return getAllFoods();
-  }, []);
-
-  const getOneFood = (foodId) => {
-    const url = `${process.env.REACT_APP_HOST}/foods/${foodId}`;
-    Axios.get(url)
-      .then((response) => response.data)
-      .then((data) => setFood(data));
-  };
-  useEffect(() => {
-    getOneFood();
-  }, [allFoods]);
-
-  const getFoodName = allFoods.map((foodDetail, key) => (
-    <button key={key} onClick={() => getOneFood(foodDetail.id)}>
-      {foodDetail.name}
-    </button>
-  ));
-
-  function calcFoodQuantity() {
-    const total = 100 * (calories / food.calories);
-    setFoodQuantity(total.toFixed(2));
-  }
+// manage UI
+import React, { Fragment, useCallback } from 'react';
+import PropTypes from 'prop-types';
+function Recipes({ recipesDatas }) {
   /* TODO
     ajouter une liste d'ingrédient à la recette
     et retourner la quantité necessaire en grammes de chaque ingrédient pour atteindre
@@ -66,29 +31,70 @@ function Recipes() {
      à chaque ajout ou retrait d'aliment , les quantité doivent être affichées
      automatiquement le but étant de choisir que ses aliments et de ne rien avoir à calculer.
     */
-  // console.log("value", energyConsuption);
+  const {
+    ingredients,
+    foods,
+    calories,
+    delete_duplicate,
+    deselect,
+    setIngredients,
+    balanced_calories,
+  } = useCallback(recipesDatas);
+
+  const [ingredientsList] = useCallback(delete_duplicate()); // read useCallback doc ! To know if i keep it
+  const [balancedList] = useCallback(balanced_calories(ingredientsList));
 
   return (
     <Fragment>
-      <div container spacing={1}>
-        {getFoodName}
-      </div>
-      <p variant="h2" gutterBottom>
-        Calculer une recette pour {calories} calories
-      </p>
+      <ul>
+        {foods.map((food, key) => (
+          <li key={key}>
+            <button onClick={() => recipesDatas.get_food(food)}>
+              {food.name}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p>Calculer une recette pour {calories} calories</p>
       <div>
-        <p>{food.name}</p>
-        <p>{food.calories} cals</p>
-      </div>
-      <div>
-        <button onClick={() => calcFoodQuantity()}>Calculer</button>
-        <p>
-          il vous faut {foodQuantity} grammes de {food.name} pour atteindre
-          votre dépense énergétique journalière
-        </p>
+        <div>
+          <h1>Ma liste d aliments pour ma recette</h1>
+          <ul>
+            {balancedList.map((f, key) => {
+              if (f.selected) {
+                return (
+                  <li key={key}>
+                    {`${f.quantity} grammes de ${f.name}`}
+                    <button
+                      onClick={() =>
+                        deselect(f.id, ingredients, setIngredients)
+                      }
+                    >
+                      X
+                    </button>
+                  </li>
+                );
+              }
+              null;
+            })}
+          </ul>
+        </div>
       </div>
     </Fragment>
   );
 }
 
+Recipes.propTypes = {
+  recipesDatas: PropTypes.exact({
+    food: PropTypes.object,
+    foods: PropTypes.arrayOf(PropTypes.object),
+    ingredients: PropTypes.arrayOf(PropTypes.object),
+    calories: PropTypes.number,
+    delete_duplicate: PropTypes.func,
+    deselect: PropTypes.func,
+    setIngredients: PropTypes.func,
+    balanced_calories: PropTypes.func,
+    get_food: PropTypes.func,
+  }),
+};
 export default Recipes;

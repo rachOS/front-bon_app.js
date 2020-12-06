@@ -18,9 +18,9 @@ const basalMetabolicRate = (person) => {
     191;
   switch (person.sex) {
     case 'M':
-      return 1.083 * formula;
+      return (1.083 * formula).toFixed(2);
     case 'F':
-      return 0.963 * formula;
+      return (0.963 * formula).toFixed(2);
     default:
       break;
   }
@@ -29,11 +29,11 @@ const basalMetabolicRate = (person) => {
 const dailyEnergyConsuption = (person) => {
   switch (person.id_activity) {
     case 1:
-      return basalMetabolicRate(person) * 1.4;
+      return (basalMetabolicRate(person) * 1.4).toFixed(2);
     case 2:
-      return basalMetabolicRate(person) * 1.6;
+      return (basalMetabolicRate(person) * 1.6).toFixed(2);
     case 3:
-      return basalMetabolicRate(person) * 1.7;
+      return (basalMetabolicRate(person) * 1.7).toFixed(2);
     default:
       break;
   }
@@ -55,15 +55,24 @@ const bodyGoal = (person) => {
 const calcMacronutrients = (person) => {
   let DEC = dailyEnergyConsuption(person);
 
-  const proteins = person.weight * 1.8;
-  const lipids = person.weight * 1;
-  DEC = DEC - (lipids * 9 + proteins * 4);
-  const glucids = DEC / 4;
+  const proteins = (person.weight * 1.8).toFixed(2);
+  const lipids = (person.weight * 1).toFixed(2);
+  const glucids = ((DEC - (lipids * 9 + proteins * 4)) / 4).toFixed(2);
 
   return {
-    prot: proteins,
-    lip: lipids,
-    gluc: glucids,
+    proteins: proteins,
+    lipids: lipids,
+    glucids: glucids,
+  };
+};
+
+const addInfo = (person) => {
+  return {
+    ...person,
+    MB: basalMetabolicRate(person),
+    DEC: dailyEnergyConsuption(person),
+    GOAL: bodyGoal(person),
+    PLG: calcMacronutrients(person),
   };
 };
 
@@ -72,4 +81,5 @@ export {
   dailyEnergyConsuption,
   bodyGoal,
   calcMacronutrients,
+  addInfo,
 };
