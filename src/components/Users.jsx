@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import Axios from 'axios';
 
 // import components
-import Recipes from './Recipes/Recipes';
+import RecipesManager from './Recipes/RecipesManager';
 import Menu from './Menu';
 
 // import module
@@ -85,7 +85,7 @@ function User() {
       </div>
       <Menu />
       <Switch>
-        <Route path="/recettes" component={Recipes} />
+        <Route path="/recettes" component={RecipesManager} />
       </Switch>
     </Fragment>
   );
