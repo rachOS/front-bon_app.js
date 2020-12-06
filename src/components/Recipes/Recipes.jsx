@@ -33,16 +33,17 @@ function Recipes({ recipesDatas }) {
     */
   const {
     ingredients,
-    food,
     foods,
     calories,
-    food_quantity,
     delete_duplicate,
     deselect,
     setIngredients,
+    balanced_calories,
   } = useCallback(recipesDatas);
 
   const [ingredientsList] = useCallback(delete_duplicate()); // read useCallback doc ! To know if i keep it
+  const [balancedList] = useCallback(balanced_calories(ingredientsList));
+  console.log(balancedList);
 
   return (
     <Fragment>
@@ -57,14 +58,10 @@ function Recipes({ recipesDatas }) {
       </ul>
       <p>Calculer une recette pour {calories} calories</p>
       <div>
-        <p>
-          il vous faut {food_quantity} grammes de {food.name} pour atteindre
-          votre dépense énergétique journalière
-        </p>
         <div>
           <h1>Ma liste d aliments pour ma recette</h1>
           <ul>
-            {ingredientsList.map((f, key) => {
+            {balancedList.map((f, key) => {
               if (f.selected) {
                 return (
                   <li key={key}>
@@ -89,6 +86,16 @@ function Recipes({ recipesDatas }) {
 }
 
 Recipes.propTypes = {
-  recipesDatas: PropTypes.node, // todo: shema protypes here
+  recipesDatas: PropTypes.exact({
+    food: PropTypes.object,
+    foods: PropTypes.arrayOf(PropTypes.object),
+    ingredients: PropTypes.arrayOf(PropTypes.object),
+    calories: PropTypes.number,
+    delete_duplicate: PropTypes.func,
+    deselect: PropTypes.func,
+    setIngredients: PropTypes.func,
+    balanced_calories: PropTypes.func,
+    get_food: PropTypes.func,
+  }),
 };
 export default Recipes;

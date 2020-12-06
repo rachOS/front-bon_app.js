@@ -11,7 +11,6 @@
  * @param {hook} setFood
  * @param {hook} setFoodQuantity
  * @param {hook} setIngredients
- * @param {Promise} getAllFoods
  */
 
 const getRecipesDatas = (
@@ -19,8 +18,6 @@ const getRecipesDatas = (
   calories,
   food,
   setFood,
-  foodQuantity,
-  setFoodQuantity,
   ingredients,
   setIngredients
 ) => {
@@ -28,7 +25,6 @@ const getRecipesDatas = (
     calories: calories, // user DEC
     food: food,
     foods: allFoods,
-    food_quantity: foodQuantity,
     get_food: setFood,
     ingredients: ingredients,
     delete_duplicate: () => {
@@ -42,23 +38,21 @@ const getRecipesDatas = (
       });
       return [ingredientsList];
     },
-    calc_food_quantity: () => {
-      const total = calories / (food.calories / 100);
-      setFoodQuantity(total.toFixed(2));
-    },
     deselect: (id) => {
       // on garde que les élements qui n'ont pas d'id identique
       setIngredients(ingredients.filter((food) => food.id !== id));
     },
-    balanced_calories: (ingredients, caloriesGoal = calories) => {
-      const balancedList = ingredients.map((food) => {
+    balanced_calories: (ingredientsList, caloriesGoal = calories) => {
+      const balancedList = ingredientsList.map((food) => {
         return {
           ...food,
-          quantity: (
-            caloriesGoal /
-            (food.calories / 100) /
-            ingredients.length
-          ).toFixed(2),
+          quantity: parseInt(
+            (
+              caloriesGoal /
+              (food.calories / 100) /
+              ingredientsList.length
+            ).toFixed(2)
+          ),
         };
       });
       return [balancedList];

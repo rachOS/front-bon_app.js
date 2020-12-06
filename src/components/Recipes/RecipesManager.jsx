@@ -7,7 +7,6 @@ function RecipesManager() {
   const [calories, setCalories] = useState(0); // import user's DEJ here !
   const [allFoods, setAllFoods] = useState([{}]);
   const [food, setFood] = useState({});
-  const [foodQuantity, setFoodQuantity] = useState(0);
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
@@ -27,8 +26,6 @@ function RecipesManager() {
     calories,
     food,
     setFood,
-    foodQuantity,
-    setFoodQuantity,
     ingredients,
     setIngredients
   );
