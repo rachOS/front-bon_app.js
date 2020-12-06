@@ -43,7 +43,6 @@ function Recipes({ recipesDatas }) {
 
   const [ingredientsList] = useCallback(delete_duplicate()); // read useCallback doc ! To know if i keep it
   const [balancedList] = useCallback(balanced_calories(ingredientsList));
-  console.log(balancedList);
 
   return (
     <Fragment>

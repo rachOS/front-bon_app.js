@@ -39,7 +39,6 @@ const getRecipesDatas = (
       return [ingredientsList];
     },
     deselect: (id) => {
-      // on garde que les élements qui n'ont pas d'id identique
       setIngredients(ingredients.filter((food) => food.id !== id));
     },
     balanced_calories: (ingredientsList, caloriesGoal = calories) => {
