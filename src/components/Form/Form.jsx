@@ -2,16 +2,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Form({ children }) {
-  return <form>{children}</form>;
+function Form({ children, method, action, classNames, onSubmit }) {
+  return (
+    <form
+      method={method}
+      className={classNames}
+      action={action}
+      onSubmit={onSubmit}
+    >
+      {children}
+    </form>
+  );
 }
 
-function FieldSet({ children }) {
-  return <fieldset>{children}</fieldset>;
+function FieldSet({ children, classNames }) {
+  return <fieldset className={classNames}>{children}</fieldset>;
 }
 
-function Legend({ text }) {
-  return <legend>{text}</legend>;
+function Legend({ text, classNames }) {
+  return <legend className={classNames}>{text}</legend>;
 }
 
 function Label({ htmlFor, text }) {
@@ -51,12 +60,19 @@ function Button({ onClick, text }) {
 // PropTypes
 Form.propTypes = {
   children: PropTypes.node,
+  method: PropTypes.string,
+  action: PropTypes.string,
+  classNames: PropTypes.string,
+  onSubmit: PropTypes.func,
 };
 Form.defaultProps = {
   children: PropTypes.node,
+  action: '',
+  classNames: '',
 };
 FieldSet.propTypes = {
   children: PropTypes.node,
+  classNames: PropTypes.string,
 };
 FieldSet.defaultProps = {
   children: PropTypes.node,
@@ -67,6 +83,7 @@ Legend.propTypes = {
     PropTypes.number.isRequired,
     PropTypes.string.isRequired,
   ]),
+  classNames: PropTypes.string,
 };
 Legend.defaultProps = {
   text: 'ma légende',
@@ -96,7 +113,10 @@ Input.propTypes = {
     PropTypes.number.isRequired,
     PropTypes.string.isRequired,
   ]),
-  type: PropTypes.oneOf(['text', 'number', 'search']),
+  type: PropTypes.oneOfType([
+    PropTypes.number.isRequired,
+    PropTypes.string.isRequired,
+  ]),
   value: PropTypes.oneOfType([
     PropTypes.number.isRequired,
     PropTypes.string.isRequired,
@@ -110,15 +130,22 @@ Input.propTypes = {
 Input.defaultProps = {
   id: 'name',
   name: 'name',
-  type: 'text',
-  value: null,
-  placeholder: 'ex: 06 50 51 52 53 ',
+  type: PropTypes.oneOf([
+    'text',
+    'number',
+    'search',
+    'password',
+    'email',
+    'submit',
+  ]),
+  value: '',
+  placeholder: 'this is a placeholder',
   min: 0,
   max: 300,
 };
 
 Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
 };
 
