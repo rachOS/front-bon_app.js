@@ -1,12 +1,12 @@
 // import core
-import React, { useEffect, useState } from 'react';
-import { setDatas } from './SignupPresenter';
-import { createUser } from './SignupActions';
+import React, { useState } from 'react';
+import { setDatas } from '../presenter/loginPresenter';
+import { login } from '../actions/loginActions';
 
 // import component
-import Signup from './Signup';
+import Login from '../Login';
 
-function SignupManager() {
+function LoginManager() {
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -19,20 +19,18 @@ function SignupManager() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createUser(form)
+    login(form)
       .then((result) => result)
       .catch((error) => setErrors(error.response.data));
   };
-  /*
-Checker l'erreur email / mdp, l'un ne se met pas à jour quand on renseigne l'autre en premier. Besoin d'un useeffect() ?
-*/
+
   const handleForm = (key, value) => {
     setForm({ ...form, [key]: value });
   };
 
   const userDatas = setDatas(form, errors, handleForm, handleSubmit);
 
-  return <Signup userDatas={userDatas} />;
+  return <Login userDatas={userDatas} />;
 }
 
-export default SignupManager;
+export default LoginManager;
