@@ -8,8 +8,8 @@ const login = async (form) => {
     `${process.env.REACT_APP_HOST}/auth/login`,
     form
   ).then(async (response) => {
-    console.log('RESP', response.data);
     await response.data;
+    await location.assign('/accueil');
   });
 };
 
