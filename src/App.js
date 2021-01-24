@@ -13,6 +13,8 @@ import RecipesManager from './components/Recipes/RecipesManager';
 import Login from './components/Login';
 import SignupManager from './components/Signup/SignupManager';
 
+// import CSS
+import './App.css';
 function App() {
   return (
     <Fragment>
