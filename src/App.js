@@ -29,7 +29,7 @@ function App() {
         <Route path="/accueil" component={Home} />
         <Route path="/signup" component={SignupManager} />
         <Route path="/login" component={LoginManager} />
-        <Route path="/aliments" component={Foods} />
+        <Route exact path="/aliments" component={Foods} />
         <Route path="/aliments/:foodID" component={FoodsUpdate} />
         <Route path="/repas" component={Meals} />
         <Route path="/planning" component={Planning} />
