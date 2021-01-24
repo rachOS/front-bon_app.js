@@ -9,6 +9,10 @@ const signup = async (form) => {
     form
   ).then(async (response) => {
     await response.data;
+    /**
+     * redirect to path when submit
+     */
+    await location.assign('/accueil');
   });
 };
 
