@@ -11,40 +11,11 @@ import './style/signup.scss';
 
 function Signup({ userDatas }) {
   const { form, handle_form, errors, handle_submit } = userDatas;
-  console.log('Error', errors ? errors.Errors : 'ok');
+  console.log('Error', errors ? errors : 'ok');
 
   return (
-    <Form onSubmit={(e) => handle_submit(e)}>
-      <FieldSet>
-        <Legend text={'Création de votre compte'} classNames={'TEST test2'} />
-        <Label htmlFor={'email'} text={'email'} />
-        <Input
-          id={'email'}
-          name={'email'}
-          type={'email'}
-          onChange={(e) => {
-            handle_form(e.target.name, e.target.value);
-            e.preventDefault();
-          }}
-          placeholder={'john@doe.com'}
-          value={form.email}
-          required
-        />
-        <Label htmlFor="password" text={'mot de passe'} />
-        <Input
-          id={'password'}
-          name={'password'}
-          type={'password'}
-          onChange={(e) => {
-            handle_form(e.target.name, e.target.value);
-            e.preventDefault();
-          }}
-          value={form.password}
-          placeholder={'********'}
-          min={8}
-          required
-        />
-        {/* <Label
+    <Form className="Form" onSubmit={(e) => handle_submit(e)}>
+      {/* <Label
           htmlFor="repeat_password"
           text={'vérification du mot de passe'}
         />
@@ -90,8 +61,55 @@ function Signup({ userDatas }) {
           onChange={(e) => handle_form(e.target.name, e.target.value)}
           placeholder={'M/F'}
         /> */}
+
+      <FieldSet className="Form-fieldset">
+        {/* <Legend
+          text={'Création de votre compte'}
+          classNameNames={'TEST test2'}
+        /> */}
+        <Input className="Form-input" type={'submit'} value={'Création'} />
       </FieldSet>
-      <Input type={'submit'} value={'submit'} />
+      <FieldSet className="Form-fieldset">
+        {/* <Label htmlFor={'email'} text={'email'} /> */}
+        <Input
+          id={'email'}
+          className="Form-input"
+          name={'email'}
+          type={'email'}
+          onChange={(e) => {
+            handle_form(e.target.name, e.target.value);
+            e.preventDefault();
+          }}
+          placeholder={'email'}
+          value={form.email}
+          required
+        />
+      </FieldSet>
+      <FieldSet className="Form-fieldset">
+        {/* <Label htmlFor="password" text={'mot de passe'} /> */}
+        <Input
+          id={'password'}
+          className="Form-input"
+          name={'password'}
+          type={'password'}
+          onChange={(e) => {
+            handle_form(e.target.name, e.target.value);
+            e.preventDefault();
+          }}
+          value={form.password}
+          placeholder={'mot de passe'}
+          min={8}
+          required
+        />
+      </FieldSet>
+      <FieldSet className="Form-fieldset">
+        {/* <Legend
+          text={'Création de votre compte'}
+          classNameNames={'TEST test2'}
+        /> */}
+        <Input className="Form-input" type={'submit'} value={'Connection'} />
+      </FieldSet>
+      <span className="Form-span">mot de passe oublié</span>
     </Form>
   );
 }

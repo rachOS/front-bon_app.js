@@ -8,8 +8,7 @@ const createUser = async (form) => {
     `${process.env.REACT_APP_HOST}/auth/signup`,
     form
   ).then(async (response) => {
-    response.data;
-    console.log('RES', response.data);
+    await response.data;
   });
 };
 
