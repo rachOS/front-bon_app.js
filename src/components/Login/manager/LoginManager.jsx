@@ -16,11 +16,15 @@ function LoginManager() {
     weigth: '',
   });
   const [errors, setErrors] = useState({});
+  const [user, setUser] = useState({});
 
   const handleSubmit = (event) => {
     event.preventDefault();
     login(form)
-      .then((result) => result)
+      .then((result) => {
+        setUser(result.user);
+        return user;
+      })
       .catch((error) => setErrors(error.response.data));
   };
 
@@ -28,7 +32,7 @@ function LoginManager() {
     setForm({ ...form, [key]: value });
   };
 
-  const userDatas = setDatas(form, errors, handleForm, handleSubmit);
+  const userDatas = setDatas(form, errors, handleForm, handleSubmit, user);
 
   return <Login userDatas={userDatas} />;
 }

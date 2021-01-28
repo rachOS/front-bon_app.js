@@ -1,15 +1,23 @@
 // import core
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Input, Button, FieldSet } from '../Form/Form';
+import { Form, Input, FieldSet, Label } from '../Form/Form';
+import { useHistory } from 'react-router-dom';
 
 function Login({ userDatas }) {
-  const { form, handle_form, errors, handle_submit } = userDatas;
-  console.log('Error', errors ? errors : 'ok');
+  const { form, handle_form, errors, handle_submit, user } = userDatas;
+  const history = useHistory();
+
+  console.log('ERR <Login/>', errors);
   return (
     <>
       <h1>Log in</h1>
-      <Form className="Form" onSubmit={(e) => handle_submit(e)}>
+      <Form
+        className="Form"
+        onSubmit={(e) => {
+          handle_submit(e);
+        }}
+      >
         <FieldSet className="Form-fieldset">
           {/* <Legend
       text={'Création de votre compte'}
@@ -17,7 +25,8 @@ function Login({ userDatas }) {
     /> */}
         </FieldSet>
         <FieldSet className="Form-fieldset">
-          {/* <Label htmlFor={'email'} text={'email'} /> */}
+          {/*  {errors ? <Label htmlFor={'email'} text={errors.message} /> : null} */}
+          {errors ? <p>{'ERROR MAIL'} </p> : <p />}
           <Input
             id={'email'}
             className="Form-input"
@@ -25,7 +34,6 @@ function Login({ userDatas }) {
             type={'email'}
             onChange={(e) => {
               handle_form(e.target.name, e.target.value);
-              e.preventDefault();
             }}
             placeholder={'email'}
             value={form.email}
@@ -33,7 +41,8 @@ function Login({ userDatas }) {
           />
         </FieldSet>
         <FieldSet className="Form-fieldset">
-          {/* <Label htmlFor="password" text={'mot de passe'} /> */}
+          {/*  {errors ? <Label htmlFor={'email'} text={errors.message} /> : null} */}
+          {errors ? <p>{'ERROR PASSWORD'} </p> : <p />}
           <Input
             id={'password'}
             className="Form-input"
@@ -56,6 +65,7 @@ function Login({ userDatas }) {
     /> */}
           <Input className="Form-input" type={'submit'} value={'Connection'} />
         </FieldSet>
+        {user.id ? history.push('/accueil') : null}
         <span className="Form-span">mot de passe oublié</span>
       </Form>
     </>
