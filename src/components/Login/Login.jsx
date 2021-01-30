@@ -26,7 +26,12 @@ function Login({ userDatas }) {
         </FieldSet>
         <FieldSet className="Form-fieldset">
           {/*  {errors ? <Label htmlFor={'email'} text={errors.message} /> : null} */}
-          {errors ? <p>{'ERROR MAIL'} </p> : <p />}
+          {errors.Error ? <p>{errors.Error.USER.AUTH.MESSAGE} </p> : <p />}
+          {errors.Error ? (
+            <p>{errors.Error.USER.AUTH.EMAIL['string.empty']} </p>
+          ) : (
+            <p />
+          )}
           <Input
             id={'email'}
             className="Form-input"
@@ -42,7 +47,11 @@ function Login({ userDatas }) {
         </FieldSet>
         <FieldSet className="Form-fieldset">
           {/*  {errors ? <Label htmlFor={'email'} text={errors.message} /> : null} */}
-          {errors ? <p>{'ERROR PASSWORD'} </p> : <p />}
+          {errors.Error ? (
+            <p>{errors.Error.USER.AUTH.PASSWORD['string.empty']} </p>
+          ) : (
+            <p />
+          )}
           <Input
             id={'password'}
             className="Form-input"
