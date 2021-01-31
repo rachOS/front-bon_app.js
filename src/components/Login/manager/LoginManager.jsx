@@ -10,29 +10,26 @@ function LoginManager() {
   const [form, setForm] = useState({
     email: '',
     password: '',
-    age: '',
-    sex: '',
-    height: '',
-    weigth: '',
   });
   const [errors, setErrors] = useState({});
-  const [user, setUser] = useState({});
+  const [isAuth, setIsAuth] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     login(form)
       .then((result) => {
-        setUser(result.user);
-        return user;
+        setIsAuth(result.isAuthenticated);
       })
-      .catch((error) => setErrors(error.response.data));
+      .catch((error) => {
+        setErrors(error.response.data);
+      });
   };
 
   const handleForm = (key, value) => {
     setForm({ ...form, [key]: value });
   };
-
-  const userDatas = setDatas(form, errors, handleForm, handleSubmit, user);
+  console.log(isAuth);
+  const userDatas = setDatas(form, errors, handleForm, handleSubmit, isAuth);
 
   return <Login userDatas={userDatas} />;
 }

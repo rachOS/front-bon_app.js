@@ -1,10 +1,10 @@
-const setDatas = (form, errors, handleForm, handleSubmit, user) => {
+const setDatas = (form, errors, handleForm, handleSubmit, isAuth) => {
   return {
     form: form,
     handle_form: handleForm,
     errors: errors,
     handle_submit: handleSubmit,
-    user: user,
+    isAuth,
   };
 };
 

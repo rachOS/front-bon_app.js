@@ -7,8 +7,7 @@ const login = async (form) => {
     `${process.env.REACT_APP_HOST}/auth/login`,
     form
   ).then((response) => {
-    const user = response.data;
-    return user;
+    return response.data.isAuthenticated;
   });
 };
 

@@ -1,11 +1,11 @@
 // import core
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Input, FieldSet, Label } from '../Form/Form';
+import { Form, Input, FieldSet } from '../Form/Form';
 import { useHistory } from 'react-router-dom';
 
 function Login({ userDatas }) {
-  const { form, handle_form, errors, handle_submit, user } = userDatas;
+  const { form, handle_form, errors, handle_submit, isAuth } = userDatas;
   const history = useHistory();
 
   console.log('ERR <Login/>', errors);
@@ -74,7 +74,7 @@ function Login({ userDatas }) {
     /> */}
           <Input className="Form-input" type={'submit'} value={'Connection'} />
         </FieldSet>
-        {user.id ? history.push('/accueil') : null}
+        {isAuth ? history.push('/accueil') : null}
         <span className="Form-span">mot de passe oublié</span>
       </Form>
     </>
