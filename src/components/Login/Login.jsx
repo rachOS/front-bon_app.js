@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { Form, Input, FieldSet } from '../Form/Form';
 import { useHistory } from 'react-router-dom';
 
-function Login({ userDatas }) {
-  const { form, handle_form, errors, handle_submit, isAuth } = userDatas;
+function Login({ authDatas }) {
+  const { form, handle_form, errors, handle_submit, isAuth } = authDatas;
   const history = useHistory();
 
   console.log('ERR <Login/>', errors);
@@ -82,16 +82,7 @@ function Login({ userDatas }) {
 }
 
 Login.propTypes = {
-  userDatas: PropTypes.object,
+  authDatas: PropTypes.object,
 };
-Login.defaultProps = {
-  userDatas: {
-    email: 'john@doe.com',
-    password: '12345678',
-    age: '42',
-    sex: 'M',
-    height: '142',
-    weigth: '42',
-  },
-};
+
 export default Login;

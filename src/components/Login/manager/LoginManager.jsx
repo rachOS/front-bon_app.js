@@ -1,6 +1,6 @@
 // import core
 import React, { useState } from 'react';
-import { setDatas } from '../presenter/loginPresenter';
+import { getAuthDatas } from '../presenter/loginPresenter';
 import { login } from '../actions/loginActions';
 
 // import component
@@ -14,24 +14,26 @@ function LoginManager() {
   const [errors, setErrors] = useState({});
   const [isAuth, setIsAuth] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    login(form)
-      .then((result) => {
-        setIsAuth(result.isAuthenticated);
-      })
-      .catch((error) => {
-        setErrors(error.response.data);
-      });
+    await login(form)
+      .then((result) => setIsAuth(result))
+      .catch((error) => setErrors(error.response.data));
   };
 
   const handleForm = (key, value) => {
     setForm({ ...form, [key]: value });
   };
 
-  const userDatas = setDatas(form, errors, handleForm, handleSubmit, isAuth);
+  const authDatas = getAuthDatas(
+    form,
+    errors,
+    handleForm,
+    handleSubmit,
+    isAuth
+  );
 
-  return <Login userDatas={userDatas} />;
+  return <Login authDatas={authDatas} />;
 }
 
 export default LoginManager;
