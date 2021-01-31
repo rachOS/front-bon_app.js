@@ -1,14 +1,19 @@
 // import core
-import React, { Fragment } from 'react';
+import React from 'react';
 
 // import components
+import Menu from './Menu';
 
 // import data
 
 // import style
 
 function Home() {
-  return <Fragment></Fragment>;
+  return (
+    <>
+      <Menu />
+    </>
+  );
 }
 
 export default Home;

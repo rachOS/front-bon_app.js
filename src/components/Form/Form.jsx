@@ -2,26 +2,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Form({ children }) {
-  return <form>{children}</form>;
+import './style/style.scss';
+function Form({ children, method, action, className, onSubmit }) {
+  return (
+    <form
+      method={method}
+      className={`Form ${className}`}
+      action={action}
+      onSubmit={onSubmit}
+    >
+      {children}
+    </form>
+  );
 }
 
-function FieldSet({ children }) {
-  return <fieldset>{children}</fieldset>;
+function FieldSet({ children, className }) {
+  return <fieldset className={`${className}`}>{children}</fieldset>;
 }
 
-function Legend({ text }) {
-  return <legend>{text}</legend>;
+function Legend({ text, className }) {
+  return <legend className={`${className}`}>{text}</legend>;
 }
 
 function Label({ htmlFor, text }) {
   return <label htmlFor={htmlFor}>{text}</label>;
 }
 
-function Input({ id, name, type, value, onChange, placeholder, min, max }) {
+function Input({
+  id,
+  className,
+  name,
+  type,
+  value,
+  onChange,
+  placeholder,
+  min,
+  max,
+}) {
   return (
     <input
       id={id}
+      className={` Form-input ${className}`}
       name={name}
       type={type}
       value={value}
@@ -32,9 +53,15 @@ function Input({ id, name, type, value, onChange, placeholder, min, max }) {
     />
   );
 }
-function Select({ id, name, value, onChange, children }) {
+function Select({ id, className, name, value, onChange, children }) {
   return (
-    <select id={id} name={name} value={value} onChange={onChange}>
+    <select
+      id={id}
+      className={`${className}`}
+      name={name}
+      value={value}
+      onChange={onChange}
+    >
       {children}
     </select>
   );
@@ -44,19 +71,30 @@ function Options({ value, text }) {
   return <option value={value}>{text}</option>;
 }
 
-function Button({ onClick, text }) {
-  return <button onClick={onClick}>{text}</button>;
+function Button({ onClick, text, className }) {
+  return (
+    <button className={`${className}`} onClick={onClick}>
+      {text}
+    </button>
+  );
 }
 
 // PropTypes
 Form.propTypes = {
   children: PropTypes.node,
+  method: PropTypes.string,
+  action: PropTypes.string,
+  className: PropTypes.string,
+  onSubmit: PropTypes.func,
 };
 Form.defaultProps = {
   children: PropTypes.node,
+  action: '',
+  className: '',
 };
 FieldSet.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 FieldSet.defaultProps = {
   children: PropTypes.node,
@@ -67,6 +105,7 @@ Legend.propTypes = {
     PropTypes.number.isRequired,
     PropTypes.string.isRequired,
   ]),
+  className: PropTypes.string,
 };
 Legend.defaultProps = {
   text: 'ma légende',
@@ -81,6 +120,7 @@ Label.propTypes = {
     PropTypes.number.isRequired,
     PropTypes.string.isRequired,
   ]),
+  className: PropTypes.string,
 };
 Label.defaultProps = {
   htmlFor: 'name',
@@ -92,11 +132,15 @@ Input.propTypes = {
     PropTypes.number.isRequired,
     PropTypes.string.isRequired,
   ]),
+  className: PropTypes.string,
   name: PropTypes.oneOfType([
     PropTypes.number.isRequired,
     PropTypes.string.isRequired,
   ]),
-  type: PropTypes.oneOf(['text', 'number', 'search']),
+  type: PropTypes.oneOfType([
+    PropTypes.number.isRequired,
+    PropTypes.string.isRequired,
+  ]),
   value: PropTypes.oneOfType([
     PropTypes.number.isRequired,
     PropTypes.string.isRequired,
@@ -110,16 +154,24 @@ Input.propTypes = {
 Input.defaultProps = {
   id: 'name',
   name: 'name',
-  type: 'text',
-  value: null,
-  placeholder: 'ex: 06 50 51 52 53 ',
+  type: PropTypes.oneOf([
+    'text',
+    'number',
+    'search',
+    'password',
+    'email',
+    'submit',
+  ]),
+  value: '',
+  placeholder: 'this is a placeholder',
   min: 0,
   max: 300,
 };
 
 Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -127,6 +179,7 @@ Button.defaultProps = {
 };
 Select.propTypes = {
   id: PropTypes.number.isRequired,
+  className: PropTypes.string,
   name: PropTypes.oneOfType([
     PropTypes.number.isRequired,
     PropTypes.string.isRequired,

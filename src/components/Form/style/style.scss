@@ -1,0 +1,21 @@
+@import '../../../root.scss';
+.Form {
+  height: 100vh;
+  background: $form-background;
+  position: relative;
+  border-radius: 5px;
+  margin: 5vh 5vw;
+  padding: 3vh 3vw;
+
+  &-fieldset {
+    width: min-content;
+    border: none;
+  }
+
+  &-input {
+    text-align: center;
+    padding: 3vh 5vw;
+    border-radius: 5px;
+    border: none;
+  }
+}
