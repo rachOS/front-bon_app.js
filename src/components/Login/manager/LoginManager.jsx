@@ -28,7 +28,7 @@ function LoginManager() {
   const handleForm = (key, value) => {
     setForm({ ...form, [key]: value });
   };
-  console.log(isAuth);
+
   const userDatas = setDatas(form, errors, handleForm, handleSubmit, isAuth);
 
   return <Login userDatas={userDatas} />;
