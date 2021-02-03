@@ -2,13 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Input, FieldSet } from '../Form/Form';
-import { useHistory } from 'react-router-dom';
-
+import { Redirect } from 'react-router-dom';
 function Login({ authDatas }) {
   const { form, handle_form, errors, handle_submit, isAuth } = authDatas;
-  const history = useHistory();
-
-  console.log('ERR <Login/>', errors);
   return (
     <>
       <h1>Log in</h1>
@@ -74,7 +70,8 @@ function Login({ authDatas }) {
     /> */}
           <Input className="Form-input" type={'submit'} value={'Connection'} />
         </FieldSet>
-        {isAuth ? history.push('/accueil') : null}
+        {/* {isAuth ? history.push('/accueil') : null} */}
+        {isAuth && <Redirect to="/accueil" />}
         <span className="Form-span">mot de passe oublié</span>
       </Form>
     </>

@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 // import core
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -25,7 +26,28 @@ function Legend({ text, className }) {
 }
 
 function Label({ htmlFor, text }) {
-  return <label htmlFor={htmlFor}>{text}</label>;
+  switch (text) {
+    case 'firstname':
+      return <label htmlFor={htmlFor}>prénom</label>;
+    case 'lastname':
+      return <label htmlFor={htmlFor}>nom</label>;
+    case 'age':
+      return <label htmlFor={htmlFor}>âge</label>;
+    case 'sex':
+      return <label htmlFor={htmlFor}>sexe</label>;
+    case 'height':
+      return <label htmlFor={htmlFor}>taille</label>;
+    case 'weight':
+      return <label htmlFor={htmlFor}>poid</label>;
+    case 'id_activity':
+      return <label htmlFor={htmlFor}>activité</label>;
+    case 'id_goal':
+      return <label htmlFor={htmlFor}>objectif</label>;
+    case 'password':
+      return <label htmlFor={htmlFor}>mot de passe</label>;
+    default:
+      return <label htmlFor={htmlFor}>{text}</label>;
+  }
 }
 
 function Input({
