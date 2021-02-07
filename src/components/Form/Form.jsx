@@ -25,28 +25,68 @@ function Legend({ text, className }) {
   return <legend className={`${className}`}>{text}</legend>;
 }
 
-function Label({ htmlFor, text }) {
+function Label({ htmlFor, text, className }) {
   switch (text) {
     case 'firstname':
-      return <label htmlFor={htmlFor}>prénom</label>;
+      return (
+        <label className={className} htmlFor={htmlFor}>
+          prénom
+        </label>
+      );
     case 'lastname':
-      return <label htmlFor={htmlFor}>nom</label>;
+      return (
+        <label className={className} htmlFor={htmlFor}>
+          nom
+        </label>
+      );
     case 'age':
-      return <label htmlFor={htmlFor}>âge</label>;
+      return (
+        <label className={className} htmlFor={htmlFor}>
+          âge
+        </label>
+      );
     case 'sex':
-      return <label htmlFor={htmlFor}>sexe</label>;
+      return (
+        <label className={className} htmlFor={htmlFor}>
+          sexe
+        </label>
+      );
     case 'height':
-      return <label htmlFor={htmlFor}>taille</label>;
+      return (
+        <label className={className} htmlFor={htmlFor}>
+          taille
+        </label>
+      );
     case 'weight':
-      return <label htmlFor={htmlFor}>poid</label>;
+      return (
+        <label className={className} htmlFor={htmlFor}>
+          poid
+        </label>
+      );
     case 'id_activity':
-      return <label htmlFor={htmlFor}>activité</label>;
+      return (
+        <label className={className} htmlFor={htmlFor}>
+          activité
+        </label>
+      );
     case 'id_goal':
-      return <label htmlFor={htmlFor}>objectif</label>;
+      return (
+        <label className={className} htmlFor={htmlFor}>
+          objectif
+        </label>
+      );
     case 'password':
-      return <label htmlFor={htmlFor}>mot de passe</label>;
+      return (
+        <label className={className} htmlFor={htmlFor}>
+          mot de passe
+        </label>
+      );
     default:
-      return <label htmlFor={htmlFor}>{text}</label>;
+      return (
+        <label className={className} htmlFor={htmlFor}>
+          {text}
+        </label>
+      );
   }
 }
 
@@ -110,16 +150,16 @@ Form.propTypes = {
   onSubmit: PropTypes.func,
 };
 Form.defaultProps = {
-  children: PropTypes.node,
+  children: PropTypes.func,
   action: '',
   className: '',
 };
 FieldSet.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.func,
   className: PropTypes.string,
 };
 FieldSet.defaultProps = {
-  children: PropTypes.node,
+  children: PropTypes.func,
 };
 
 Legend.propTypes = {
