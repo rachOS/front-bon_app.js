@@ -2,13 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Input, FieldSet } from '../Form/Form';
-import { useHistory } from 'react-router-dom';
-
-import PrivateRoute from '../private/PrivateRoute';
+import { Redirect } from 'react-router-dom';
 function Login({ authDatas }) {
   const { form, handle_form, errors, handle_submit, isAuth } = authDatas;
-  const { isAuthenticated } = isAuth;
-  const history = useHistory();
   return (
     <>
       <h1>Log in</h1>
@@ -74,8 +70,7 @@ function Login({ authDatas }) {
     /> */}
           <Input className="Form-input" type={'submit'} value={'Connection'} />
         </FieldSet>
-        {isAuthenticated && history.push('/profil')}
-        {/*   {isAuthenticated && <PrivateRoute path="/profil" />} */}
+        {isAuth && <Redirect to="/profil" />}
         <span className="Form-span">mot de passe oublié</span>
       </Form>
     </>

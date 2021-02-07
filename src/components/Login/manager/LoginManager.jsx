@@ -17,7 +17,7 @@ function LoginManager() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await login(form)
-      .then((result) => setIsAuth(result))
+      .then((result) => setIsAuth(result.isAuthenticated))
       .catch((error) => setErrors(error.response.data));
   };
 
