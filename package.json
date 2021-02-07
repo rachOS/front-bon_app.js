@@ -1,5 +1,5 @@
 {
-  "name": "front-bon-app.js",
+  "name": "front-end_bon-app",
   "version": "0.1.0",
   "private": true,
   "author": "Grégory Chamekh (http://www.developpeur.gregory-chamekh.fr)",
@@ -8,16 +8,17 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "http-proxy-middleware": "^1.0.6",
+    "node-sass": "^4.14.1",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.0"
+    "react-scripts": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,11 +47,11 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^7.13.0",
+    "eslint": "^7.19.0",
     "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-react": "^7.21.5",
-    "husky": "^4.3.0",
+    "eslint-plugin-react": "^7.22.0",
+    "husky": "^4.3.8",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.1.2"
+    "prettier": "^2.2.1"
   }
 }
