@@ -13,6 +13,7 @@ import RecipesManager from './components/Recipes/RecipesManager';
 import LoginManager from './components/Login/manager/LoginManager';
 import SignupManager from './components/Signup/manager/SignupManager';
 import ProfileManager from './components/Profile/manager/ProfileManager';
+import PrivateRoute from './components/private/PrivateRoute';
 
 // import CSS
 import './App.css';
@@ -35,7 +36,7 @@ function App() {
         <Route path="/repas" component={Meals} />
         <Route path="/planning" component={Planning} />
         <Route path="/recettes" component={RecipesManager} />
-        <Route path="/profil/:id" component={ProfileManager} />
+        <PrivateRoute path="/profil" component={ProfileManager} />
       </Switch>
     </Fragment>
   );
