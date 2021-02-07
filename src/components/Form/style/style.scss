@@ -17,5 +17,18 @@
     padding: 3vh 5vw;
     border-radius: 5px;
     border: none;
+    box-shadow: 0px 1px 1px 1px #737067 inset, 0px 1px 1px 0px #737067 inset;
+    &--action {
+      color: $primary-color;
+      box-shadow: 0px 0.89px 0.55px 0px rgb(7, 7, 7),
+        0px 5px 5px 0px rgba(0, 0, 0, 0.25);
+      background: linear-gradient(
+        180deg,
+        #a39e8f 8.85%,
+        #989281 34.9%,
+        #7b7665 84.37%,
+        #736e5e 100%
+      );
+    }
   }
 }

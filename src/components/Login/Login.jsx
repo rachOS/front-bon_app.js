@@ -68,7 +68,11 @@ function Login({ authDatas }) {
       text={'Création de votre compte'}
       classNameNames={'TEST test2'}
     /> */}
-          <Input className="Form-input" type={'submit'} value={'Connection'} />
+          <Input
+            className="Form-input--action"
+            type={'submit'}
+            value={'Connection'}
+          />
         </FieldSet>
         {isAuth && <Redirect to="/profil" />}
         <span className="Form-span">mot de passe oublié</span>
