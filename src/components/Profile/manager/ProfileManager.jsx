@@ -1,14 +1,12 @@
 // import core
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { getUserDatas } from '../presenter/profilePresenter';
-import { getUser } from '../actions/profileActions';
+import { getUserProfile } from '../actions/profileActions';
 
 // import component
 import ProfileContainer from '../Profile';
 
 function LoginManager() {
-  const { id } = useParams();
   const [form, setForm] = useState({
     age: 42,
     firstname: 'John',
@@ -27,13 +25,11 @@ function LoginManager() {
   });
   const [errors, setErrors] = useState({});
   const [user, setUser] = useState({});
-
   useEffect(async () => {
-    const result = await getUser(id)
-      .then((response) => response)
+    getUserProfile()
+      .then((response) => setUser(response))
       .catch((error) => setErrors(error.response.data));
-    setUser(result);
-  }, [id]);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -1,10 +1,10 @@
 import Axios from 'axios';
 
-const getUser = async (userId) => {
+const getUserProfile = async () => {
   // eslint-disable-next-line no-undef
-  const url = await `${process.env.REACT_APP_HOST}/users/${userId}`;
-  return await Axios.get(url)
-    .then((response) => response.data)
-    .then((data) => data);
+  const url = `${process.env.REACT_APP_HOST}/auth/profile`;
+  return await Axios.get(url, { withCredentials: true }).then(
+    (response) => response.data.user
+  );
 };
-export { getUser };
+export { getUserProfile };
