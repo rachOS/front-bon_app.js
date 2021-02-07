@@ -1,10 +1,11 @@
 /* eslint-disable no-undef */
 // import core
 import React, { useState, useEffect, Fragment } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import Axios from 'axios';
 
 // import components
-
+import RecipesManager from './Recipes/RecipesManager';
 import Menu from './Menu';
 
 // import module
@@ -83,6 +84,9 @@ function User() {
         <button size="small">Mettre à jour mes infos</button>
       </div>
       <Menu />
+      <Switch>
+        <Route path="/recettes" component={RecipesManager} />
+      </Switch>
     </Fragment>
   );
 }

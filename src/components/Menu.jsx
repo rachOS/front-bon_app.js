@@ -7,7 +7,7 @@ function Menu() {
     <Fragment>
       <div>
         <Link to="/">
-          <button>Accueil</button>
+          <button>Mes infos</button>
         </Link>
         <Link to="/aliments">
           <button>Mes aliments</button>
