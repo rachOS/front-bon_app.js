@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { Form, Input, FieldSet } from '../Form/Form';
 import { useHistory } from 'react-router-dom';
 
+import PrivateRoute from '../private/PrivateRoute';
 function Login({ authDatas }) {
   const { form, handle_form, errors, handle_submit, isAuth } = authDatas;
+  const { isAuthenticated } = isAuth;
   const history = useHistory();
-
-  console.log('ERR <Login/>', errors);
   return (
     <>
       <h1>Log in</h1>
@@ -74,7 +74,8 @@ function Login({ authDatas }) {
     /> */}
           <Input className="Form-input" type={'submit'} value={'Connection'} />
         </FieldSet>
-        {isAuth ? history.push('/accueil') : null}
+        {isAuthenticated && history.push('/profil')}
+        {/*   {isAuthenticated && <PrivateRoute path="/profil" />} */}
         <span className="Form-span">mot de passe oublié</span>
       </Form>
     </>
@@ -83,6 +84,7 @@ function Login({ authDatas }) {
 
 Login.propTypes = {
   authDatas: PropTypes.object,
+  history: PropTypes.node,
 };
 
 export default Login;
