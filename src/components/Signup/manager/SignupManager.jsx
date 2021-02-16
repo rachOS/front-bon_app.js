@@ -21,7 +21,7 @@ function SignupManager() {
     event.preventDefault();
     signup(form)
       .then((result) => result)
-      //.catch((error) => setErrors(error.response.data));
+      .catch((error) => setErrors(error.response.data));
   };
 
   const handleForm = (key, value) => {
