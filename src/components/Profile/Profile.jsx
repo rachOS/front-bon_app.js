@@ -14,51 +14,57 @@ function Profile({ getUserDatas }) {
   const userKeys = Object.keys(user);
   return user.id ? (
     <Form>
-      <h1 className="Title">Mes infos</h1>
+      <div className="Header">
+        <h1 className="Title">Mes infos</h1>
+      </div>
       <hr />
-      {userKeys.map((key, index) => {
-        switch (key) {
-          case 'id':
-            return;
-          case 'email':
-            return;
-          case 'password':
-            return;
-          default:
-            break;
-        }
-        return (
-          <FieldSet
-            key={index}
-            className={`Form-FieldSet Form-FieldSet-${key}`}
-          >
-            <Label
-              text={key}
-              htmlFor={user[key]}
-              className={`Form-Label Form-Label-${key}`}
-            />
-            <Input
-              id={user[key]}
-              className={`Form-Input-${key}`}
-              name={user[key]}
-              type={typeof user[key]}
-              onChange={(e) => {
-                //  handle_form(e.target.name, e.target.value);
-              }}
-              placeholder={'JoDoehn'}
-              value={user[key] || 'non renseigné'}
-              required
-            />
-          </FieldSet>
-        );
-      })}
+      <div className="Container">
+        {userKeys.map((key, index) => {
+          switch (key) {
+            case 'id':
+              return;
+            case 'email':
+              return;
+            case 'password':
+              return;
+            default:
+              break;
+          }
+          return (
+            <FieldSet
+              key={index}
+              className={`Form-FieldSet Form-FieldSet-${key}`}
+            >
+              <Label
+                text={key}
+                htmlFor={user[key]}
+                className={`Form-Label Form-Label-${key}`}
+              />
+              <Input
+                id={user[key]}
+                className={`Test Test-${key}`}
+                name={user[key]}
+                type={typeof user[key]}
+                onChange={(e) => {
+                  //  handle_form(e.target.name, e.target.value);
+                }}
+                placeholder={'JoDoehn'}
+                value={user[key] || 'non renseigné'}
+                required
+              />
+            </FieldSet>
+          );
+        })}
+      </div>
     </Form>
   ) : (
-    <Form>
-      <Link to="/login">
-        <Button text="Login" />
-      </Link>
-    </Form>
+    <div className="Container">
+      <Form>
+        <Link to="/login">
+          <Button text="Login" />
+        </Link>
+      </Form>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 // import core
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 
 // import components
@@ -19,15 +19,16 @@ import PrivateRoute from './components/private/PrivateRoute';
 import './App.css';
 function App() {
   return (
-    <Fragment>
-      <Link to={'/signup'}>
-        <Button text={'Signup'} />
-      </Link>
-      <Link to={'/login'}>
-        <Button text={'Login'} />
-      </Link>
+    <div className="App">
       <Switch>
-        <Route exact path="/" />
+        <Route exact path="/">
+          <Link to="/signup">
+            <Button className="Form-input Form-input--action" text="Signup" />
+          </Link>
+          <Link to="/login">
+            <Button className="Form-input Form-input--action" text="Login" />
+          </Link>
+        </Route>
         <Route path="/accueil" component={Home} />
         <Route path="/signup" component={SignupManager} />
         <Route path="/login" component={LoginManager} />
@@ -38,7 +39,7 @@ function App() {
         <Route path="/recettes" component={RecipesManager} />
         <PrivateRoute path="/profil" component={ProfileManager} />
       </Switch>
-    </Fragment>
+    </div>
   );
 }
 
