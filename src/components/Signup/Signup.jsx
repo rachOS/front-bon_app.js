@@ -14,10 +14,8 @@ function Signup({ userDatas }) {
   console.log('Error', errors ? errors : 'ok');
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <Form className="Form" onSubmit={(e) => handle_submit(e)}>
-        {/* <Label
+    <Form className="Form" onSubmit={(e) => handle_submit(e)}>
+      {/* <Label
           htmlFor="repeat_password"
           text={'vérification du mot de passe'}
         />
@@ -64,55 +62,58 @@ function Signup({ userDatas }) {
           placeholder={'M/F'}
         /> */}
 
-        <FieldSet className="Form-fieldset">
-          {/* <Legend
+      <FieldSet className="Form-fieldset">
+        {/* <Legend
           text={'Création de votre compte'}
           classNameNames={'TEST test2'}
         /> */}
-          <Input className="Form-input" type={'submit'} value={'Création'} />
-        </FieldSet>
-        <FieldSet className="Form-fieldset">
-          {/* <Label htmlFor={'email'} text={'email'} /> */}
-          <Input
-            id={'email'}
-            className="Form-input"
-            name={'email'}
-            type={'email'}
-            onChange={(e) => {
-              handle_form(e.target.name, e.target.value);
-              e.preventDefault();
-            }}
-            placeholder={'email'}
-            value={form.email}
-            required
-          />
-        </FieldSet>
-        <FieldSet className="Form-fieldset">
-          {/* <Label htmlFor="password" text={'mot de passe'} /> */}
-          <Input
-            id={'password'}
-            className="Form-input"
-            name={'password'}
-            type={'password'}
-            onChange={(e) => {
-              handle_form(e.target.name, e.target.value);
-              e.preventDefault();
-            }}
-            value={form.password}
-            placeholder={'mot de passe'}
-            min={8}
-            required
-          />
-        </FieldSet>
-        <FieldSet className="Form-fieldset">
-          {/* <Legend
+        <Input
+          className="Form-input Form-input--action"
+          type={'submit'}
+          value={'Création'}
+        />
+      </FieldSet>
+      <FieldSet className="Form-fieldset">
+        {/* <Label htmlFor={'email'} text={'email'} /> */}
+        <Input
+          id={'email'}
+          className="Form-input"
+          name={'email'}
+          type={'email'}
+          onChange={(e) => {
+            handle_form(e.target.name, e.target.value);
+            e.preventDefault();
+          }}
+          placeholder={'email'}
+          value={form.email}
+          required
+        />
+      </FieldSet>
+      <FieldSet className="Form-fieldset">
+        {/* <Label htmlFor="password" text={'mot de passe'} /> */}
+        <Input
+          id={'password'}
+          className="Form-input"
+          name={'password'}
+          type={'password'}
+          onChange={(e) => {
+            handle_form(e.target.name, e.target.value);
+            e.preventDefault();
+          }}
+          value={form.password}
+          placeholder={'mot de passe'}
+          min={8}
+          required
+        />
+      </FieldSet>
+      <FieldSet className="Form-fieldset">
+        {/* <Legend
           text={'Création de votre compte'}
           classNameNames={'TEST test2'}
         /> */}
-        </FieldSet>
-        <span className="Form-span">mot de passe oublié</span>
-      </Form>
-    </>
+      </FieldSet>
+      {/* <span className="Form-span">mot de passe oublié</span> */}
+    </Form>
   );
 }
 Signup.propTypes = {

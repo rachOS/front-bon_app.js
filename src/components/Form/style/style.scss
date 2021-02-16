@@ -1,6 +1,7 @@
 @import '../../../root.scss';
 .Form {
-  height: 100vh;
+  width: 80vw;
+  height: 80vh;
   background: $form-background;
   position: relative;
   border-radius: 5px;
@@ -8,18 +9,24 @@
   padding: 3vh 3vw;
 
   &-fieldset {
-    width: min-content;
+    width: auto;
     border: none;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   &-input {
+    width: 233px;
+    height: 89px;
     text-align: center;
-    padding: 3vh 5vw;
+    margin: 0 auto;
     border-radius: 5px;
     border: none;
     box-shadow: 0px 1px 1px 1px #737067 inset, 0px 1px 1px 0px #737067 inset;
     &--action {
-      color: $primary-color;
+      margin: 5px;
+      color: $white;
+      font-weight: bold;
       box-shadow: 0px 0.89px 0.55px 0px rgb(7, 7, 7),
         0px 5px 5px 0px rgba(0, 0, 0, 0.25);
       background: linear-gradient(

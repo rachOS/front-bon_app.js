@@ -12,10 +12,11 @@
   }
   &-FieldSet {
     padding: 0;
-    width: min-content;
+    width: 25%;
     border: none;
     display: flex;
     flex-direction: column;
+    flex-grow: 2;
   }
   &-Label {
     font-variant-caps: all-petite-caps;
@@ -25,4 +26,20 @@
   &-Input {
     box-shadow: -1px 1px 1px 0px rgb(107, 105, 97) inset;
   }
+}
+
+.Container {
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.Test {
+  width: fit-content;
+  height: 55px;
+}
+
+.Header {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
 }

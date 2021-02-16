@@ -5,6 +5,7 @@ import { getUserProfile } from '../actions/profileActions';
 
 // import component
 import ProfileContainer from '../Profile';
+import Home from '../../Home';
 
 function LoginManager() {
   const [form, setForm] = useState({
@@ -42,9 +43,18 @@ function LoginManager() {
     setForm({ ...form, [key]: value });
   };
   return (
-    <ProfileContainer
-      getUserDatas={getUserDatas(form, errors, handleForm, handleSubmit, user)}
-    />
+    <>
+      <Home />
+      <ProfileContainer
+        getUserDatas={getUserDatas(
+          form,
+          errors,
+          handleForm,
+          handleSubmit,
+          user
+        )}
+      />
+    </>
   );
 }
 
