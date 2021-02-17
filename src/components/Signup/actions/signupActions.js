@@ -3,11 +3,13 @@ import Axios from 'axios';
 
 const signup = async (form) => {
   console.log('ACTION', form);
-  return await Axios.post(
+  return await Axios({
+    method: 'post',
+    withCredentials: true,
+    data: form,
     // eslint-disable-next-line no-undef
-    `${process.env.REACT_APP_HOST}/auth/signup`,
-    form
-  ).then(async (response) => {
+    url: `${process.env.REACT_APP_HOST}/auth/signup`,
+  }).then(async (response) => {
     await response.data;
     /**
      * redirect to path when submit
