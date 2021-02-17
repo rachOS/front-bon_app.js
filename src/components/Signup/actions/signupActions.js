@@ -6,7 +6,7 @@ const signup = async (form) => {
   return await Axios({
     method: 'post',
     withCredentials: true,
-    data: form,
+    data: { form: form },
     // eslint-disable-next-line no-undef
     url: `${process.env.REACT_APP_HOST}/auth/signup`,
   }).then(async (response) => {
