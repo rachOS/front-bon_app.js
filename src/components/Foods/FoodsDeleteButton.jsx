@@ -6,8 +6,9 @@ import PropTypes from 'prop-types';
 // get props from FoodsList.jsx
 function FoodsDeleteButton({ getFoodsList, foodID }) {
   const deleteFood = (foodID) => {
+    // eslint-disable-next-line no-undef
     const url = `${process.env.REACT_APP_HOST}/foods/${foodID}`;
-    Axios.delete(url, foodID).finally(() => getFoodsList());
+    Axios.delete(url, { data: { id: foodID } }).finally(() => getFoodsList());
   };
   return <button onClick={() => deleteFood(foodID)}>X</button>;
 }
