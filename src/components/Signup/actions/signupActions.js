@@ -2,7 +2,6 @@
 import Axios from 'axios';
 
 const signup = async (form) => {
-  console.log('ACTION', form);
   return await Axios({
     method: 'post',
     withCredentials: true,
