@@ -16,10 +16,10 @@ import ProfileManager from './components/Profile/manager/ProfileManager';
 import PrivateRoute from './components/private/PrivateRoute';
 
 // import CSS
-import './App.css';
+import './app.scss';
 function App() {
   return (
-    <div className="App">
+    <main className="App">
       <Switch>
         <Route exact path="/">
           <Link to="/signup">
@@ -39,7 +39,7 @@ function App() {
         <Route path="/recettes" component={RecipesManager} />
         <PrivateRoute path="/profil" component={ProfileManager} />
       </Switch>
-    </div>
+    </main>
   );
 }
 
