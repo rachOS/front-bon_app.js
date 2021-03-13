@@ -14,25 +14,28 @@ import LoginManager from './components/Login/manager/LoginManager';
 import SignupManager from './components/Signup/manager/SignupManager';
 import ProfileManager from './components/Profile/manager/ProfileManager';
 import PrivateRoute from './components/private/PrivateRoute';
+import AuthField from './components/Auth/AuthField/AuthField';
+import Menu from './components/Menu/Menu';
 
 // import CSS
 import './app.scss';
+
+// import FontAwesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faPenAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
+library.add(faPenAlt, faTimes);
+
 function App() {
   return (
     <main className="App">
       <Switch>
-        <Route exact path="/">
-          <Link to="/signup">
-            <Button className="Form-input Form-input--action" text="Signup" />
-          </Link>
-          <Link to="/login">
-            <Button className="Form-input Form-input--action" text="Login" />
-          </Link>
+        <Menu />
+        <Route exact path="/" component={Home}>
+          <AuthField />
         </Route>
-        <Route path="/accueil" component={Home} />
-        <Route path="/signup" component={SignupManager} />
-        <Route path="/login" component={LoginManager} />
-        <Route exact path="/aliments" component={Foods} />
+      </Switch>
+      <Switch>
+        <Route path="/aliments" component={Foods} />
         <Route path="/aliments/:foodID" component={FoodsUpdate} />
         <Route path="/repas" component={Meals} />
         <Route path="/planning" component={Planning} />

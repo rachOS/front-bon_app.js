@@ -1,0 +1,90 @@
+@import '../../../root.scss';
+
+.Container {
+  &-table {
+    grid-gap: 10px;
+    justify-content: center;
+  }
+  &-body {
+    background-color: $form-background;
+  }
+}
+
+.Box {
+  &-food {
+    font-size: 0.8rem;
+    width: 89vw;
+    margin: 0 auto;
+
+    grid-auto-flow: column;
+    border-radius: 3px;
+    margin-bottom: 3px;
+    background: #f2f2f2;
+    /* font drop shadow */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0.8px 0.5px #070707;
+    border-radius: 5px;
+    grid-template-columns: 1.5fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.5fr;
+    grid-template-rows: repeat(2, 1fr);
+    padding: 8px;
+    grid-template-areas:
+      'a b c d e f g'
+      'a b c d e f g';
+    &-header {
+      background: rgb(88, 87, 87);
+      box-shadow: none;
+      height: auto;
+      border-radius: 2px;
+      color: white;
+      margin-top: 20px;
+    }
+  }
+}
+
+.Name {
+  grid-area: a;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  hyphens: auto;
+  width: min-content;
+
+  justify-self: left;
+}
+.Proteins {
+  grid-area: b;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.Lipids {
+  grid-area: c;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.Glucids {
+  grid-area: d;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.Bran {
+  grid-area: e;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.Calories {
+  grid-area: f;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.Edit-food {
+  grid-area: g;
+  grid-row: auto;
+}
+.Delete-food {
+  grid-area: g;
+  grid-row: auto;
+}
+
+thead > tr {
+  /* border: 1px solid; */
+  display: flex;
+  flex-wrap: wrap;
+}

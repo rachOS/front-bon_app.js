@@ -1,0 +1,47 @@
+@import '../../root.scss';
+
+.Menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  height: 377px;
+  width: 277px;
+  margin: 0 auto;
+
+  .Form-fieldset {
+    padding: 3px;
+  }
+
+  #logout {
+    width: 233px;
+    border-radius: 0 0 5px 5px;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  &-button {
+    &-nav {
+      background: linear-gradient(
+        180deg,
+        #404040 17.51%,
+        #5e5e5e 49.74%,
+        #757575 82.92%
+      );
+      box-shadow: 0px 4px 4px #00000040, 0px 0.8px 0.5px #070707;
+      padding: 13px;
+      color: white;
+      border: none;
+      margin: 2px;
+      width: 233px;
+      text-align: left;
+      padding-left: 13px;
+
+      &-first {
+        border-radius: 5px 5px 0px 0px;
+      }
+    }
+  }
+}

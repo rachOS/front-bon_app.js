@@ -2,7 +2,7 @@
 import React from 'react';
 
 // import components
-import Menu from './Menu';
+import Menu from './Menu/Menu';
 
 // import data
 

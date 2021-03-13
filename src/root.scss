@@ -1,4 +1,6 @@
-/* COLORS */
+/* Default settings */
+
+/*Colors*/
 $white: #ffffff;
 $primary-color: #e0e0e0;
 $form-background: #d6d1c2;
@@ -9,3 +11,32 @@ $main-button-background: linear-gradient(
   #7b7665 84.37%,
   #736e5e 100%
 );
+
+* {
+  box-sizing: border-box;
+}
+
+/*breakpoints*/
+$breakpoints: (
+  mobile: 320px,
+  tablet: 768px,
+  desktop: 1440px,
+);
+
+//Defining settings of all .box- classes with
+//Border color & placing text at Center.
+[class^='Box-'] {
+  display: grid;
+  place-items: center;
+}
+
+// Defining conditional Media query Mixins.
+@mixin query($screen) {
+  @each $key, $value in $breakpoints {
+    @if ($screen == $key) {
+      @media (max-with: $value) {
+        @content;
+      }
+    }
+  }
+}
