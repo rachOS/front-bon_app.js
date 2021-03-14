@@ -13,9 +13,9 @@ function FoodsDeleteButton({ getFoodsList, foodID }) {
     Axios.delete(url, { data: { id: foodID } }).finally(() => getFoodsList());
   };
   return (
-    <button onClick={() => deleteFood(foodID)} style={{ border: 'none' }}>
+    <td onClick={() => deleteFood(foodID)} className="Delete-food ">
       <FontAwesomeIcon icon={['fas', 'times']} />
-    </button>
+    </td>
   );
 }
 

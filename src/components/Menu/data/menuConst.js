@@ -1,7 +1,7 @@
 export const menuDatas = [
   {
     LABEL: 'Accueil',
-    PATH: '/accueil',
+    PATH: '/',
   },
   {
     LABEL: 'Mes aliments',

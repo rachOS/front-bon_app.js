@@ -1,55 +1,15 @@
 /* eslint-disable indent */
-// import core
+//* CORE */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import FoodCard from './FoodCard';
 
-// import components
+//* COMPONENTS*/
 import FoodsAdd from './FoodsAdd';
-import FoodsDeleteButton from './FoodsDeleteButton';
-import FoodsEditButton from './FoodsEditButton';
 
-// import style
+//* STYLE */
 import './style/foods.scss';
-
-// get props from Foods.jsx
 function FoodsList({ foodsList, getFoodsList }) {
-  /*  function SwitchCategories(switcher) {
-    switch (switcher) {
-      case 1:
-        return 'féculents';
-      case 2:
-        return 'animales';
-      case 3:
-        return 'végétales';
-      case 4:
-        return 'céréales';
-      case 5:
-        return 'légumineuse';
-      case 6:
-        return 'laitier';
-      default:
-        break;
-    }
-  } */
-  //const keys = Object.keys(foodsList[0]);
-  const foods = foodsList.map((food, index) => (
-    <tr key={index} className={`Box-food Box-food-${index}`}>
-      <td className="Name">{food.name}</td>
-      <td className="Proteins">{food.protein}</td>
-      <td className="Lipids">{food.lipid}</td>
-      <td className="Glucids">{food.glucid}</td>
-      <td className="Bran">{food.bran}</td>
-      <td className="Calories">{food.calories}</td>
-      {/* <td className="Categories">{SwitchCategories(food.id_group)}</td> */}
-      <td className="Edit-food">
-        <FoodsEditButton foodID={food.id} />
-      </td>
-      <td className="Delete-food">
-        <FoodsDeleteButton getFoodsList={getFoodsList} foodID={food.id} />
-      </td>
-    </tr>
-  ));
-
   return (
     <Fragment>
       <FoodsAdd getFoodsList={getFoodsList} />
@@ -66,11 +26,15 @@ function FoodsList({ foodsList, getFoodsList }) {
             <td className="Glucids">G</td>
             <td className="Bran">F</td>
             <td className="Calories">K/100 unités</td>
+            <td className="Categories">cat</td>
           </tr>
         </thead>
-        <tbody className="Container Container-body">{foods}</tbody>
+        <tbody className="Container Container-body">
+          {foodsList.map((food, index) => (
+            <FoodCard key={index} food={food} getFoodsList={getFoodsList} />
+          ))}
+        </tbody>
       </table>
-      {/* TODO si Editer est cliqué on switch sur FoodsUpdate sinon on reste sur FoodAdd */}
     </Fragment>
   );
 }

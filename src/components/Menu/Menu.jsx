@@ -1,23 +1,23 @@
 /* eslint-disable indent */
-// import core
-import React, { Fragment } from 'react';
+//* CORE */
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-// components
+//* COMPONENTS */
 import { Button, FieldSet, Input } from '../Form/Form';
 
-// helper
+//* HELPER */
 import { tuneClassName } from './helper/menuHelper';
 
-// data
+//* DATA */
 import { menuDatas } from './data/menuConst';
 
-// style
+//* STYLE */
 import './menu.scss';
 
 function Menu() {
   return (
-    <Fragment>
+    <nav>
       <ul className="Menu">
         {menuDatas.map((menu, index) => (
           <li key={index}>
@@ -40,7 +40,7 @@ function Menu() {
           </Link>
         </FieldSet>
       </ul>
-    </Fragment>
+    </nav>
   );
 }
 

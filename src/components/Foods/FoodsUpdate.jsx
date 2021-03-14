@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // import core
 import React, { useState, useEffect, Fragment } from 'react';
 import Axios from 'axios';
