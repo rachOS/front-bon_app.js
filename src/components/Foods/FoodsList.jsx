@@ -31,7 +31,12 @@ function FoodsList({ foodsList, getFoodsList }) {
         </thead>
         <tbody className="Container Container-body">
           {foodsList.map((food, index) => (
-            <FoodCard key={index} food={food} getFoodsList={getFoodsList} />
+            <FoodCard
+              key={index}
+              index={index}
+              food={food}
+              getFoodsList={getFoodsList}
+            />
           ))}
         </tbody>
       </table>

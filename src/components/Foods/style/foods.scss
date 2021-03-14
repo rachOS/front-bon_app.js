@@ -13,13 +13,14 @@
 .Box {
   &-food {
     font-size: 0.8rem;
-    width: 89vw;
     margin: 0 auto;
     grid-auto-flow: column;
-
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 0.6fr;
     grid-template-rows: repeat(3, 1fr);
-    padding: 8px;
+    background: #f2f2f2;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    box-shadow: 0px 0px 5px #00000040, 0px 1px 0.5px 1px #bdbdbd;
     grid-template-areas:
       'a a a a a a g'
       'b c d e f . .'
@@ -40,10 +41,8 @@
   color: black;
   text-decoration: none;
   margin: 0 auto;
-  background: #f2f2f2;
-  border-radius: 3px;
-  margin-bottom: 3px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0.8px 0.5px #070707;
+  width: 89vw;
+
   &:hover {
     width: 94vw;
   }
@@ -52,9 +51,11 @@
 .Name {
   grid-area: a;
   grid-row: 1/1;
+  grid-column: 1/8;
   hyphens: auto;
   justify-self: left;
   padding: 5px;
+  border-radius: 5px 5px 0px 0px;
   width: -webkit-fill-available;
   font-size: 1rem;
 }
@@ -91,12 +92,14 @@
   width: 21px;
   height: 21px;
   text-align: center;
+  padding-right: 8px;
 }
 .Categories {
   grid-area: g;
   grid-row: 2/4;
   grid-column: 6/8;
   justify-self: end;
+  padding-right: 8px;
 }
 
 thead > tr {
