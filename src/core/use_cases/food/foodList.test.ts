@@ -36,21 +36,30 @@ describe('food list', () => {
   describe('show details', () => {
     it('show ingredient detail when given word', () => {
       foodList.add([ingredient1, ingredient2]);
-      expect(foodList.find('apple')).toEqual(
-        expect.arrayContaining([ingredient1])
-      );
-      expect(foodList.find('app')).toEqual(
-        expect.arrayContaining([ingredient1])
-      );
-      expect(foodList.find('app')).toEqual(
-        expect.arrayContaining([ingredient1, ingredient2])
-      );
+      expect(foodList.find('apple')).toEqual([ingredient1]);
+      expect(foodList.find('app')).not.toEqual([ingredient1]);
+      expect(foodList.find('app')).not.toEqual([ingredient2]);
+      expect(foodList.find('eziuryiz')).not.toEqual(foodList.dataStore);
     });
 
     it('show ingredient detail when given id', () => {
       foodList.add([ingredient1, ingredient2]);
       expect(foodList.find(0)).toEqual(expect.arrayContaining([ingredient1]));
       expect(foodList.find(1)).toEqual(expect.arrayContaining([ingredient2]));
+    });
+  });
+
+  describe('remove ingredient', () => {
+    it(' delete the exact ingredient with the given  word', () => {
+      foodList.add([ingredient1, ingredient2]);
+      expect(foodList.remove('apple')).toEqual([ingredient2]);
+      expect(foodList.remove('app')).toEqual(foodList.dataStore);
+      expect(foodList.remove('azeazqr')).toEqual(foodList.dataStore);
+    });
+    it(' delete the ingredient with the given  id', () => {
+      foodList.add([ingredient1, ingredient2]);
+      expect(foodList.remove(1)).toEqual([ingredient1]);
+      expect(foodList.remove(2)).toEqual(foodList.dataStore);
     });
   });
 });

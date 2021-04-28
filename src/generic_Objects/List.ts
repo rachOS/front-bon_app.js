@@ -1,3 +1,5 @@
+import { any } from 'prop-types';
+
 export class List {
   dataStore: [];
   position: number;
@@ -23,8 +25,12 @@ export class List {
   }
 
   find(element: string | number) {
-    return (this.dataStore as any).filter(
-      (el: any) => el.label.includes(element) || el.id === element
+    return this.dataStore.filter(
+      (el: any) => el.label === element || el.id === element
     );
+  }
+
+  remove(element: string | number) {
+    return this.dataStore.filter((el: any) => (el.id || el.label) !== element);
   }
 }
