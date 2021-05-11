@@ -1,5 +1,3 @@
-import { any } from 'prop-types';
-
 export class List {
   dataStore: [];
   position: number;
@@ -19,18 +17,23 @@ export class List {
     return this.dataStore;
   }
 
-  clear() {
+  clearStore() {
     this.dataStore = [];
     this.listSize = 0;
   }
 
   find(element: string | number) {
-    return this.dataStore.filter(
+    const elementFound = this.dataStore.filter(
       (el: any) => el.label === element || el.id === element
     );
+    return elementFound;
   }
 
   remove(element: string | number) {
-    return this.dataStore.filter((el: any) => (el.id || el.label) !== element);
+    const dataStoreWithoutElement = this.dataStore.filter(
+      (el: any) => (el.id || el.label) !== element
+    );
+    this.listSize = dataStoreWithoutElement.length;
+    return dataStoreWithoutElement;
   }
 }

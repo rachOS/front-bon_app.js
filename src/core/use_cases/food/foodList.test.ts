@@ -7,7 +7,7 @@ describe('food list', () => {
   const ingredients = [ingredient1, ingredient2];
 
   beforeEach(() => {
-    foodList.clear();
+    foodList.clearStore();
     expect(foodList.dataStore).toHaveLength(0);
     expect(foodList.listSize).toEqual(0);
   });
@@ -58,8 +58,11 @@ describe('food list', () => {
     });
     it(' delete the ingredient with the given  id', () => {
       foodList.add([ingredient1, ingredient2]);
+      expect(foodList.listSize).toEqual(2);
       expect(foodList.remove(1)).toEqual([ingredient1]);
-      expect(foodList.remove(2)).toEqual(foodList.dataStore);
+      expect(foodList.listSize).toEqual(1);
+      expect(foodList.remove(3)).toEqual(foodList.dataStore);
+      expect(foodList.listSize).toEqual(2);
     });
   });
 });
