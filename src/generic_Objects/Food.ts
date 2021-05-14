@@ -1,35 +1,36 @@
 export class Food {
-  name: String;
+  id: Number;
+  label: String;
   category: Number;
   proteins: Number;
   lipids: Number;
   glucids: Number;
   fibers: Number;
   calories: Number;
-  unit: Number;
+  quantities: Number;
   unitOfMeasure: String | Number;
 
   constructor(
-    name: String,
+    id: Number,
+    label: String,
     proteins: Number,
     lipids: Number,
     glucids: Number,
-    fibers: Number,
-    unit: Number,
-    unitOfMeasure: String | Number
+    fibers: Number
   ) {
-    this.name = name;
+    this.id = id;
+    this.label = label;
     this.category = 0;
     this.proteins = proteins;
     this.lipids = lipids;
     this.glucids = glucids;
     this.fibers = fibers;
     this.calories = 0;
-    this.unit = unit;
-    this.unitOfMeasure = unitOfMeasure;
+    this.quantities = 0;
+    this.unitOfMeasure = '';
   }
 
-  calcFoodCaloriesPerUnit() {
+  calcFoodCaloriesPerQuantities() {
     this.calories =
       (this.proteins as any) * 4 +
       (this.lipids as any) * 9 +

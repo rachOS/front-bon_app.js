@@ -22,9 +22,12 @@ export class List {
     this.listSize = 0;
   }
 
-  find(element: string | number) {
+  // todo rest paramaters in TS
+  find(...element: string[] | number[]) {
     const elementFound = this.dataStore.filter(
-      (el: any) => el.label === element || el.id === element
+      (el: any) =>
+        el.label === element.toString() ||
+        el.id === parseInt(element.toString())
     );
     return elementFound;
   }
