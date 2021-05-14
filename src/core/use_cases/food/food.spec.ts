@@ -3,8 +3,8 @@ import { genericFood } from './food';
 describe('New food', () => {
   describe('define a food', () => {
     it('cant create a food with an empty name', () => {
-      expect(genericFood.name).toBe('banana');
-      expect(genericFood.name).not.toBeFalsy();
+      expect(genericFood.label).toBe('banana');
+      expect(genericFood.label).not.toBeFalsy();
     });
     it('create a food with an specific category', () => {
       expect(genericFood.category).toBeGreaterThan(0);
@@ -20,14 +20,15 @@ describe('New food', () => {
   });
   describe('calculate calories', () => {
     it('verify if the unit of measure and the quantity are given', () => {
-      expect(genericFood.unitOfMeasure && genericFood.unit).not.toBeFalsy();
+      expect(genericFood.unitOfMeasure).not.toBeFalsy();
+      expect(genericFood.quantities).not.toBeFalsy();
       const matchers = [1, 100];
-      expect(matchers).toContain(genericFood.unit);
+      expect(matchers).toContain(genericFood.quantities);
     });
 
     it('calc the calories value of the food', () => {
-      expect(genericFood.calcFoodCaloriesPerUnit()).toBeGreaterThan(0);
-      expect(genericFood.calcFoodCaloriesPerUnit()).toEqual(
+      expect(genericFood.calcFoodCaloriesPerQuantities()).toBeGreaterThan(0);
+      expect(genericFood.calcFoodCaloriesPerQuantities()).toEqual(
         (genericFood.proteins as any) * 4 +
           (genericFood.lipids as any) * 9 +
           (genericFood.glucids as any) * 4 +
