@@ -1,41 +1,41 @@
 export class Food {
-  id: Number;
-  label: String;
-  category: Number;
-  proteins: Number;
-  lipids: Number;
-  glucids: Number;
-  fibers: Number;
-  calories: Number;
-  quantities: Number;
-  unitOfMeasure: String | Number;
+  id: number;
+  label: string;
+  category: number;
+  proteins: number;
+  lipids: number;
+  glucids: number;
+  fibers: number;
+  calories: number;
+  quantities: number;
+  unitOfMeasure: string | number;
 
   constructor(
-    id: Number,
-    label: String,
-    proteins: Number,
-    lipids: Number,
-    glucids: Number,
-    fibers: Number
+    id: number,
+    label: string,
+    category: number,
+    proteins: number,
+    lipids: number,
+    glucids: number,
+    fibers: number,
+    quantities: number,
+    unitOfMeasure: string
   ) {
     this.id = id;
     this.label = label;
-    this.category = 0;
+    this.category = category;
     this.proteins = proteins;
     this.lipids = lipids;
     this.glucids = glucids;
     this.fibers = fibers;
-    this.calories = 0;
-    this.quantities = 0;
-    this.unitOfMeasure = '';
+    this.calories = this.calcFoodCalories();
+    this.quantities = quantities;
+    this.unitOfMeasure = unitOfMeasure;
   }
 
-  calcFoodCaloriesPerQuantities() {
-    this.calories =
-      (this.proteins as any) * 4 +
-      (this.lipids as any) * 9 +
-      (this.lipids as any) * 4 +
-      (this.fibers as any) * 4;
-    return this.calories;
+  private calcFoodCalories() {
+    const totalCalories: number =
+      this.proteins * 4 + this.lipids * 9 + this.lipids * 4 + this.fibers * 4;
+    return totalCalories;
   }
 }
