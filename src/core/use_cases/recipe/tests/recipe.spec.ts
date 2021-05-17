@@ -1,5 +1,5 @@
-import { Food, Recipe } from '../../../../generic_Objects/genericObjects';
 import { bananaWithCottageCheese } from '../recipesDB';
+import { Food, Recipe } from '../../../../generic_Objects/genericObjects';
 
 describe('how to create a recipe', () => {
   expect(bananaWithCottageCheese).toBeInstanceOf(Recipe);
