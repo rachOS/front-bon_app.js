@@ -1,5 +1,5 @@
-import { foodsDB } from '../foodsDB';
 import { banana, cottageCheese } from '../foodsDB';
+import { foodsDB } from '../foodsDB';
 
 const foods = [banana, cottageCheese];
 describe('food list', () => {

@@ -1,6 +1,8 @@
-import { List } from './List';
+import { List } from './genericObjects';
 export class Recipe extends List {
-  calcFoodCaloriesPerQuantities(value: number) {
-    return value;
+  label: string;
+  constructor(label: string = '') {
+    super();
+    this.label = label;
   }
 }

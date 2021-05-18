@@ -8,18 +8,18 @@ export class Food {
   fibers: number;
   calories: number;
   quantities: number;
-  unitOfMeasure: string | number;
+  unitOfMeasure: string;
 
   constructor(
-    id: number,
-    label: string,
-    category: number,
-    proteins: number,
-    lipids: number,
-    glucids: number,
-    fibers: number,
-    quantities: number,
-    unitOfMeasure: string
+    id: number = Math.floor(Math.random() * Math.pow(10, 1000)),
+    label: string = 'generic food',
+    category: number = 0,
+    proteins: number = 0.001,
+    lipids: number = 0.001,
+    glucids: number = 0.001,
+    fibers: number = 0.001,
+    quantities: number = 100,
+    unitOfMeasure: string = 'g'
   ) {
     this.id = id;
     this.label = label;

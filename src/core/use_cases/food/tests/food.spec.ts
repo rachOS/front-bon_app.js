@@ -3,7 +3,9 @@ import { banana } from '../../foodDB/foodsDB';
 describe('New food', () => {
   describe('define a food', () => {
     it('cant create a food with an empty name', () => {
+      expect(banana.label.length).toBeGreaterThan(0);
       expect(banana.label).toBe('banana');
+      expect(banana.label).not.toBe(undefined);
       expect(banana.label).not.toBeFalsy();
     });
     it('create a food with an specific category', () => {

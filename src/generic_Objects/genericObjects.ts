@@ -1,5 +1,6 @@
 import { Food } from './Food';
-import { Recipe } from './Recipe';
 import { List } from './List';
+import { Recipe } from './Recipe';
+import { Meal } from './Meal';
 
-export { Food, Recipe, List };
+export { Food, Recipe, List, Meal };

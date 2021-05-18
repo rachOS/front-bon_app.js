@@ -1,5 +1,5 @@
-import { Food, Recipe } from '../../../../generic_Objects/genericObjects';
 import { bananaWithCottageCheese } from '../recipesDB';
+import { Food, Recipe } from '../../../../generic_Objects/genericObjects';
 
 describe('how to create a recipe', () => {
   expect(bananaWithCottageCheese).toBeInstanceOf(Recipe);
@@ -22,14 +22,16 @@ describe('how to create a recipe', () => {
     it('must have an unit of measurement for each food', () => {
       expect(
         bananaWithCottageCheese.dataStore.every(
-          (food) => (food as any).unitOfMeasure
+          (food) => (food as Food).unitOfMeasure
         )
       ).toBeTruthy();
     });
+    /* TODO
     it('must convert the calories with the given quantity', () => {
-      /*    bananaWithCottageCheese.dataStore.map((food) =>
+        bananaWithCottageCheese.dataStore.map((food) =>
         expect((food as any).calories).toBe(42)
-      ); */
-    });
+      );
+    })
+    */
   });
 });
