@@ -22,7 +22,6 @@ export class List {
     this.listSize = 0;
   }
 
-  // todo rest paramaters in TS
   find(...element: string[] | number[]) {
     const elementFound = this.dataStore.filter(
       (el: any) =>
