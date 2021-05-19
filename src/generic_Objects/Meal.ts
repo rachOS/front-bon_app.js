@@ -1,4 +1,4 @@
-import { List } from './genericObjects';
+/* import { List } from './genericObjects';
 
 export class Meal extends List {
   label: string;
@@ -7,3 +7,5 @@ export class Meal extends List {
     this.label = label;
   }
 }
+ */
+export {};

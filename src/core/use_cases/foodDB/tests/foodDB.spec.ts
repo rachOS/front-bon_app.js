@@ -1,7 +1,10 @@
 import { banana, cottageCheese } from '../foodsDB';
 import { foodsDB } from '../foodsDB';
 
-const foods = [banana, cottageCheese];
+describe('Name of the group', () => {
+  it('should ', () => {});
+});
+/*const foods = [banana, cottageCheese];
 describe('food list', () => {
   beforeEach(() => {
     foodsDB.clearStore();
@@ -60,3 +63,4 @@ describe('food list', () => {
     });
   });
 });
+ */

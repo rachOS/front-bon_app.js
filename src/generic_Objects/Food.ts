@@ -1,41 +1,45 @@
+import { number } from 'prop-types';
+
 export class Food {
-  id: number;
   label: string;
-  category: number;
+  category: string;
   proteins: number;
   lipids: number;
   glucids: number;
-  fibers: number;
   calories: number;
+  fibers?: number;
   quantities: number;
-  unitOfMeasure: string;
 
   constructor(
-    id: number = Math.floor(Math.random() * Math.pow(10, 1000)),
+    //    id: number = Math.floor(Math.random() * Math.pow(10, 1000)),
     label: string = 'generic food',
-    category: number = 0,
-    proteins: number = 0.001,
-    lipids: number = 0.001,
-    glucids: number = 0.001,
-    fibers: number = 0.001,
-    quantities: number = 100,
-    unitOfMeasure: string = 'g'
+    category: string = 'default category',
+    proteins: number = 0,
+    lipids: number = 0,
+    glucids: number = 0,
+    fiber: number = 0,
+    quantities: number = 1
   ) {
-    this.id = id;
     this.label = label;
     this.category = category;
     this.proteins = proteins;
     this.lipids = lipids;
     this.glucids = glucids;
-    this.fibers = fibers;
+    this.fibers = fiber;
+    this.quantities = this.convertQuantitiesToOneUnit(quantities);
     this.calories = this.calcFoodCalories();
-    this.quantities = quantities;
-    this.unitOfMeasure = unitOfMeasure;
   }
 
   private calcFoodCalories() {
     const totalCalories: number =
-      this.proteins * 4 + this.lipids * 9 + this.lipids * 4 + this.fibers * 4;
+      this.proteins * 4 +
+      this.lipids * 9 +
+      this.glucids * 4 +
+      (this.fibers || 0) * 2;
     return totalCalories;
+  }
+
+  private convertQuantitiesToOneUnit(quantities: number) {
+    return quantities / quantities;
   }
 }
