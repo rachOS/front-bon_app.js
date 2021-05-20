@@ -1,6 +1,6 @@
-import { banana, genericFood } from '../../foodDB/foodsDB';
-import { categories } from '../categories';
-import { unitsOfMeasure } from '../unitsOfMeasure';
+import { banana, genericFood } from '../foodsDB';
+import { categories } from '../misc/categories';
+import { unitsOfMeasure } from '../misc/unitsOfMeasure';
 import { Food } from '../../../../generic_Objects/genericObjects';
 
 describe('Food', () => {

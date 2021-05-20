@@ -2,35 +2,34 @@ import { string } from 'prop-types';
 
 export class Food {
   label: string;
-  category: string;
   proteins: number;
   lipids: number;
   glucids: number;
   calories: number;
-  fibers?: number;
   quantities: number;
   unitOfMeasure: string;
+  category?: string;
+  fibers?: number;
 
   constructor(
-    //    id: number = Math.floor(Math.random() * Math.pow(10, 1000)),
     label: string = 'generic food',
-    category: string = 'default category',
     proteins: number = 0,
     lipids: number = 0,
     glucids: number = 0,
-    fiber: number = 0,
     quantities: number = 100,
-    unitOfMeasure: string = 'g'
+    unitOfMeasure: string = 'g',
+    category: string = 'default category',
+    fiber: number = 0
   ) {
     this.label = label;
-    this.category = category;
     this.proteins = proteins;
     this.lipids = lipids;
     this.glucids = glucids;
-    this.fibers = fiber;
     this.quantities = this.convertQuantitiesToExpectedUnit(quantities);
     this.calories = this.calcFoodCalories();
     this.unitOfMeasure = unitOfMeasure;
+    this.category = category;
+    this.fibers = fiber;
   }
 
   private calcFoodCalories() {

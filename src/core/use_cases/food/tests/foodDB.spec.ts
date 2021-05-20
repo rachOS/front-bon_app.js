@@ -1,6 +1,3 @@
-import { banana, cottageCheese } from '../foodsDB';
-import { foodsDB } from '../foodsDB';
-
 describe('Name of the group', () => {
   it('should ', () => {});
 });
