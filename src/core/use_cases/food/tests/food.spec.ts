@@ -1,5 +1,6 @@
 import { banana, genericFood } from '../../foodDB/foodsDB';
 import { categories } from '../categories';
+import { unitsOfMeasure } from '../unitsOfMeasure';
 import { Food } from '../../../../generic_Objects/genericObjects';
 
 describe('Food', () => {
@@ -141,8 +142,8 @@ describe('Food', () => {
           };
 
           expect(genericFood.calories).toEqual(0);
-          expect(genericFood.calories || banana.calories).toEqual(
-            convertMacroNutriementsToCals(banana)
+          expect(genericFood.calories && banana.calories).toEqual(
+            convertMacroNutriementsToCals(genericFood || banana)
           );
         });
       });
@@ -154,12 +155,55 @@ describe('Food', () => {
           'number'
         );
       });
-      it('must have a default value equal to 1', () => {
-        expect(genericFood.quantities).toEqual(1);
+      it('must have a default value equal to 100', () => {
+        expect(genericFood.quantities).toEqual(100);
       });
-      // TODO, look here : https://jestjs.io/docs/expect#expectextendmatchers
-      it('must have a value equal to 1', () => {
-        expect(banana.quantities).toEqual(1);
+
+      it('must have a value equal to 1 or 100', () => {
+        expect.extend({
+          verifyQuantities(foodQuantities: number) {
+            if (foodQuantities === 1 || foodQuantities === 100) {
+              return {
+                message: () => `${foodQuantities} is a valid quantity`,
+                pass: true,
+              };
+            } else {
+              return {
+                message: () =>
+                  `${foodQuantities} is not a valid quantity. It must be equal to 1 or 100`,
+                pass: false,
+              };
+            }
+          },
+        });
+        expect(banana.quantities).verifyQuantities(1);
+      });
+    });
+
+    describe('units of measure', () => {
+      it('must be a valid character', () => {
+        expect(
+          typeof banana.unitOfMeasure && typeof genericFood.unitOfMeasure
+        ).toBe('string');
+
+        expect(banana.unitOfMeasure && genericFood.unitOfMeasure).toEqual(
+          expect.stringMatching(/[a-z]/)
+        );
+      });
+
+      it('must have a unit of measure', () => {
+        expect(banana.unitOfMeasure && genericFood.unitOfMeasure).toBeTruthy();
+      });
+
+      it('must have a valid unit of measure', () => {
+        expect(genericFood.unitOfMeasure).toEqual(expect.stringMatching('g'));
+        expect(banana.unitOfMeasure).toEqual(expect.stringMatching('unit'));
+
+        expect(unitsOfMeasure).toContain(
+          banana.unitOfMeasure && genericFood.unitOfMeasure
+        );
+
+        expect(categories).not.toContain((banana.unitOfMeasure = 'test'));
       });
     });
   });

@@ -1,4 +1,4 @@
-import { number } from 'prop-types';
+import { string } from 'prop-types';
 
 export class Food {
   label: string;
@@ -9,6 +9,7 @@ export class Food {
   calories: number;
   fibers?: number;
   quantities: number;
+  unitOfMeasure: string;
 
   constructor(
     //    id: number = Math.floor(Math.random() * Math.pow(10, 1000)),
@@ -18,7 +19,8 @@ export class Food {
     lipids: number = 0,
     glucids: number = 0,
     fiber: number = 0,
-    quantities: number = 1
+    quantities: number = 100,
+    unitOfMeasure: string = 'g'
   ) {
     this.label = label;
     this.category = category;
@@ -26,8 +28,9 @@ export class Food {
     this.lipids = lipids;
     this.glucids = glucids;
     this.fibers = fiber;
-    this.quantities = this.convertQuantitiesToOneUnit(quantities);
+    this.quantities = this.convertQuantitiesToExpectedUnit(quantities);
     this.calories = this.calcFoodCalories();
+    this.unitOfMeasure = unitOfMeasure;
   }
 
   private calcFoodCalories() {
@@ -39,7 +42,7 @@ export class Food {
     return totalCalories;
   }
 
-  private convertQuantitiesToOneUnit(quantities: number) {
-    return quantities / quantities;
+  private convertQuantitiesToExpectedUnit(quantities: number) {
+    return quantities === 1 || quantities === 100 ? quantities : 100;
   }
 }
