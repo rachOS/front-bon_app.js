@@ -1,4 +1,4 @@
-import { banana, genericFood } from '../foodsDB';
+import { banana, genericFood } from '../foods';
 import { categories } from '../misc/categories';
 import { unitsOfMeasure } from '../misc/unitsOfMeasure';
 import { Food } from '../../../../generic_Objects/genericObjects';
