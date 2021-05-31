@@ -1,5 +1,3 @@
-import { string } from 'prop-types';
-
 export class Food {
   label: string;
   proteins: number;
