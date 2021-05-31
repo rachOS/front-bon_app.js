@@ -3,16 +3,16 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 // import components
+import AuthField from './adapters/primary/components/Auth/AuthField/AuthField';
 import Foods from './adapters/primary/components/Foods/Foods';
-import Meals from './adapters/primary/components/Meals/Meals';
-import Planning from './adapters/primary/components/Planning/Planning';
 import FoodsUpdate from './adapters/primary/components/Foods/FoodsUpdate';
 import Home from './adapters/primary/components/Home';
-import RecipesManager from './adapters/primary/components/Recipes/RecipesManager';
-import ProfileManager from './adapters/primary/components/Profile/manager/ProfileManager';
-import PrivateRoute from './adapters/primary/components/private/PrivateRoute';
-import AuthField from './adapters/primary/components/Auth/AuthField/AuthField';
+import Meals from './adapters/primary/components/Meals/Meals';
 import Menu from './adapters/primary/components/Menu/Menu';
+import Planning from './adapters/primary/components/Planning/Planning';
+import PrivateRoute from './adapters/primary/components/private/PrivateRoute';
+import ProfileManager from './adapters/primary/components/Profile/manager/ProfileManager';
+import RecipesManager from './adapters/primary/components/Recipes/RecipesManager';
 
 // import CSS
 import './app.scss';
