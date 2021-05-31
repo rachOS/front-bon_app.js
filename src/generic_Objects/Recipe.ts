@@ -1,4 +1,5 @@
 import { List } from './genericObjects';
+/*
 export class Recipe extends List {
   label: string;
   constructor(label: string = '') {
@@ -6,3 +7,4 @@ export class Recipe extends List {
     this.label = label;
   }
 }
+ */
