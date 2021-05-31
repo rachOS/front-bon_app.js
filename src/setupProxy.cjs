@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const { createProxyMiddleware } = require('http-proxy-middleware');
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 module.exports = (app) => {
   app.use(
