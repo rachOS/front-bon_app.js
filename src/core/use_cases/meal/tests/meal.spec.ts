@@ -1,7 +1,10 @@
 import { breakfast } from '../mealDB';
 import { Meal, Recipe } from '../../../../generic_Objects/genericObjects';
 
-describe('how to create a meal', () => {
+describe('Name of the group', () => {
+  it('should ', () => {});
+});
+/*describe('how to create a meal', () => {
   describe('initialize a meal', () => {
     it('must be a meal list', () => {
       expect(breakfast).toBeInstanceOf(Meal);
@@ -20,3 +23,4 @@ describe('how to create a meal', () => {
     });
   });
 });
+ */
