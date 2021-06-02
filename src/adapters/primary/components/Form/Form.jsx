@@ -133,7 +133,7 @@ function Options({ value, text }) {
   return <option value={value}>{text}</option>;
 }
 
-function Button({ onClick, text, className }) {
+function Button({ onClick, text, className, type }) {
   return (
     <button className={`${className}`} onClick={onClick}>
       {text}
@@ -234,6 +234,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
   className: PropTypes.string,
+  type: PropTypes.string,
 };
 
 Button.defaultProps = {

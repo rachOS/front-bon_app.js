@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Recipes from './Recipes';
+import RecipesUI from './RecipesUI';
 import { getRecipesDatas } from './recipesPresenter';
 import { getAllFoods } from './recipesActions';
 
@@ -8,6 +8,23 @@ function RecipesManager() {
   const [allFoods, setAllFoods] = useState([{}]);
   const [food, setFood] = useState({});
   const [ingredients, setIngredients] = useState([]);
+  const [recipe, setRecipe] = useState({});
+
+  const getFood = (food) => {
+    setFood(food);
+  };
+
+  const deselect = (id) => {
+    setIngredients(ingredients.filter((food) => food.id !== id));
+  };
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    const newValue = { ...recipe, [name]: value };
+    console.log(name, value);
+    setRecipe(newValue);
+  };
 
   useEffect(() => {
     getAllFoods().then((datas) =>
@@ -24,12 +41,16 @@ function RecipesManager() {
   const recipesDatas = getRecipesDatas(
     allFoods,
     calories,
+    deselect,
     food,
-    setFood,
+    getFood,
+    handleChange,
     ingredients,
-    setIngredients
+    recipe
   );
-  return <Recipes recipesDatas={recipesDatas} />;
+  console.log('recipesDatas', recipesDatas);
+
+  return <RecipesUI recipesDatas={recipesDatas} />;
 }
 
 export default RecipesManager;
