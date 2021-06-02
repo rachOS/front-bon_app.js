@@ -1,61 +1,82 @@
 /* eslint-disable indent */
-/**
- * take a list of food object and return the right quantity for each food to match with calories goal
- * @param {number} calories
- * @param {number} caloriesGoal
- * @param {number} id
- * @param {array} ingredients
- * @param {object} food
- * @param {number} foodId
- * @param {array} foodList
- * @param {hook} setFood
- * @param {hook} setFoodQuantity
- * @param {hook} setIngredients
- */
+import { postNewRecipe } from './recipesActions';
 
 const getRecipesDatas = (
   allFoods,
   calories,
+  deselect,
   food,
-  setFood,
+  getFood,
+  handleChange,
   ingredients,
-  setIngredients
+  recipe
 ) => {
+  const deleteDuplicate = () => {
+    const foodHashMap = {};
+    const ingredientsList = ingredients.filter((food) => {
+      const alreadyExist = Object.prototype.hasOwnProperty.call(
+        foodHashMap,
+        food.id
+      );
+      return alreadyExist ? false : (foodHashMap[food.id] = true);
+    });
+    return [ingredientsList];
+  };
+
+  const balancedCalories = (ingredientsList, caloriesGoal = calories) => {
+    const balancedList = ingredientsList.map((food) => {
+      const totalQuantities = parseInt(
+        caloriesGoal / (food.calories / 100) / ingredientsList.length
+      );
+      return {
+        ...food,
+        protein: parseInt((totalQuantities / 100) * food.protein),
+        glucid: parseInt((totalQuantities / 100) * food.glucid),
+        lipid: parseInt((totalQuantities / 100) * food.protein),
+        bran: parseInt((totalQuantities / 100) * food.protein),
+        calories: parseInt((totalQuantities / 100) * food.calories),
+        quantity: totalQuantities,
+      };
+    });
+    return [balancedList];
+  };
+
+  const [ingredientsList] = deleteDuplicate();
+  const [balancedList] = balancedCalories(ingredientsList);
+
+  const searchedKeyValues = (key) =>
+    balancedList.map((element) => {
+      return element[key];
+    });
+
+  const calcTotalOfMacroNutrimentRecipe = () => {
+    const filterKeys = ['protein', 'lipid', 'glucid', 'bran', 'calories'];
+    const recipesProperties = [];
+    for (const key of filterKeys) {
+      recipesProperties.push({
+        [key]: searchedKeyValues(key).reduce((acc, el) => {
+          acc += el;
+          return acc;
+        }, 0),
+      });
+    }
+    return Object.assign({}, ...recipesProperties);
+  };
+
   return {
-    calories: calories, // user DEC
-    food: food,
-    foods: allFoods,
-    get_food: setFood,
-    ingredients: ingredients,
-    delete_duplicate: () => {
-      const foodHashMap = {};
-      const ingredientsList = ingredients.filter((food) => {
-        const alreadyExist = Object.prototype.hasOwnProperty.call(
-          foodHashMap,
-          food.id
-        );
-        return alreadyExist ? false : (foodHashMap[food.id] = true);
-      });
-      return [ingredientsList];
-    },
-    deselect: (id) => {
-      setIngredients(ingredients.filter((food) => food.id !== id));
-    },
-    balanced_calories: (ingredientsList, caloriesGoal = calories) => {
-      const balancedList = ingredientsList.map((food) => {
-        return {
-          ...food,
-          quantity: parseInt(
-            (
-              caloriesGoal /
-              (food.calories / 100) /
-              ingredientsList.length
-            ).toFixed(2)
-          ),
-        };
-      });
-      return [balancedList];
-    },
+    allFoods,
+    balancedCalories,
+    balancedList,
+    calcTotalOfMacroNutrimentRecipe,
+    calories, // user DEC
+    deleteDuplicate,
+    deselect,
+    food,
+    handleChange,
+    ingredients,
+    postNewRecipe,
+    recipe,
+    getFood,
   };
 };
 

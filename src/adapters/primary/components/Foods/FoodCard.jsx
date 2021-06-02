@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 //* CORE */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -54,7 +54,6 @@ function FoodCard({ index, food, getFoodsList }) {
   };
 
   const { label, background } = switchCategories(id_group);
-  console.log(label);
   return (
     <NavLink key={index} to={`aliments/${id}`} className="Editable">
       <tr key={index} className={`Box-food Box-food-${index}`}>
