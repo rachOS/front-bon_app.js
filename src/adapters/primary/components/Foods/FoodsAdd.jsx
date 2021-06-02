@@ -1,7 +1,16 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
-import { FieldSet, Form, Legend, Label, Input, Button } from '../Form/Form';
+import {
+  FieldSet,
+  Form,
+  Legend,
+  Label,
+  Input,
+  Button,
+  Select,
+  Options,
+} from '../Form/Form';
 function FoodsAdd({ getFoodsList }) {
   const [food, setFood] = useState({});
   const [inputValue, setInputValue] = useState('');
@@ -16,7 +25,6 @@ function FoodsAdd({ getFoodsList }) {
     event.preventDefault();
     const { name, value } = event.target;
     const newValue = { ...inputValue, [name]: value };
-    console.log(name, value);
     setInputValue(newValue);
   };
 
@@ -78,19 +86,19 @@ function FoodsAdd({ getFoodsList }) {
             onChange={(event) => handleChange(event)}
           />
           <Label htmlFor="category" text={'Catégorie'} />
-          <select
+          <Select
             id="category"
             name="id_group"
             value={inputValue.id_group}
             onChange={(event) => handleChange(event)}
           >
-            <option value="">--Choisissez une catégorie--</option>
-            <option value={1}>féculent</option>
-            <option value={2}>animale</option>
-            <option value={3}>végétale</option>
-            <option value={4}>céréales</option>
-            <option value={5}>légumineuse</option>
-          </select>
+            <Options value="" text={'--Choisir une catégorie--'} />
+            <Options value={1} text={'féculent'} />
+            <Options value={2} text={'animale'} />
+            <Options value={3} text={'végétale'} />
+            <Options value={4} text={'céréales'} />
+            <Options value={5} text={'légumineuse'} />
+          </Select>
         </FieldSet>
       </Form>
       <Button
