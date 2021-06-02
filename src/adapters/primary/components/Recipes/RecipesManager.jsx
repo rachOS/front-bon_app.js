@@ -4,7 +4,7 @@ import { getRecipesDatas } from './recipesPresenter';
 import { getAllFoods } from './recipesActions';
 
 function RecipesManager() {
-  const [calories, setCalories] = useState(0); // import user's DEJ here !
+  const calories = 2043.41; // import user's DEJ here !
   const [allFoods, setAllFoods] = useState([{}]);
   const [food, setFood] = useState({});
   const [ingredients, setIngredients] = useState([]);
@@ -21,9 +21,7 @@ function RecipesManager() {
   const handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    const newValue = { ...recipe, [name]: value };
-    console.log(name, value);
-    setRecipe(newValue);
+    setRecipe({ ...recipe, [name]: value });
   };
 
   useEffect(() => {
@@ -34,8 +32,10 @@ function RecipesManager() {
         })
       )
     );
-    setCalories(2043.41);
+
     food.id && setIngredients([...ingredients, { ...food, selected: true }]);
+
+    setRecipe({ ...recipe, ...recipesDatas.calcTotalOfMacroNutrimentRecipe() });
   }, [food]);
 
   const recipesDatas = getRecipesDatas(
@@ -48,11 +48,7 @@ function RecipesManager() {
     ingredients,
     recipe
   );
-  console.log('recipesDatas', recipesDatas);
 
   return <RecipesUI recipesDatas={recipesDatas} />;
 }
-
 export default RecipesManager;
-// manage states
-// call UI and Presenter

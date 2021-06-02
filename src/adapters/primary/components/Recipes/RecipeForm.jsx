@@ -1,6 +1,6 @@
 //* CORE */
 import React, { Fragment } from 'react';
-import { Form, Label, Input, Legend, FieldSet, Button } from '../Form/Form';
+import { Button, FieldSet, Form, Input, Label, Legend } from '../Form/Form';
 import PropTypes from 'prop-types';
 
 function RecipeForm({ handleChange, macroNutriments, postNewRecipe, recipe }) {
@@ -13,22 +13,22 @@ function RecipeForm({ handleChange, macroNutriments, postNewRecipe, recipe }) {
         <FieldSet>
           <Legend text={'Ajouter une recette'} />
           <Label text={'Nom:'} htmlFor={'recipe name'} />
-
           <Input
             id={'recipe name'}
             name={'name'}
-            type={'text'}
-            value={recipe.name}
             onChange={(event) => handleChange(event)}
             placeholder={recipe.name || 'Ex: pizza'}
+            type={'text'}
+            value={recipe.name}
           />
           <Label text={'Categorie:'} htmlFor={'recipe name'} />
           <Input
             id="recipe category"
             name="category"
-            value={recipe.category}
+            type={'number'}
             onChange={(event) => handleChange(event)}
             placeholder={recipe.category || 'Ex: 1'}
+            value={recipe.category}
           />
           <Label text={'Protéines:'} htmlFor={'recipe proteins'} />
           <Input

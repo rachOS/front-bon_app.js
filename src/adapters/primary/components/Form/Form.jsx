@@ -100,6 +100,7 @@ function Input({
   placeholder,
   min,
   max,
+  readOnly,
 }) {
   return (
     <input
@@ -211,6 +212,7 @@ Input.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   onChange: PropTypes.func,
+  readOnly: PropTypes.any,
 };
 
 Input.defaultProps = {

@@ -27,11 +27,9 @@ export default function RecipesUI({ recipesDatas }) {
     calories,
     deselect,
     handleChange,
-    ingredients,
     postNewRecipe,
     recipe,
     getFood,
-    setIngredients,
   } = useCallback(recipesDatas);
 
   return (
@@ -39,12 +37,7 @@ export default function RecipesUI({ recipesDatas }) {
       <FoodsList allFoods={allFoods} getFood={getFood} />
       <p>Calculer une recette pour {calories} calories</p>
       <h1>Ma liste d aliments pour ma recette</h1>
-      <SelectedFoods
-        balancedList={balancedList}
-        deselect={deselect}
-        ingredients={ingredients}
-        setIngredients={setIngredients}
-      />
+      <SelectedFoods balancedList={balancedList} deselect={deselect} />
       <RecipeForm
         handleChange={handleChange}
         macroNutriments={calcTotalOfMacroNutrimentRecipe()}
@@ -56,19 +49,15 @@ export default function RecipesUI({ recipesDatas }) {
 }
 
 RecipesUI.propTypes = {
-  recipesDatas: PropTypes.exact({
-    allFoods: PropTypes.arrayOf(PropTypes.object),
-    balancedList: PropTypes.func,
-    calories: PropTypes.number,
-    calcTotalOfMacroNutrimentRecipe: PropTypes.func,
-    deleteDuplicate: PropTypes.func,
-    deselect: PropTypes.func,
-    food: PropTypes.object,
-    get_food: PropTypes.func,
-    handleChange: PropTypes.func,
-    ingredients: PropTypes.arrayOf(PropTypes.object),
-    inputValue: PropTypes.string,
-    postNewRecipe: PropTypes.func,
-    setIngredients: PropTypes.func,
-  }),
+  recipesDatas: PropTypes.object,
+  allFoods: PropTypes.arrayOf(PropTypes.object),
+  balancedList: PropTypes.func,
+  calories: PropTypes.number,
+  calcTotalOfMacroNutrimentRecipe: PropTypes.func,
+  deleteDuplicate: PropTypes.func,
+  deselect: PropTypes.func,
+  getFood: PropTypes.func,
+  handleChange: PropTypes.func,
+  ingredients: PropTypes.arrayOf(PropTypes.object),
+  postNewRecipe: PropTypes.func,
 };

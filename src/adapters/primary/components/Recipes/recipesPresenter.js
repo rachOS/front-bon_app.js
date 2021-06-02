@@ -43,6 +43,7 @@ const getRecipesDatas = (
 
   const [ingredientsList] = deleteDuplicate();
   const [balancedList] = balancedCalories(ingredientsList);
+
   const searchedKeyValues = (key) =>
     balancedList.map((element) => {
       return element[key];
