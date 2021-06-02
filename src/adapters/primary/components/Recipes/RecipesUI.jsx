@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 // manage UI
-import React, { Fragment, useCallback } from 'react';
+import React, { Fragment } from 'react';
 import FoodsList from './FoodsList';
 import RecipeForm from './RecipeForm';
 import SelectedFoods from './SelectedFoods';
@@ -23,24 +23,22 @@ export default function RecipesUI({ recipesDatas }) {
   const {
     allFoods,
     balancedList,
-    calcTotalOfMacroNutrimentRecipe,
     calories,
     deselect,
     handleChange,
     postNewRecipe,
     recipe,
     getFood,
-  } = useCallback(recipesDatas);
+  } = recipesDatas;
 
   return (
     <Fragment>
       <FoodsList allFoods={allFoods} getFood={getFood} />
       <p>Calculer une recette pour {calories} calories</p>
-      <h1>Ma liste d aliments pour ma recette</h1>
+      <h1>Ma recette : {recipe.name || '...'}</h1>
       <SelectedFoods balancedList={balancedList} deselect={deselect} />
       <RecipeForm
         handleChange={handleChange}
-        macroNutriments={calcTotalOfMacroNutrimentRecipe()}
         postNewRecipe={postNewRecipe}
         recipe={recipe}
       />

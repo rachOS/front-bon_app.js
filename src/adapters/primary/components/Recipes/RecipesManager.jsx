@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import RecipesUI from './RecipesUI';
 import { getRecipesDatas } from './recipesPresenter';
 import { getAllFoods } from './recipesActions';
@@ -34,9 +34,11 @@ function RecipesManager() {
     );
 
     food.id && setIngredients([...ingredients, { ...food, selected: true }]);
-
-    setRecipe({ ...recipe, ...recipesDatas.calcTotalOfMacroNutrimentRecipe() });
   }, [food]);
+
+  useEffect(() => {
+    setRecipe({ ...recipe, ...recipesDatas.calcTotalOfMacroNutrimentRecipe() });
+  }, [ingredients]);
 
   const recipesDatas = getRecipesDatas(
     allFoods,
