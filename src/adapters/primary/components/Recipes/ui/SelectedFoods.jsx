@@ -2,7 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function SelectedFoods({ balancedList, deselect }) {
+function SelectedFoods({ recipesDatas }) {
+  const { balancedList, deselect } = recipesDatas;
   return (
     <ul>
       {balancedList.map((f, key) => {
@@ -19,8 +20,7 @@ function SelectedFoods({ balancedList, deselect }) {
   );
 }
 SelectedFoods.propTypes = {
-  balancedList: PropTypes.func,
-  deselect: PropTypes.func,
+  recipesDatas: PropTypes.object,
 };
 
 export default SelectedFoods;

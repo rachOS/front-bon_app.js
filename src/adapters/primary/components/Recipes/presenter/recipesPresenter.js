@@ -1,14 +1,19 @@
 /* eslint-disable indent */
-import { postNewRecipe } from './recipesActions';
+import { postNewRecipe } from '../actions/recipesActions';
 
 const getRecipesDatas = (
   allFoods,
+  allRecipes,
   calories,
+  deleteRecipe,
   deselect,
+  editRecipe,
   food,
   getFood,
+  getOneRecipe,
   handleChange,
   ingredients,
+  props,
   recipe
 ) => {
   const deleteDuplicate = () => {
@@ -63,20 +68,30 @@ const getRecipesDatas = (
     return Object.assign({}, ...recipesProperties);
   };
 
+  const goToEditionPage = (id) => {
+    return props.history.push(`/recettes/${id}`);
+  };
+
   return {
     allFoods,
+    allRecipes,
     balancedCalories,
     balancedList,
     calcTotalOfMacroNutrimentRecipe,
     calories, // user DEC
     deleteDuplicate,
+    deleteRecipe,
     deselect,
+    editRecipe,
     food,
+    getFood,
+    getOneRecipe,
+    goToEditionPage,
     handleChange,
     ingredients,
     postNewRecipe,
+    props,
     recipe,
-    getFood,
   };
 };
 
