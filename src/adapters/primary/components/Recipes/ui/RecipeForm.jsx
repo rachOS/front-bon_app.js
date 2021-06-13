@@ -1,11 +1,11 @@
 //* CORE */
 import React, { Fragment } from 'react';
-import { Button, FieldSet, Form, Input, Label, Legend } from '../Form/Form';
+import { Button, FieldSet, Form, Input, Label, Legend } from '../../Form/Form';
 import PropTypes from 'prop-types';
 
-function RecipeForm({ handleChange, postNewRecipe, recipe }) {
-  console.log('recipe', recipe);
-
+function RecipeForm({ recipesDatas }) {
+  const { handleChange, postNewRecipe, recipe } = recipesDatas;
+  console.log('recipe form', recipe.id ? 'ok' : 'ko');
   return (
     <Fragment>
       <Form noValidate autoComplete="off">
@@ -49,15 +49,14 @@ function RecipeForm({ handleChange, postNewRecipe, recipe }) {
       <Button
         text={'Créer une recette'}
         type={'submit'}
+        //recipe.id ? => PUT else POST
         onClick={() => postNewRecipe(recipe)}
       />
     </Fragment>
   );
 }
 RecipeForm.propTypes = {
-  handleChange: PropTypes.func,
-  recipe: PropTypes.object,
-  postNewRecipe: PropTypes.func,
+  recipesDatas: PropTypes.object,
 };
 
 export default RecipeForm;

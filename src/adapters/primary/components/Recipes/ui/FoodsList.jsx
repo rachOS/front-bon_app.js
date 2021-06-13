@@ -1,10 +1,12 @@
 //* CORE */
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-function FoodsList({ allFoods, getFood }) {
+function FoodsList({ recipesDatas }) {
+  const { allFoods, getFood } = recipesDatas;
   return (
-    <Fragment>
+    <>
+      <h1>Ma liste d&apos; aliments</h1>
       <ul>
         {allFoods.map((food, key) => (
           <li key={key}>
@@ -12,12 +14,11 @@ function FoodsList({ allFoods, getFood }) {
           </li>
         ))}
       </ul>
-    </Fragment>
+    </>
   );
 }
 FoodsList.propTypes = {
-  allFoods: PropTypes.arrayOf(PropTypes.object),
-  getFood: PropTypes.func,
+  recipesDatas: PropTypes.object,
 };
 
 export default FoodsList;

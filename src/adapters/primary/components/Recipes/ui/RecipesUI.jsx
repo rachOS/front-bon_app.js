@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
-// manage UI
-import React, { Fragment } from 'react';
 import FoodsList from './FoodsList';
-import RecipeForm from './RecipeForm';
-import SelectedFoods from './SelectedFoods';
 import PropTypes from 'prop-types';
+import React from 'react';
+import RecipesList from './RecipesList';
+import SelectedFoods from './SelectedFoods';
+
 export default function RecipesUI({ recipesDatas }) {
   //TODO même idée déquilibrage mais sans dépasser la quantité de prot, lip, gluc recommendée
 
@@ -20,42 +20,18 @@ export default function RecipesUI({ recipesDatas }) {
 
   //TODO à chaque ajout ou retrait d'aliment , les quantités doivent être affichées automatiquement le but étant de choisir que ses aliments et de ne rien avoir à calculer.
 
-  const {
-    allFoods,
-    balancedList,
-    calories,
-    deselect,
-    handleChange,
-    postNewRecipe,
-    recipe,
-    getFood,
-  } = recipesDatas;
-
+  const { calories } = recipesDatas;
   return (
-    <Fragment>
-      <FoodsList allFoods={allFoods} getFood={getFood} />
+    <>
+      <RecipesList recipesDatas={recipesDatas} />
+      <FoodsList recipesDatas={recipesDatas} />
       <p>Calculer une recette pour {calories} calories</p>
-      <h1>Ma recette : {recipe.name || '...'}</h1>
-      <SelectedFoods balancedList={balancedList} deselect={deselect} />
-      <RecipeForm
-        handleChange={handleChange}
-        postNewRecipe={postNewRecipe}
-        recipe={recipe}
-      />
-    </Fragment>
+      <SelectedFoods recipesDatas={recipesDatas} />
+    </>
   );
 }
 
 RecipesUI.propTypes = {
   recipesDatas: PropTypes.object,
-  allFoods: PropTypes.arrayOf(PropTypes.object),
-  balancedList: PropTypes.func,
   calories: PropTypes.number,
-  calcTotalOfMacroNutrimentRecipe: PropTypes.func,
-  deleteDuplicate: PropTypes.func,
-  deselect: PropTypes.func,
-  getFood: PropTypes.func,
-  handleChange: PropTypes.func,
-  ingredients: PropTypes.arrayOf(PropTypes.object),
-  postNewRecipe: PropTypes.func,
 };

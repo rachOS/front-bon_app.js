@@ -1,15 +1,26 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import RecipesUI from './RecipesUI';
-import { getRecipesDatas } from './recipesPresenter';
-import { getAllFoods } from './recipesActions';
+import React, { useState, useEffect } from 'react';
+import RecipesUI from '../ui/RecipesUI';
+import { useParams } from 'react-router-dom';
 
-function RecipesManager() {
+import { getRecipesDatas } from '../presenter/recipesPresenter';
+import {
+  getAllFoods,
+  getAllRecipes,
+  getOneRecipe,
+  deleteRecipe,
+  editRecipe,
+} from '../actions/recipesActions';
+
+function RecipesManager(props) {
   const calories = 2043.41; // import user's DEJ here !
   const [allFoods, setAllFoods] = useState([{}]);
+  const [allRecipes, setAllRecipes] = useState([{}]);
   const [food, setFood] = useState({});
   const [ingredients, setIngredients] = useState([]);
   const [recipe, setRecipe] = useState({});
+  const { recipeID } = useParams();
 
+  console.log('recipe', recipe);
   const getFood = (food) => {
     setFood(food);
   };
@@ -37,17 +48,32 @@ function RecipesManager() {
   }, [food]);
 
   useEffect(() => {
+    getAllRecipes().then((datas) =>
+      setAllRecipes(
+        datas.map((recipes) => {
+          return { ...recipes, selected: false };
+        })
+      )
+    );
     setRecipe({ ...recipe, ...recipesDatas.calcTotalOfMacroNutrimentRecipe() });
-  }, [ingredients]);
+    recipeID
+      ? getOneRecipe(recipeID).then((response) => setRecipe(response.data))
+      : setRecipe({});
+  }, [ingredients, recipeID]);
 
   const recipesDatas = getRecipesDatas(
     allFoods,
+    allRecipes,
     calories,
+    deleteRecipe,
     deselect,
+    editRecipe,
     food,
     getFood,
+    getOneRecipe,
     handleChange,
     ingredients,
+    props,
     recipe
   );
 
