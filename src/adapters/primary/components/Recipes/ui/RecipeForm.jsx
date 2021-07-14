@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 
 function RecipeForm({ recipesDatas }) {
   const { handleChange, postNewRecipe, recipe } = recipesDatas;
-  console.log('recipe form', recipe.id ? 'ok' : 'ko');
+
+  const [{ name, protein, lipid, category, calories, glucid, bran }] = recipe;
+
   return (
     <Fragment>
       <Form noValidate autoComplete="off">
@@ -16,9 +18,9 @@ function RecipeForm({ recipesDatas }) {
             id={'recipe name'}
             name={'name'}
             onChange={(event) => handleChange(event)}
-            placeholder={recipe.name || 'Ex: pizza'}
+            placeholder={name || 'Ex: pizza'}
             type={'text'}
-            value={recipe.name}
+            value={name}
           />
           <Label text={'Categorie:'} htmlFor={'recipe name'} />
           <Input
@@ -26,24 +28,24 @@ function RecipeForm({ recipesDatas }) {
             name="category"
             type={'number'}
             onChange={(event) => handleChange(event)}
-            placeholder={recipe.category || 'Ex: 1'}
-            value={recipe.category}
+            placeholder={category || 'Ex: 1'}
+            value={category}
           />
           <Label text={'Protéines:'} htmlFor={'recipe proteins'} />
           <Input
             id="recipe proteins"
             name="protein"
             type="number"
-            value={recipe.protein}
+            value={protein}
           />
           <Label text={'Lipides:'} htmlFor="recipe lipids" />
-          <Input id="recipe lipids" name="lipid" value={recipe.lipid} />
+          <Input id="recipe lipids" name="lipid" value={lipid} />
           <Label text={'Glucides:'} htmlFor={'recipe glucids'} />
-          <Input id="recipe glucids" name="glucid" value={recipe.glucid} />
+          <Input id="recipe glucids" name="glucid" value={glucid} />
           <Label text={'Fibres:'} htmlFor={'recipe bran'} />
-          <Input id="recipe bran" name="bran" value={recipe.bran} />
+          <Input id="recipe bran" name="bran" value={bran} />
           <Label text={'Calories:'} htmlFor={'recipe calories'} />
-          <Input id="recipe calories" name="calories" value={recipe.calories} />
+          <Input id="recipe calories" name="calories" value={calories} />
         </FieldSet>
       </Form>
       <Button

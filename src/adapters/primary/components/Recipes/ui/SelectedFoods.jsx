@@ -3,10 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function SelectedFoods({ recipesDatas }) {
-  const { balancedList, deselect } = recipesDatas;
+  const { foodsRecipeList, deselect } = recipesDatas;
   return (
     <ul>
-      {balancedList.map((f, key) => {
+      {foodsRecipeList.map((f, key) => {
         if (f.selected) {
           return (
             <li key={key}>

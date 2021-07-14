@@ -1,7 +1,6 @@
 //* CORE */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import DeleteRecipe from './DeleteRecipe';
 
 function RecipesCard({ recipe, recipesDatas }) {

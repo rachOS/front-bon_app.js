@@ -1,36 +1,34 @@
 // import core
-import React, { useState } from 'react';
-import { setDatas } from '../presenter/signupPresenter';
+import { useState } from 'react';
+import { setNewUserDatas } from '../presenter/signupPresenter';
 import { signup } from '../actions/signupActions';
 
 // import component
-import Signup from '../Signup';
+import { CreateNewUser } from '../../../../../core/use_cases/user/CreateNewUser/CreateNewUser';
 
 function SignupManager() {
   const [form, setForm] = useState({
     email: '',
     password: '',
-    age: '',
-    sex: '',
-    height: '',
-    weigth: '',
   });
-  const [errors, setErrors] = useState({});
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    signup(form)
-      .then((result) => result)
-      .catch((error) => setErrors(error.response.data));
+    const newUser = new CreateNewUser(form.email, form.password);
+    console.log('new user', newUser.submit());
+    //signup(form).then((result) => result);
   };
 
-  const handleForm = (key, value) => {
-    setForm({ ...form, [key]: value });
+  const handleForm = (event) => {
+    const {
+      target: { name, value },
+    } = event;
+    setForm({ ...form, [name]: value });
   };
 
-  const userDatas = setDatas(form, errors, handleForm, handleSubmit);
+  const userDatas = setNewUserDatas(form, handleForm, handleSubmit);
 
-  return <Signup userDatas={userDatas} />;
+  return userDatas;
 }
 
 export default SignupManager;

@@ -1,10 +1,8 @@
 import Axios from 'axios';
-const getAllFoods = () => {
+const getAllFoods = async () => {
   // eslint-disable-next-line no-undef
   const url = `${process.env.REACT_APP_HOST}/foods`;
-  return Axios.get(url)
-    .then((response) => response.data)
-    .then((data) => data);
+  return await Axios.get(url);
 };
 
 const getAllRecipes = async () => {
@@ -17,9 +15,10 @@ const getAllRecipes = async () => {
 
 const getOneRecipe = async (id) => {
   // eslint-disable-next-line no-undef
-  const url = `${process.env.REACT_APP_HOST}/recipes/${id}`;
+  const url = await `${process.env.REACT_APP_HOST}/recipes/${id}/foods`;
   return await Axios.get(url);
 };
+
 const deleteRecipe = async (recipeID) => {
   try {
     // eslint-disable-next-line no-undef
@@ -30,6 +29,16 @@ const deleteRecipe = async (recipeID) => {
     throw new Error({ error: error });
   }
 };
+
+const deleteOneFood = async (id) => {
+  try {
+    await Axios.delete(id);
+    window.location.reload();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const postNewRecipe = async (repiceData) => {
   repiceData.id_user = 1;
   console.log('repiceData', repiceData);
@@ -59,12 +68,13 @@ const editRecipe = async (recipe) => {
   }
 };
 export {
-  getAllFoods,
-  postNewRecipe,
-  getAllRecipes,
-  getOneRecipe,
+  deleteOneFood,
   deleteRecipe,
   editRecipe,
+  getAllFoods,
+  getAllRecipes,
+  getOneRecipe,
+  postNewRecipe,
 };
 
 // manage request

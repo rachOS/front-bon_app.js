@@ -1,10 +1,6 @@
-import { bananaWithCottageCheese } from '../recipesDB';
+/* import { bananaWithCottageCheese } from '../recipesDB';
 import { Food, Recipe } from '../../../../generic_Objects/genericObjects';
-
-describe('Name of the group', () => {
-  it('should ', () => {});
-});
-/*describe('how to create a recipe', () => {
+describe('how to create a recipe', () => {
   expect(bananaWithCottageCheese).toBeInstanceOf(Recipe);
   describe('consider that is a recipe', () => {
     it('must not be an empty list', () => {
@@ -31,10 +27,15 @@ describe('Name of the group', () => {
     });
     // TODO
     it('must convert the calories with the given quantity', () => {
-        bananaWithCottageCheese.dataStore.map((food) =>
+      bananaWithCottageCheese.dataStore.map((food) =>
         expect((food as any).calories).toBe(42)
       );
-    })
-
+    });
   });
-});*/
+}); */
+
+describe('Name of the group', () => {
+  it('should ', () => {
+    expect(1).toBeTruthy();
+  });
+});

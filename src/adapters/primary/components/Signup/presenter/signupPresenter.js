@@ -1,10 +1,7 @@
-const setDatas = (form, errors, handleForm, handleSubmit) => {
+export const setNewUserDatas = (form, handleForm, handleSubmit) => {
   return {
-    form: form,
-    handle_form: handleForm,
-    errors: errors,
-    handle_submit: handleSubmit,
+    form,
+    handleForm,
+    handleSubmit,
   };
 };
-
-export { setDatas };

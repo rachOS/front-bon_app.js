@@ -14,6 +14,7 @@ function Foods() {
   const getFoodsList = () => {
     // eslint-disable-next-line no-undef
     const url = `${process.env.REACT_APP_HOST}/foods`;
+    console.log(Axios.get(url).then((a) => a));
     Axios.get(url)
       .then((response) => response.data)
       .then((data) => setFoodsList(data));

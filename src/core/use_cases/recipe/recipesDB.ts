@@ -8,6 +8,6 @@ bananaWithCottageCheese.add(foodsDB.find('cottage cheese'));
 const recipesDB = new List();
 recipesDB.add(bananaWithCottageCheese);
 
-export { bananaWithCottageCheese, recipesDB };
- */
+export { bananaWithCottageCheese, recipesDB }; */
+
 export {};

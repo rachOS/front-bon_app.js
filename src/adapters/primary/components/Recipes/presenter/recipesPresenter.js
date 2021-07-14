@@ -47,14 +47,28 @@ const getRecipesDatas = (
   };
 
   const [ingredientsList] = deleteDuplicate();
-  const [balancedList] = balancedCalories(ingredientsList);
 
-  const searchedKeyValues = (key) =>
+  const getChildrenIDS = (recipe) => {
+    const [{ children }] = recipe;
+    const ingredients = allFoods
+      .filter((food) => (children ? children.indexOf(food.id) !== -1 : []))
+      .map((food) => {
+        console.log(food);
+        return { ...food, selected: true };
+      });
+
+    return ingredients;
+  };
+
+  const [foodsRecipeList] = balancedCalories([
+    ...new Set([...ingredientsList, ...getChildrenIDS(recipe)]),
+  ]);
+  /* const searchedKeyValues = (key) =>
     balancedList.map((element) => {
       return element[key];
-    });
+    }); */
 
-  const calcTotalOfMacroNutrimentRecipe = () => {
+  /* const calcTotalOfMacroNutrimentRecipe = () => {
     const filterKeys = ['protein', 'lipid', 'glucid', 'bran', 'calories'];
     const recipesProperties = [];
     for (const key of filterKeys) {
@@ -66,24 +80,38 @@ const getRecipesDatas = (
       });
     }
     return Object.assign({}, ...recipesProperties);
+  }; */
+
+  const goToEditionPage = async (id) => {
+    return await props.history.push(`/recettes/${id}/foods`);
   };
 
-  const goToEditionPage = (id) => {
-    return props.history.push(`/recettes/${id}`);
+  const deleteDuplicateRecipe = async (arr) => {
+    const foodsIds = await arr.map((recipe) => recipe.id_food);
+
+    const setFoodsIdsAsChildren = await arr.map((recipe) => {
+      delete recipe.id_food;
+      return { ...recipe, children: foodsIds };
+    });
+
+    return await setFoodsIdsAsChildren.filter(
+      (el, index, self) => self.indexOf(el) !== 1
+    );
   };
 
   return {
     allFoods,
     allRecipes,
     balancedCalories,
-    balancedList,
-    calcTotalOfMacroNutrimentRecipe,
     calories, // user DEC
     deleteDuplicate,
+    deleteDuplicateRecipe,
     deleteRecipe,
     deselect,
     editRecipe,
     food,
+    foodsRecipeList,
+    getChildrenIDS,
     getFood,
     getOneRecipe,
     goToEditionPage,
@@ -96,5 +124,3 @@ const getRecipesDatas = (
 };
 
 export { getRecipesDatas };
-
-// manage funtions and transform data

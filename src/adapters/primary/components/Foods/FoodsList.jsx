@@ -10,6 +10,8 @@ import FoodsAdd from './FoodsAdd';
 //* STYLE */
 import './style/foods.scss';
 function FoodsList({ foodsList, getFoodsList }) {
+  console.log('foodsList', foodsList);
+
   return (
     <Fragment>
       <FoodsAdd getFoodsList={getFoodsList} />
